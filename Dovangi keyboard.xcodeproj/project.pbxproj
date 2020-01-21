@@ -12,7 +12,33 @@
 		118A9B2423CDD183003728C6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 118A9B2223CDD183003728C6 /* Main.storyboard */; };
 		118A9B2623CDD186003728C6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 118A9B2523CDD186003728C6 /* Assets.xcassets */; };
 		118A9B2923CDD186003728C6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 118A9B2723CDD186003728C6 /* LaunchScreen.storyboard */; };
+		118A9B3723CDD1B4003728C6 /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118A9B3623CDD1B4003728C6 /* KeyboardViewController.swift */; };
+		118A9B3B23CDD1B4003728C6 /* keyboard.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 118A9B3423CDD1B4003728C6 /* keyboard.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		118A9B3923CDD1B4003728C6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 118A9B1323CDD182003728C6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 118A9B3323CDD1B4003728C6;
+			remoteInfo = keyboard;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		118A9B3F23CDD1B4003728C6 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				118A9B3B23CDD1B4003728C6 /* keyboard.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		118A9B1B23CDD182003728C6 /* Dovangi keyboard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Dovangi keyboard.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -22,10 +48,20 @@
 		118A9B2523CDD186003728C6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		118A9B2823CDD186003728C6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		118A9B2A23CDD186003728C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		118A9B3423CDD1B4003728C6 /* keyboard.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = keyboard.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		118A9B3623CDD1B4003728C6 /* KeyboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.swift; sourceTree = "<group>"; };
+		118A9B3823CDD1B4003728C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		118A9B1823CDD182003728C6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		118A9B3123CDD1B4003728C6 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -39,6 +75,7 @@
 			isa = PBXGroup;
 			children = (
 				118A9B1D23CDD182003728C6 /* Dovangi keyboard */,
+				118A9B3523CDD1B4003728C6 /* keyboard */,
 				118A9B1C23CDD182003728C6 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -47,6 +84,7 @@
 			isa = PBXGroup;
 			children = (
 				118A9B1B23CDD182003728C6 /* Dovangi keyboard.app */,
+				118A9B3423CDD1B4003728C6 /* keyboard.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -64,6 +102,15 @@
 			path = "Dovangi keyboard";
 			sourceTree = "<group>";
 		};
+		118A9B3523CDD1B4003728C6 /* keyboard */ = {
+			isa = PBXGroup;
+			children = (
+				118A9B3623CDD1B4003728C6 /* KeyboardViewController.swift */,
+				118A9B3823CDD1B4003728C6 /* Info.plist */,
+			);
+			path = keyboard;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -74,15 +121,34 @@
 				118A9B1723CDD182003728C6 /* Sources */,
 				118A9B1823CDD182003728C6 /* Frameworks */,
 				118A9B1923CDD182003728C6 /* Resources */,
+				118A9B3F23CDD1B4003728C6 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				118A9B3A23CDD1B4003728C6 /* PBXTargetDependency */,
 			);
 			name = "Dovangi keyboard";
 			productName = "Dovangi keyboard";
 			productReference = 118A9B1B23CDD182003728C6 /* Dovangi keyboard.app */;
 			productType = "com.apple.product-type.application";
+		};
+		118A9B3323CDD1B4003728C6 /* keyboard */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 118A9B3C23CDD1B4003728C6 /* Build configuration list for PBXNativeTarget "keyboard" */;
+			buildPhases = (
+				118A9B3023CDD1B4003728C6 /* Sources */,
+				118A9B3123CDD1B4003728C6 /* Frameworks */,
+				118A9B3223CDD1B4003728C6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = keyboard;
+			productName = keyboard;
+			productReference = 118A9B3423CDD1B4003728C6 /* keyboard.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -95,6 +161,9 @@
 				ORGANIZATIONNAME = "黒岩修";
 				TargetAttributes = {
 					118A9B1A23CDD182003728C6 = {
+						CreatedOnToolsVersion = 10.3;
+					};
+					118A9B3323CDD1B4003728C6 = {
 						CreatedOnToolsVersion = 10.3;
 					};
 				};
@@ -113,6 +182,7 @@
 			projectRoot = "";
 			targets = (
 				118A9B1A23CDD182003728C6 /* Dovangi keyboard */,
+				118A9B3323CDD1B4003728C6 /* keyboard */,
 			);
 		};
 /* End PBXProject section */
@@ -128,6 +198,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		118A9B3223CDD1B4003728C6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -140,7 +217,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		118A9B3023CDD1B4003728C6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				118A9B3723CDD1B4003728C6 /* KeyboardViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		118A9B3A23CDD1B4003728C6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 118A9B3323CDD1B4003728C6 /* keyboard */;
+			targetProxy = 118A9B3923CDD1B4003728C6 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		118A9B2223CDD183003728C6 /* Main.storyboard */ = {
@@ -281,6 +374,7 @@
 		118A9B2E23CDD186003728C6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3L5AM9SMR6;
@@ -299,6 +393,7 @@
 		118A9B2F23CDD186003728C6 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3L5AM9SMR6;
@@ -309,6 +404,44 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sonjal.Dovangi-keyboard";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		118A9B3D23CDD1B4003728C6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3L5AM9SMR6;
+				INFOPLIST_FILE = keyboard/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.sonjal.Dovangi-keyboard.keyboard";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		118A9B3E23CDD1B4003728C6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3L5AM9SMR6;
+				INFOPLIST_FILE = keyboard/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.sonjal.Dovangi-keyboard.keyboard";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -331,6 +464,15 @@
 			buildConfigurations = (
 				118A9B2E23CDD186003728C6 /* Debug */,
 				118A9B2F23CDD186003728C6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		118A9B3C23CDD1B4003728C6 /* Build configuration list for PBXNativeTarget "keyboard" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				118A9B3D23CDD1B4003728C6 /* Debug */,
+				118A9B3E23CDD1B4003728C6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
