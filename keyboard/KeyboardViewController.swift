@@ -10,6 +10,8 @@ import UIKit
 
 class KeyboardViewController: UIInputViewController {
 
+    weak var keyboardView: UIView!
+    
     @IBOutlet var nextKeyboardButton: UIButton!
     
     override func updateViewConstraints() {
@@ -20,6 +22,22 @@ class KeyboardViewController: UIInputViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //キーボードの高さ指定
+        let constraintH = NSLayoutConstraint(item: self.view, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 216)
+        constraintH.priority = UILayoutPriority(rawValue: 990)
+        self.view.addConstraint(constraintH)
+        
+        //xib設定
+        keyboardView = UINib(nibName: "Keyboard", bundle: Bundle.main).instantiate(withOwner: self, options: nil).first as? UIView
+        keyboardView.frame = view.frame
+        keyboardView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(keyboardView)
+        
+        keyboardView.topAnchor.constraint(equalTo:self.view.topAnchor, constant: 0.0).isActive = true
+        keyboardView.bottomAnchor.constraint(equalTo:self.view.bottomAnchor, constant: 0.0).isActive = true
+        keyboardView.leadingAnchor.constraint(equalTo:self.view.leadingAnchor, constant: 0.0).isActive = true
+        keyboardView.trailingAnchor.constraint(equalTo:self.view.trailingAnchor, constant: 0.0).isActive = true
         
         // Perform custom UI setup here
         self.nextKeyboardButton = UIButton(type: .system)
