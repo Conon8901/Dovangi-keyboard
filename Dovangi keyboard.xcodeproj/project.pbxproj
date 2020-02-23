@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		111C13B823D7011C004743B7 /* Keyboard.xib in Resources */ = {isa = PBXBuildFile; fileRef = 111C13B723D7011C004743B7 /* Keyboard.xib */; };
+		111C13B823D7011C004743B7 /* Latin.xib in Resources */ = {isa = PBXBuildFile; fileRef = 111C13B723D7011C004743B7 /* Latin.xib */; };
+		1180F3EE23FECDA400C0316B /* Cyrillic.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1180F3ED23FECDA400C0316B /* Cyrillic.xib */; };
 		118A9B1F23CDD182003728C6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118A9B1E23CDD182003728C6 /* AppDelegate.swift */; };
 		118A9B2123CDD182003728C6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118A9B2023CDD182003728C6 /* ViewController.swift */; };
 		118A9B2423CDD183003728C6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 118A9B2223CDD183003728C6 /* Main.storyboard */; };
@@ -42,7 +43,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		111C13B723D7011C004743B7 /* Keyboard.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Keyboard.xib; sourceTree = "<group>"; };
+		111C13B723D7011C004743B7 /* Latin.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Latin.xib; sourceTree = "<group>"; };
+		1180F3ED23FECDA400C0316B /* Cyrillic.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Cyrillic.xib; sourceTree = "<group>"; };
 		118A9B1B23CDD182003728C6 /* Dovangi keyboard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Dovangi keyboard.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		118A9B1E23CDD182003728C6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		118A9B2023CDD182003728C6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -109,7 +111,8 @@
 			children = (
 				118A9B3623CDD1B4003728C6 /* KeyboardViewController.swift */,
 				118A9B3823CDD1B4003728C6 /* Info.plist */,
-				111C13B723D7011C004743B7 /* Keyboard.xib */,
+				111C13B723D7011C004743B7 /* Latin.xib */,
+				1180F3ED23FECDA400C0316B /* Cyrillic.xib */,
 			);
 			path = keyboard;
 			sourceTree = "<group>";
@@ -205,7 +208,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				111C13B823D7011C004743B7 /* Keyboard.xib in Resources */,
+				111C13B823D7011C004743B7 /* Latin.xib in Resources */,
+				1180F3EE23FECDA400C0316B /* Cyrillic.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
