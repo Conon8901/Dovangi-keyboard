@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -9,16 +13,86 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Dovangi_keyboard" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dovangi Keyboard" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q7d-GW-Wrs">
+                                <rect key="frame" x="20" y="60" width="374" height="32"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Quo usque tandem abutere, Catilina, patientia nostra? Quam diu etiam furor iste tuus nos eludet?" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="yGq-i5-doe">
+                                <rect key="frame" x="20" y="140.5" width="374" height="701.5"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="YFU-3t-FGE">
+                                <rect key="frame" x="20" y="140.5" width="374" height="701.5"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hkg-M5-fBz">
+                                <rect key="frame" x="20" y="96" width="374" height="1"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1.2" id="RFa-92-1RX"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FuW-Xh-sM7">
+                                <rect key="frame" x="20" y="135" width="374" height="1.5"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1.2" id="8DT-fq-dPD"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="18r-5D-Hv4">
+                                <rect key="frame" x="16" y="101" width="382" height="30"/>
+                                <state key="normal" title="Close Keyboard"/>
+                                <connections>
+                                    <action selector="closeKeyboard" destination="BYZ-38-t0r" eventType="touchUpInside" id="ae4-l6-th6"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="18r-5D-Hv4" secondAttribute="trailing" constant="16" id="0CH-A8-vj1"/>
+                            <constraint firstItem="q7d-GW-Wrs" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="1gs-uE-ZxW"/>
+                            <constraint firstItem="Hkg-M5-fBz" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="5Y5-kU-mzR"/>
+                            <constraint firstItem="FuW-Xh-sM7" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="8eD-Qh-8Ml"/>
+                            <constraint firstItem="YFU-3t-FGE" firstAttribute="trailing" secondItem="yGq-i5-doe" secondAttribute="trailing" id="9UY-Mz-8GP"/>
+                            <constraint firstItem="18r-5D-Hv4" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="Bas-PT-B0X"/>
+                            <constraint firstItem="YFU-3t-FGE" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="CSh-fl-hcL"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="YFU-3t-FGE" secondAttribute="trailing" constant="20" id="CmG-bH-XnK"/>
+                            <constraint firstItem="FuW-Xh-sM7" firstAttribute="top" secondItem="18r-5D-Hv4" secondAttribute="bottom" constant="4" id="EkS-mw-EaV"/>
+                            <constraint firstItem="q7d-GW-Wrs" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="16" id="NPS-gs-Pqc"/>
+                            <constraint firstItem="YFU-3t-FGE" firstAttribute="bottom" secondItem="yGq-i5-doe" secondAttribute="bottom" id="NTA-b8-9dW"/>
+                            <constraint firstItem="yGq-i5-doe" firstAttribute="leading" secondItem="YFU-3t-FGE" secondAttribute="leading" id="UOm-Md-LIk"/>
+                            <constraint firstItem="YFU-3t-FGE" firstAttribute="top" secondItem="FuW-Xh-sM7" secondAttribute="bottom" constant="4" id="Wmo-xl-Qse"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Hkg-M5-fBz" secondAttribute="trailing" constant="20" id="ZJt-Th-fPC"/>
+                            <constraint firstAttribute="trailing" secondItem="FuW-Xh-sM7" secondAttribute="trailing" constant="20" id="ZmL-1s-veL"/>
+                            <constraint firstItem="18r-5D-Hv4" firstAttribute="top" secondItem="Hkg-M5-fBz" secondAttribute="bottom" constant="4" id="cQQ-Gu-XCl"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="q7d-GW-Wrs" secondAttribute="trailing" constant="20" id="fSe-0Y-bat"/>
+                            <constraint firstItem="yGq-i5-doe" firstAttribute="top" secondItem="YFU-3t-FGE" secondAttribute="top" id="hEJ-m0-doX"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="YFU-3t-FGE" secondAttribute="bottom" constant="20" id="z1s-F0-ffS"/>
+                            <constraint firstItem="Hkg-M5-fBz" firstAttribute="top" secondItem="q7d-GW-Wrs" secondAttribute="bottom" constant="4" id="zHE-Eu-v7m"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="button" destination="18r-5D-Hv4" id="lJI-c8-ouw"/>
+                        <outlet property="dammyV" destination="yGq-i5-doe" id="4Wn-YH-i9W"/>
+                        <outlet property="txtV" destination="YFU-3t-FGE" id="44Z-a7-P6e"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="137.68115942028987" y="79.6875"/>
         </scene>
     </scenes>
 </document>

@@ -23,10 +23,3 @@ extension UIView {
         self.trailingAnchor.constraint(equalTo: self.superview!.trailingAnchor, constant: 0.0).isActive = true
     }
 }
-
-extension UILongPressGestureRecognizer {
-    func deletePopup() {
-        let button = self.view as! UIButton
-        button.subviews[1].removeFromSuperview()
-    }
-}

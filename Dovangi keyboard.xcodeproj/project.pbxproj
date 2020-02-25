@@ -114,11 +114,11 @@
 			isa = PBXGroup;
 			children = (
 				118A9B3623CDD1B4003728C6 /* KeyboardViewController.swift */,
+				1184AE242402E97A004783A0 /* Setting.swift */,
 				118A9B3823CDD1B4003728C6 /* Info.plist */,
 				111C13B723D7011C004743B7 /* Latin.xib */,
 				1180F3ED23FECDA400C0316B /* Cyrillic.xib */,
 				1184AE222402641C004783A0 /* NumMark.xib */,
-				1184AE242402E97A004783A0 /* Setting.swift */,
 			);
 			path = keyboard;
 			sourceTree = "<group>";
