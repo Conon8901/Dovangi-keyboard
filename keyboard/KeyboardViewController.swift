@@ -26,10 +26,10 @@ class KeyboardViewController: UIInputViewController {
         static var lastShiftDate = Date()
         
         static let latinList = [true: ["Ƣ", "Ɋ", "E", "Ɛ", "T", "Ł", "U", "İ", "O", "Ɔ", "P", "A", "S", "D", "Ɗ", "F", "G", "Ɠ", "Ŋ", "K", "L", "R", "Z", "Ȥ", "X", "V", "Ʋ", "B", "Ɓ", "N", "M", " ", "\n"], false: ["ƣ", "ɋ", "e", "ɛ", "t", "ł", "u", "i", "o", "ɔ", "p", "a", "s", "d", "ɗ", "f", "g", "ɠ", "ŋ", "k", "l", "r", "z", "ȥ", "x", "v", "ʋ", "b", "ɓ", "n", "m", " ", "\n"]]
-        static let latinExtraList = [true: [1: "Q", 2: "Q̆", 4: "Ê", 8: "Y", 10: "Ô", 15: "D̆", 18: "Ğ", 19: "Ñ", 24: "Z̆", 27: "V̆", 29: "B̆"], false: [1: "q", 2: "q̆", 4: "ê", 10: "ô", 15: "d̆", 18: "ğ", 19: "ñ", 24: "z̆", 27: "v̆", 29: "b̆"]]
+        static let latinExtraList = [true: [1: "Q", 2: "Q̇", 4: "Ê", 8: "Y", 10: "Ô", 15: "Ḍ", 18: "Ġ", 19: "Ñ", 24: "Ẓ", 27: "Ṿ", 29: "Ḅ"], false: [1: "q", 2: "q̇", 4: "ê", 10: "ô", 15: "ḍ", 18: "ġ", 19: "ñ", 24: "ẓ", 27: "ṿ", 29: "ḅ"]]
         static let cyrillicList = [true: ["У", "К", "Е", "Н", "Г", "З", "Х", "Ъ", "Ң", "Ғ", "Ф", "В", "А", "П", "О", "Л", "Д", "Э", "Ԓ", "С", "М", "И", "Т", "Б", "Ә", "◌̆", " ", "\n"], false: ["у", "к", "е", "н", "г", "з", "х", "ъ", "ң", "ғ", "ф", "в", "а", "п", "о", "л", "д", "э", "ԓ", "с", "м", "и", "т", "б", "ә", "◌̆", " ", "\n"]]
-        static let numMarkList = [true: ["[", "]", "#", "%", "^", "+", "−", "×", "÷", "=", "_", "<", ">", "†", "§", "ɸ", "β", "ɣ", "ɬ", "ɮ", ".", ",", "?", "!", "«", "»", " ", "\n"], false: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "-", "~", "–", "/", ":", ";", "(", ")", "*", "\"", ".", ",", "?", "!", "«", "»", " ", "\n"]]
-        static let numMarkExtraList = [true: [4: "‰", 11: "‾", 15: "¶", 21: "…", 23: "⸮", 24: "‽"], false: [11: "•", 13: "—", 20: "'", 21: "…", 23: "⸮", 24: "‽"]]
+        static let numMarkList = [true: ["[", "]", "#", "†", "^", "+", "−", "×", "÷", "=", "_", "<", ">", "ᵐ", "ⁿ", "ᵑ", "ɡ", "ɣ", "ɬ", "ɮ", ".", ",", "?", "!", "«", "»", " ", "\n"], false: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "-", "~", "–", "/", ":", ";", "(", ")", "*", "\"", ".", ",", "?", "!", "«", "»", " ", "\n"]]
+        static let numMarkExtraList = [true: [4: "‰", 11: "‾", 21: "…", 23: "⸮", 24: "‽"], false: [11: "•", 13: "—", 20: "'", 21: "…", 23: "⸮", 24: "‽"]]
         
         static let keyboardHeights: [CGFloat:CGFloat] = [568.0: 216.0, 667.0: 216.0, 736.0: 226.0, 812.0: 216.0, 896.0: 226.0]
         /*
@@ -70,38 +70,37 @@ class KeyboardViewController: UIInputViewController {
         latinKeyboard.translatesAutoresizingMaskIntoConstraints = false
         
         for stack in self.latinKeyboard.subviews {
-            if stack is UIStackView {
-                for keytobe in stack.subviews {
-                    let key = keytobe as! UIButton
-                    key.roundedCornerise()
-                    
-                    // space key
-                    if key.tag == 37 {
-                        key.addTarget(self, action: #selector(spaceDown), for: .touchDown)
-                        key.addTarget(self, action: #selector(spaceUp), for: [.touchUpInside, .touchUpOutside])
-                    }
-                    
-                    
-                    if key.tag == 35 {
-                        // delete key
-                        key.addTarget(self, action: #selector(deleteDown), for: .touchDown)
-                        key.addTarget(self, action: #selector(deleteUp), for: [.touchUpInside, .touchUpOutside])
-                        key.addTarget(self, action: #selector(deleteKeyTouchedDown), for: .touchDown)
+            for keytobe in stack.subviews {
+                let key = keytobe as! UIButton
+                key.roundedCornerise()
+                
+                // function
+                if key.tag == 35 { // delete key
+                    key.addTarget(self, action: #selector(deleteDown), for: .touchDown)
+                    key.addTarget(self, action: #selector(deleteUp), for: [.touchUpInside, .touchUpOutside])
+                } else if key.tag <= 36 {
+                    key.addTarget(self, action: #selector(latinKeyPressed), for: .touchUpInside)
+                }
+                
+                // colour
+                if key.tag == 32 { // space
+                    key.addTarget(self, action: #selector(keyGreyen), for: .touchDown)
+                    key.addTarget(self, action: #selector(keyWhiten), for: [.touchUpInside, .touchUpOutside])
+                }
+                
+                if key.tag == 33 || key.tag == 35 || key.tag == 37 { // return, delete, nextKeyboard
+                    key.addTarget(self, action: #selector(keyWhiten), for: .touchDown)
+                    key.addTarget(self, action: #selector(keyGreyen), for: [.touchUpInside, .touchUpOutside])
+                }
+                
+                // sound
+                if key.tag == 35 {
+                    key.addTarget(self, action: #selector(deleteKeySoundSet), for: .touchDown)
+                } else {
+                    if key.tag >= 32 {
+                        key.addTarget(self, action: #selector(otherKeySoundSet), for: .touchDown)
                     } else {
-                        key.addTarget(self, action: #selector(latinKeyPressed), for: .touchUpInside)
-                        
-                        // space key
-                        if key.tag == 32 {
-                            key.addTarget(self, action: #selector(spaceDown), for: .touchDown)
-                            key.addTarget(self, action: #selector(spaceUp), for: [.touchUpInside, .touchUpOutside])
-                        }
-                        
-                        // space and later
-                        if key.tag >= 32 {
-                            key.addTarget(self, action: #selector(otherKeyTouchedDown), for: .touchDown)
-                        } else {
-                            key.addTarget(self, action: #selector(keyTouchedDown), for: .touchDown)
-                        }
+                        key.addTarget(self, action: #selector(keysoundSet), for: .touchDown)
                     }
                 }
             }
@@ -113,40 +112,47 @@ class KeyboardViewController: UIInputViewController {
         cyrillicKeyboard.translatesAutoresizingMaskIntoConstraints = false
         
         for stack in self.cyrillicKeyboard.subviews {
-            if stack is UIStackView {
-                for keytobe in stack.subviews {
-                    if let key = keytobe as? UIButton {
+            for keytobe in stack.subviews {
+                if let key = keytobe as? UIButton {
+                    key.roundedCornerise()
+                    
+                    // function
+                    if key.tag == 30 {
+                        key.addTarget(self, action: #selector(deleteDown), for: .touchDown)
+                        key.addTarget(self, action: #selector(deleteUp), for: [.touchUpInside, .touchUpOutside])
+                    } else {
+                        key.addTarget(self, action: #selector(cyrillicKeyPressed), for: .touchUpInside)
+                    }
+                    
+                    // colour
+                    if key.tag == 27 {
+                        key.addTarget(self, action: #selector(keyGreyen), for: .touchDown)
+                        key.addTarget(self, action: #selector(keyWhiten), for: [.touchUpInside, .touchUpOutside])
+                    }
+                    
+                    if key.tag == 28 || key.tag == 30 || key.tag == 32 {
+                        key.addTarget(self, action: #selector(keyWhiten), for: .touchDown)
+                        key.addTarget(self, action: #selector(keyGreyen), for: [.touchUpInside, .touchUpOutside])
+                    }
+                    
+                    // sound
+                    if key.tag == 30 {
+                        key.addTarget(self, action: #selector(deleteKeySoundSet), for: .touchDown)
+                    } else {
+                        if key.tag >= 27 {
+                            key.addTarget(self, action: #selector(otherKeySoundSet), for: .touchDown)
+                        } else {
+                            key.addTarget(self, action: #selector(keysoundSet), for: .touchDown)
+                        }
+                    }
+                } else {
+                    for keys in keytobe.subviews {
+                        let key = keys as! UIButton
                         key.roundedCornerise()
                         
-                        if key.tag == 30 {
-                            // delete key
-                            key.addTarget(self, action: #selector(deleteDown), for: .touchDown)
-                            key.addTarget(self, action: #selector(deleteKeyTouchedDown), for: .touchDown)
-                        } else {
-                            key.addTarget(self, action: #selector(cyrillicKeyPressed), for: .touchUpInside)
-                            
-                            // space key
-                            if key.tag == 27 {
-                                key.addTarget(self, action: #selector(spaceDown), for: .touchDown)
-                                key.addTarget(self, action: #selector(spaceUp), for: [.touchUpInside, .touchUpOutside])
-                            }
-                            
-                            if key.tag >= 27 {
-                                // space and later
-                                key.addTarget(self, action: #selector(otherKeyTouchedDown), for: .touchDown)
-                            } else {
-                                key.addTarget(self, action: #selector(keyTouchedDown), for: .touchDown)
-                            }
-                        }
-                    } else {
-                        for keys in keytobe.subviews {
-                            let key = keys as! UIButton
-                            key.roundedCornerise()
-                            
-                            key.addTarget(self, action: #selector(cyrillicKeyPressed), for: .touchUpInside)
-                            
-                            key.addTarget(self, action: #selector(keyTouchedDown), for: .touchDown)
-                        }
+                        key.addTarget(self, action: #selector(cyrillicKeyPressed), for: .touchUpInside)
+                        
+                        key.addTarget(self, action: #selector(keysoundSet), for: .touchDown)
                     }
                 }
             }
@@ -158,40 +164,49 @@ class KeyboardViewController: UIInputViewController {
         numMarkKeyboard.translatesAutoresizingMaskIntoConstraints = false
         
         for stack in self.numMarkKeyboard.subviews {
-            if stack is UIStackView {
-                for keytobe in stack.subviews {
-                    if let key = keytobe as? UIButton {
+            for keytobe in stack.subviews {
+                if let key = keytobe as? UIButton {
+                    key.roundedCornerise()
+                    
+                    // function
+                    if key.tag == 30 {
+                        key.addTarget(self, action: #selector(deleteDown), for: .touchDown)
+                        key.addTarget(self, action: #selector(deleteUp), for: [.touchUpInside, .touchUpOutside])
+                    } else {
+                        key.addTarget(self, action: #selector(numMarkKeyPressed), for: .touchUpInside)
+                    }
+                    
+                    // colour
+                    if key.tag == 27 {
+                        key.addTarget(self, action: #selector(keyGreyen), for: .touchDown)
+                        key.addTarget(self, action: #selector(keyWhiten), for: [.touchUpInside, .touchUpOutside])
+                    }
+                    
+                    if key.tag == 28 || key.tag == 30 || key.tag == 32 {
+                        key.addTarget(self, action: #selector(keyWhiten), for: .touchDown)
+                        key.addTarget(self, action: #selector(keyGreyen), for: [.touchUpInside, .touchUpOutside])
+                    }
+                    
+                    // sound
+                    
+                    
+                    if key.tag == 30 {
+                        key.addTarget(self, action: #selector(deleteKeySoundSet), for: .touchDown)
+                    } else {
+                        if key.tag >= 27 {
+                            key.addTarget(self, action: #selector(otherKeySoundSet), for: .touchDown)
+                        } else {
+                            key.addTarget(self, action: #selector(keysoundSet), for: .touchDown)
+                        }
+                    }
+                } else {
+                    for keys in keytobe.subviews {
+                        let key = keys as! UIButton
                         key.roundedCornerise()
                         
-                        if key.tag == 30 {
-                            // delete key
-                            key.addTarget(self, action: #selector(deleteDown), for: .touchDown)
-                            key.addTarget(self, action: #selector(deleteKeyTouchedDown), for: .touchDown)
-                        } else {
-                            key.addTarget(self, action: #selector(numMarkKeyPressed), for: .touchUpInside)
-                            
-                            // space key
-                            if key.tag == 27 {
-                                key.addTarget(self, action: #selector(spaceDown), for: .touchDown)
-                                key.addTarget(self, action: #selector(spaceUp), for: [.touchUpInside, .touchUpOutside])
-                            }
-                            
-                            if key.tag >= 27 {
-                                // space and later
-                                key.addTarget(self, action: #selector(otherKeyTouchedDown), for: .touchDown)
-                            } else {
-                                key.addTarget(self, action: #selector(keyTouchedDown), for: .touchDown)
-                            }
-                        }
-                    } else {
-                        for keys in keytobe.subviews {
-                            let key = keys as! UIButton
-                            key.roundedCornerise()
-                            
-                            key.addTarget(self, action: #selector(numMarkKeyPressed), for: .touchUpInside)
-                            
-                            key.addTarget(self, action: #selector(keyTouchedDown), for: .touchDown)
-                        }
+                        key.addTarget(self, action: #selector(numMarkKeyPressed), for: .touchUpInside)
+                        
+                        key.addTarget(self, action: #selector(keysoundSet), for: .touchDown)
                     }
                 }
             }
@@ -220,10 +235,9 @@ class KeyboardViewController: UIInputViewController {
         addLongPressGesture(#selector(popupMvExtra), to: getKey(from: .latin, tag: 27)!)
         addLongPressGesture(#selector(popupMbExtra), to: getKey(from: .latin, tag: 29)!)
         
-        addLongPressGesture(#selector(popupPercentExtra), to: getKey(from: .numMark, tag: 4)!)
         addLongPressGesture(#selector(popupHyphenExtra), to: getKey(from: .numMark, tag: 11)!)
         addLongPressGesture(#selector(popupDashExtra), to: getKey(from: .numMark, tag: 13)!)
-        addLongPressGesture(#selector(popupSectionExtra), to: getKey(from: .numMark, tag: 15)!)
+        addLongPressGesture(#selector(popupColonExtra), to: getKey(from: .numMark, tag: 15)!)
         addLongPressGesture(#selector(popupQuoteExtra), to: getKey(from: .numMark, tag: 20)!)
         addLongPressGesture(#selector(popupPeriodExtra), to: getKey(from: .numMark, tag: 21)!)
         addLongPressGesture(#selector(popupQuestionExtra), to: getKey(from: .numMark, tag: 23)!)
@@ -239,19 +253,24 @@ class KeyboardViewController: UIInputViewController {
         }
     }
     
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        print("transition \(size)")
+        print("YOU DID IT!!!")
+    }
+    
     // MARK:- KeyPress
     
-    @objc func keyTouchedDown(sender: AnyObject) {
+    @objc func keysoundSet(sender: AnyObject) {
         Const.isExtra = false
         
         AudioServicesPlaySystemSound(1104)
     }
     
-    @objc func deleteKeyTouchedDown(sender: AnyObject) {
+    @objc func deleteKeySoundSet(sender: AnyObject) {
         AudioServicesPlaySystemSound(1155)
     }
     
-    @objc func otherKeyTouchedDown(sender: AnyObject) {
+    @objc func otherKeySoundSet(sender: AnyObject) {
         AudioServicesPlaySystemSound(1156)
     }
     
@@ -317,7 +336,11 @@ class KeyboardViewController: UIInputViewController {
             var str = ""
             
             if key.tag == 26 {
-                str = String(UnicodeScalar(774)!)
+                if self.textDocumentProxy.documentContextBeforeInput?.last == "б" {
+                    str = String(UnicodeScalar(815)!)
+                } else {
+                    str = String(UnicodeScalar(774)!)
+                }
             } else {
                 str = Const.cyrillicList[Const.isShift]![key.tag-1]
             }
@@ -399,20 +422,17 @@ class KeyboardViewController: UIInputViewController {
     }
     
     // MARK: For Some Keys
-    @objc func spaceDown(sender: AnyObject) {
+    @objc func keyGreyen(sender: AnyObject) {
         let key = sender as! UIButton
         key.backgroundColor = UIColor(red: 168/255, green: 176/255, blue: 187/255, alpha: 1)
     }
     
-    @objc func spaceUp(sender: AnyObject) {
+    @objc func keyWhiten(sender: AnyObject) {
         let key = sender as! UIButton
         key.backgroundColor = .white
     }
     
     @objc func deleteDown(sender: AnyObject) {
-        let key = sender as! UIButton
-        key.backgroundColor = .white
-        
         self.textDocumentProxy.deleteBackward()
         
         let deleteStartTime = Date()
@@ -430,9 +450,6 @@ class KeyboardViewController: UIInputViewController {
     
     @objc func deleteUp(sender: AnyObject) {
         deleteTimer.invalidate()
-        
-        let key = sender as! UIButton
-        key.backgroundColor = UIColor(red: 168/255, green: 176/255, blue: 187/255, alpha: 1)
     }
     
     // MARK:- LongKeyPress
@@ -540,17 +557,6 @@ class KeyboardViewController: UIInputViewController {
     
     // MARK: Num + Mark
     
-    @objc func popupPercentExtra(recog: UILongPressGestureRecognizer) {
-        if Const.isShift {
-            if recog.state == .began {
-                showPopup(recog: recog, "‰", nil)
-            } else if recog.state == .ended {
-                let button = recog.view as! UIButton
-                button.subviews[1].removeFromSuperview()
-            }
-        }
-    }
-    
     @objc func popupHyphenExtra(recog: UILongPressGestureRecognizer) {
         if recog.state == .began {
             showPopup(recog: recog, "‾", "•")
@@ -571,10 +577,10 @@ class KeyboardViewController: UIInputViewController {
         }
     }
     
-    @objc func popupSectionExtra(recog: UILongPressGestureRecognizer) {
-        if Const.isShift {
+    @objc func popupColonExtra(recog: UILongPressGestureRecognizer) {
+        if !Const.isShift {
             if recog.state == .began {
-                showPopup(recog: recog, "¶", nil)
+                showPopup(recog: recog, nil, ";")
             } else if recog.state == .ended {
                 let button = recog.view as! UIButton
                 button.subviews[1].removeFromSuperview()
@@ -781,7 +787,7 @@ class KeyboardViewController: UIInputViewController {
         textLabel.frame = textLabelFrame
         textLabel.text = Const.isShift ? t : f
         textLabel.textAlignment = .center
-        textLabel.font = UIFont.systemFont(ofSize: 23)
+        textLabel.font = UIFont.systemFont(ofSize: 25)
         textLabel.textColor = .white
         
         popup.addSubview(textLabel)
