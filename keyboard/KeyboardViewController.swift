@@ -63,8 +63,21 @@ class KeyboardViewController: UIInputViewController {
     var deleteTimer: Timer!
     
     var constraintH = NSLayoutConstraint()
-    var constraintX = NSLayoutConstraint()
-    var constraintW = NSLayoutConstraint()
+    
+    // only for landscape
+    var constraintXL = NSLayoutConstraint()
+    var constraintWL = NSLayoutConstraint()
+    var constraintTL = NSLayoutConstraint()
+    var constraintBL = NSLayoutConstraint()
+    var constraintXC = NSLayoutConstraint()
+    var constraintWC = NSLayoutConstraint()
+    var constraintTC = NSLayoutConstraint()
+    var constraintBC = NSLayoutConstraint()
+    var constraintXN = NSLayoutConstraint()
+    var constraintWN = NSLayoutConstraint()
+    var constraintTN = NSLayoutConstraint()
+    var constraintBN = NSLayoutConstraint()
+    var constraintsDic = [ScriptType:[NSLayoutConstraint]]()
     
     var isShift = false
     var isShiftSucceeding = false
@@ -231,8 +244,24 @@ class KeyboardViewController: UIInputViewController {
         
         // Set Keyboard
         constraintH = constraint(self.view, .height, constant: Const.keyboardHeights[UIScreen.main.bounds.size.height]!)
-        constraintX = constraint(latinKeyboard, .centerX, to: self.view, .centerX) // only for landscape
-        constraintW = constraint(latinKeyboard, .width, constant: 526) // only for landscape
+        constraintH.isActive = true
+        
+        constraintXL = constraint(latinKeyboard, .centerX, to: self.view, .centerX)
+        constraintWL = constraint(latinKeyboard, .width, constant: 526)
+        constraintTL = constraint(latinKeyboard, .top, to: self.view, .top)
+        constraintBL = constraint(latinKeyboard, .bottom, to: self.view, .bottom)
+        constraintXC = constraint(cyrillicKeyboard, .centerX, to: self.view, .centerX)
+        constraintWC = constraint(cyrillicKeyboard, .width, constant: 526)
+        constraintTC = constraint(cyrillicKeyboard, .top, to: self.view, .top)
+        constraintBC = constraint(cyrillicKeyboard, .bottom, to: self.view, .bottom)
+        constraintXN = constraint(numMarkKeyboard, .centerX, to: self.view, .centerX)
+        constraintWN = constraint(numMarkKeyboard, .width, constant: 526)
+        constraintTN = constraint(numMarkKeyboard, .top, to: self.view, .top)
+        constraintBN = constraint(numMarkKeyboard, .bottom, to: self.view, .bottom)
+        
+        constraintsDic = [.latin: [constraintXL, constraintWL, constraintTL, constraintBL],
+                          .cyrillic: [constraintXC, constraintWC, constraintTC, constraintBC],
+                          .numMark: [constraintXN, constraintWN, constraintTN, constraintBN]]
         
         view.addSubview(latinKeyboard)
         
@@ -268,7 +297,7 @@ class KeyboardViewController: UIInputViewController {
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-
+        
         if !self.needsInputModeSwitchKey {
             getKey(from: .latin, tag: 37)?.removeFromSuperview()
             getKey(from: .cyrillic, tag: 32)?.removeFromSuperview()
@@ -498,7 +527,7 @@ class KeyboardViewController: UIInputViewController {
     
     @objc func popupNgqExtra(recog: UILongPressGestureRecognizer) {
         if recog.state == .began {
-            showPopup(recog: recog, "Q̆", "q̆")
+            showPopup(recog: recog, "Q̇", "q̇")
         } else if recog.state == .ended {
             let button = recog.view as! UIButton
             button.subviews[1].removeFromSuperview()
@@ -536,7 +565,7 @@ class KeyboardViewController: UIInputViewController {
     
     @objc func popupNdExtra(recog: UILongPressGestureRecognizer) {
         if recog.state == .began {
-            showPopup(recog: recog, "D̆", "d̆")
+            showPopup(recog: recog, "Ḍ", "ḍ")
         } else if recog.state == .ended {
             let button = recog.view as! UIButton
             button.subviews[1].removeFromSuperview()
@@ -545,7 +574,7 @@ class KeyboardViewController: UIInputViewController {
     
     @objc func popupNggExtra(recog: UILongPressGestureRecognizer) {
         if recog.state == .began {
-            showPopup(recog: recog, "Ğ", "ğ")
+            showPopup(recog: recog, "Ġ", "ġ")
         } else if recog.state == .ended {
             let button = recog.view as! UIButton
             button.subviews[1].removeFromSuperview()
@@ -563,7 +592,7 @@ class KeyboardViewController: UIInputViewController {
     
     @objc func popupNzExtra(recog: UILongPressGestureRecognizer) {
         if recog.state == .began {
-            showPopup(recog: recog, "Z̆", "z̆")
+            showPopup(recog: recog, "Ẓ", "ẓ")
         } else if recog.state == .ended {
             let button = recog.view as! UIButton
             button.subviews[1].removeFromSuperview()
@@ -572,7 +601,7 @@ class KeyboardViewController: UIInputViewController {
     
     @objc func popupMvExtra(recog: UILongPressGestureRecognizer) {
         if recog.state == .began {
-            showPopup(recog: recog, "V̆", "v̆")
+            showPopup(recog: recog, "Ṿ", "ṿ")
         } else if recog.state == .ended {
             let button = recog.view as! UIButton
             button.subviews[1].removeFromSuperview()
@@ -581,7 +610,7 @@ class KeyboardViewController: UIInputViewController {
     
     @objc func popupMbExtra(recog: UILongPressGestureRecognizer) {
         if recog.state == .began {
-            showPopup(recog: recog, "B̆", "b̆")
+            showPopup(recog: recog, "Ḅ", "ḅ")
         } else if recog.state == .ended {
             let button = recog.view as! UIButton
             button.subviews[1].removeFromSuperview()
@@ -835,11 +864,11 @@ class KeyboardViewController: UIInputViewController {
         if constraintH.constant != Const.keyboardHeights[UIScreen.main.bounds.size.height]! {
             constraintH = constraint(self.view, .height, constant: Const.keyboardHeights[UIScreen.main.bounds.size.height]!)
         }
-        print("expect", Const.keyboardHeights[UIScreen.main.bounds.size.height]!, "constraint", constraintH.constant, "reality", view.frame.height)
         
         if Const.portraitHeights.contains(UIScreen.main.bounds.size.height) {
-            constraintX.isActive = false
-            constraintW.isActive = false
+            for const in constraintsDic[type]! {
+                const.isActive = false
+            }
             
             switch type {
             case .latin: latinKeyboard.fillSuperView()
@@ -847,20 +876,11 @@ class KeyboardViewController: UIInputViewController {
             case .numMark: numMarkKeyboard.fillSuperView()
             }
         } else {
-            switch type {
-            case .latin:
-                constraintX = constraint(latinKeyboard, .centerX, to: self.view)
-                constraintW = constraint(latinKeyboard, .width, constant: 526)
-            case .cyrillic:
-                constraintX = constraint(latinKeyboard, .centerX, to: self.view)
-                constraintW = constraint(latinKeyboard, .width, constant: 526)
-            case .numMark:
-                constraintX = constraint(latinKeyboard, .centerX, to: self.view)
-                constraintW = constraint(latinKeyboard, .width, constant: 526)
+            for key in constraintsDic.keys {
+                for const in constraintsDic[key]! {
+                    const.isActive = key == type
+                }
             }
-            
-            constraintX.isActive = true
-            constraintW.isActive = true
         }
     }
 }
