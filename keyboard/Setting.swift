@@ -15,13 +15,6 @@ extension UIView {
         self.layer.shadowOpacity = 0.8
         self.layer.shadowRadius = 0
     }
-    
-    func fillSuperView() {
-        self.topAnchor.constraint(equalTo: self.superview!.topAnchor, constant: 0.0).isActive = true
-        self.bottomAnchor.constraint(equalTo: self.superview!.bottomAnchor, constant: 0.0).isActive = true
-        self.leadingAnchor.constraint(equalTo: self.superview!.leadingAnchor, constant: 0.0).isActive = true
-        self.trailingAnchor.constraint(equalTo: self.superview!.trailingAnchor, constant: 0.0).isActive = true
-    }
 }
 
 public func constraint(_ view1: AnyObject,
@@ -44,20 +37,3 @@ public func constraint(_ view1: AnyObject,
     const.priority = priority
     return const
 }
-
-//NSLayoutConstraint(item view1: Any,
-//                   attribute attr1: NSLayoutConstraint.Attribute,
-//                   relatedBy relation: NSLayoutConstraint.Relation,
-//                   toItem view2: Any?,
-//                   attribute attr2: NSLayoutConstraint.Attribute,
-//                   multiplier: CGFloat,
-//                   constant c: CGFloat)
-
-
-//NSLayoutConstraint(item: self.view,
-//                   attribute: .height,
-//                   relatedBy: .equal,
-//                   toItem: nil,
-//                   attribute: .notAnAttribute,
-//                   multiplier: 1.0,
-//                   constant: Const.keyboardHeights[UIScreen.main.bounds.size.height]!)

@@ -11,7 +11,7 @@ import AudioToolbox
 
 class KeyboardViewController: UIInputViewController {
     
-    // MARK:- Setting
+    // MARK:- Lets, Vars, etc
     
     enum ScriptType {
         case latin
@@ -33,8 +33,8 @@ class KeyboardViewController: UIInputViewController {
             [true: ["[", "]", "#", "†", "^", "+", "−", "×", "÷", "=", "_", "<", ">", "ᵐ", "ⁿ", "ᵑ", "ɡ", "ɣ", "ɬ", "ɮ", ".", ",", "?", "!", "«", "»", " ", "\n"],
              false: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "-", "~", "–", "/", ":", ";", "(", ")", "*", "\"", ".", ",", "?", "!", "«", "»", " ", "\n"]]
         static let numMarkExtraList =
-            [true: [4: "‰", 11: "‾", 21: "…", 23: "⸮", 24: "‽"],
-             false: [11: "•", 13: "—", 20: "'", 21: "…", 23: "⸮", 24: "‽"]]
+            [true: [4: "‰", 11: "‾", 21: "…", 23: "⸮", 24: "‽", 25: "‹", 26: "›"],
+             false: [11: "•", 13: "—", 20: "'", 21: "…", 23: "⸮", 24: "‽", 25: "‹", 26: "›"]]
         
         static let keyboardHeights: [CGFloat:CGFloat] =
             [568.0: 216.0, 667.0: 216.0, 736.0: 226.0, 812.0: 216.0, 896.0: 226.0,
@@ -65,19 +65,30 @@ class KeyboardViewController: UIInputViewController {
     var constraintH = NSLayoutConstraint()
     
     // only for landscape
-    var constraintXL = NSLayoutConstraint()
-    var constraintWL = NSLayoutConstraint()
-    var constraintTL = NSLayoutConstraint()
-    var constraintBL = NSLayoutConstraint()
-    var constraintXC = NSLayoutConstraint()
-    var constraintWC = NSLayoutConstraint()
-    var constraintTC = NSLayoutConstraint()
-    var constraintBC = NSLayoutConstraint()
-    var constraintXN = NSLayoutConstraint()
-    var constraintWN = NSLayoutConstraint()
-    var constraintTN = NSLayoutConstraint()
-    var constraintBN = NSLayoutConstraint()
-    var constraintsDic = [ScriptType:[NSLayoutConstraint]]()
+    var constraintTopL = NSLayoutConstraint()
+    var constraintBottomL = NSLayoutConstraint()
+    var constraintLeadingL = NSLayoutConstraint()
+    var constraintTrailingL = NSLayoutConstraint()
+    var constraintcentreXL = NSLayoutConstraint()
+    var constraintWidthL = NSLayoutConstraint()
+    
+    var constraintTopC = NSLayoutConstraint()
+    var constraintBottomC = NSLayoutConstraint()
+    var constraintLeadingC = NSLayoutConstraint()
+    var constraintTrailingC = NSLayoutConstraint()
+    var constraintcentreXC = NSLayoutConstraint()
+    var constraintWidthC = NSLayoutConstraint()
+    
+    var constraintTopN = NSLayoutConstraint()
+    var constraintBottomN = NSLayoutConstraint()
+    var constraintLeadingN = NSLayoutConstraint()
+    var constraintTrailingN = NSLayoutConstraint()
+    var constraintcentreXN = NSLayoutConstraint()
+    var constraintWidthN = NSLayoutConstraint()
+    
+    var constraintsForCommon = [ScriptType:[NSLayoutConstraint]]()
+    var constraintsForPortrait = [ScriptType:[NSLayoutConstraint]]()
+    var constraintsForLandscape = [ScriptType:[NSLayoutConstraint]]()
     
     var isShift = false
     var isShiftSucceeding = false
@@ -246,22 +257,36 @@ class KeyboardViewController: UIInputViewController {
         constraintH = constraint(self.view, .height, constant: Const.keyboardHeights[UIScreen.main.bounds.size.height]!)
         constraintH.isActive = true
         
-        constraintXL = constraint(latinKeyboard, .centerX, to: self.view, .centerX)
-        constraintWL = constraint(latinKeyboard, .width, constant: 526)
-        constraintTL = constraint(latinKeyboard, .top, to: self.view, .top)
-        constraintBL = constraint(latinKeyboard, .bottom, to: self.view, .bottom)
-        constraintXC = constraint(cyrillicKeyboard, .centerX, to: self.view, .centerX)
-        constraintWC = constraint(cyrillicKeyboard, .width, constant: 526)
-        constraintTC = constraint(cyrillicKeyboard, .top, to: self.view, .top)
-        constraintBC = constraint(cyrillicKeyboard, .bottom, to: self.view, .bottom)
-        constraintXN = constraint(numMarkKeyboard, .centerX, to: self.view, .centerX)
-        constraintWN = constraint(numMarkKeyboard, .width, constant: 526)
-        constraintTN = constraint(numMarkKeyboard, .top, to: self.view, .top)
-        constraintBN = constraint(numMarkKeyboard, .bottom, to: self.view, .bottom)
+        constraintTopL = constraint(latinKeyboard, .top, to: self.view, .top)
+        constraintBottomL = constraint(latinKeyboard, .bottom, to: self.view, .bottom)
+        constraintLeadingL = constraint(latinKeyboard, .leading, to: self.view, .leading)
+        constraintTrailingL = constraint(latinKeyboard, .trailing, to: self.view, .trailing)
+        constraintcentreXL = constraint(latinKeyboard, .centerX, to: self.view, .centerX)
+        constraintWidthL = constraint(latinKeyboard, .width, constant: 526)
         
-        constraintsDic = [.latin: [constraintXL, constraintWL, constraintTL, constraintBL],
-                          .cyrillic: [constraintXC, constraintWC, constraintTC, constraintBC],
-                          .numMark: [constraintXN, constraintWN, constraintTN, constraintBN]]
+        constraintTopC = constraint(cyrillicKeyboard, .top, to: self.view, .top)
+        constraintBottomC = constraint(cyrillicKeyboard, .bottom, to: self.view, .bottom)
+        constraintLeadingC = constraint(cyrillicKeyboard, .leading, to: self.view, .leading)
+        constraintTrailingC = constraint(cyrillicKeyboard, .trailing, to: self.view, .trailing)
+        constraintcentreXC = constraint(cyrillicKeyboard, .centerX, to: self.view, .centerX)
+        constraintWidthC = constraint(cyrillicKeyboard, .width, constant: 526)
+        
+        constraintTopN = constraint(numMarkKeyboard, .top, to: self.view, .top)
+        constraintBottomN = constraint(numMarkKeyboard, .bottom, to: self.view, .bottom)
+        constraintLeadingN = constraint(numMarkKeyboard, .leading, to: self.view, .leading)
+        constraintTrailingN = constraint(numMarkKeyboard, .trailing, to: self.view, .trailing)
+        constraintcentreXN = constraint(numMarkKeyboard, .centerX, to: self.view, .centerX)
+        constraintWidthN = constraint(numMarkKeyboard, .width, constant: 526)
+        
+        constraintsForCommon = [.latin: [constraintTopL, constraintBottomL],
+                          .cyrillic: [constraintTopC, constraintBottomC],
+                          .numMark: [constraintTopN, constraintBottomN]]
+        constraintsForPortrait = [.latin: [constraintLeadingL, constraintTrailingL],
+                          .cyrillic: [constraintLeadingC, constraintTrailingC],
+                          .numMark: [constraintLeadingN, constraintTrailingN]]
+        constraintsForLandscape = [.latin: [constraintcentreXL, constraintWidthL],
+                          .cyrillic: [constraintcentreXC, constraintWidthC],
+                          .numMark: [constraintcentreXN, constraintWidthN]]
         
         view.addSubview(latinKeyboard)
         
@@ -288,11 +313,12 @@ class KeyboardViewController: UIInputViewController {
         
         addLongPressGesture(#selector(popupHyphenExtra), to: getKey(from: .numMark, tag: 11)!)
         addLongPressGesture(#selector(popupDashExtra), to: getKey(from: .numMark, tag: 13)!)
-        addLongPressGesture(#selector(popupColonExtra), to: getKey(from: .numMark, tag: 15)!)
-        addLongPressGesture(#selector(popupQuoteExtra), to: getKey(from: .numMark, tag: 20)!)
+        addLongPressGesture(#selector(popupLinearExtra), to: getKey(from: .numMark, tag: 20)!)
         addLongPressGesture(#selector(popupPeriodExtra), to: getKey(from: .numMark, tag: 21)!)
         addLongPressGesture(#selector(popupQuestionExtra), to: getKey(from: .numMark, tag: 23)!)
         addLongPressGesture(#selector(popupExclamationExtra), to: getKey(from: .numMark, tag: 24)!)
+        addLongPressGesture(#selector(popupLeftAngleExtra), to: getKey(from: .numMark, tag: 25)!)
+        addLongPressGesture(#selector(popupRightAngleExtra), to: getKey(from: .numMark, tag: 26)!)
     }
     
     override func viewWillLayoutSubviews() {
@@ -305,14 +331,11 @@ class KeyboardViewController: UIInputViewController {
         }
     }
     
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        print("transition \(size)")
-        print("YOU DID IT!!!")
-        
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) { // sizeはself.viewのsize
         setKeyboardConstraints(currentKeyboardType)
     }
     
-    // MARK:- selectors
+    // MARK:- Selectors
     
     // MARK:- KeySound
     
@@ -639,18 +662,7 @@ class KeyboardViewController: UIInputViewController {
         }
     }
     
-    @objc func popupColonExtra(recog: UILongPressGestureRecognizer) {
-        if !isShift {
-            if recog.state == .began {
-                showPopup(recog: recog, nil, ";")
-            } else if recog.state == .ended {
-                let button = recog.view as! UIButton
-                button.subviews[1].removeFromSuperview()
-            }
-        }
-    }
-    
-    @objc func popupQuoteExtra(recog: UILongPressGestureRecognizer) {
+    @objc func popupLinearExtra(recog: UILongPressGestureRecognizer) {
         if !isShift {
             if recog.state == .began {
                 showPopup(recog: recog, nil, "'")
@@ -682,6 +694,24 @@ class KeyboardViewController: UIInputViewController {
     @objc func popupExclamationExtra(recog: UILongPressGestureRecognizer) {
         if recog.state == .began {
             showPopup(recog: recog, "‽", "‽")
+        } else if recog.state == .ended {
+            let button = recog.view as! UIButton
+            button.subviews[1].removeFromSuperview()
+        }
+    }
+    
+    @objc func popupLeftAngleExtra(recog: UILongPressGestureRecognizer) {
+        if recog.state == .began {
+            showPopup(recog: recog, "‹", "‹")
+        } else if recog.state == .ended {
+            let button = recog.view as! UIButton
+            button.subviews[1].removeFromSuperview()
+        }
+    }
+    
+    @objc func popupRightAngleExtra(recog: UILongPressGestureRecognizer) {
+        if recog.state == .began {
+            showPopup(recog: recog, "›", "›")
         } else if recog.state == .ended {
             let button = recog.view as! UIButton
             button.subviews[1].removeFromSuperview()
@@ -865,19 +895,34 @@ class KeyboardViewController: UIInputViewController {
             constraintH = constraint(self.view, .height, constant: Const.keyboardHeights[UIScreen.main.bounds.size.height]!)
         }
         
+        //commonをtypeで切り替える
+        for key in constraintsForCommon.keys {
+            for const in constraintsForCommon[key]! {
+                const.isActive = key == type
+            }
+        }
+        
         if Const.portraitHeights.contains(UIScreen.main.bounds.size.height) {
-            for const in constraintsDic[type]! {
+            //landscape向けを切る
+            for const in constraintsForLandscape[type]! {
                 const.isActive = false
             }
             
-            switch type {
-            case .latin: latinKeyboard.fillSuperView()
-            case .cyrillic: cyrillicKeyboard.fillSuperView()
-            case .numMark: numMarkKeyboard.fillSuperView()
+            //portrait向けを有効に
+            for key in constraintsForPortrait.keys {
+                for const in constraintsForPortrait[key]! {
+                    const.isActive = key == type
+                }
             }
         } else {
-            for key in constraintsDic.keys {
-                for const in constraintsDic[key]! {
+            //portrait向けを切る
+            for const in constraintsForPortrait[type]! {
+                const.isActive = false
+            }
+            
+            //landscape向けを有効に
+            for key in constraintsForLandscape.keys {
+                for const in constraintsForLandscape[key]! {
                     const.isActive = key == type
                 }
             }
