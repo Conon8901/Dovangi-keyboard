@@ -24,8 +24,8 @@ class KeyboardViewController: UIInputViewController {
             [true: ["Ƣ", "Ɋ", "E", "Ɛ", "T", "Ł", "U", "İ", "O", "Ɔ", "P", "A", "S", "D", "Ɗ", "F", "G", "Ɠ", "Ŋ", "K", "L", "R", "Z", "Ȥ", "X", "V", "Ʋ", "B", "Ɓ", "N", "M", " ", "\n"],
              false: ["ƣ", "ɋ", "e", "ɛ", "t", "ł", "u", "i", "o", "ɔ", "p", "a", "s", "d", "ɗ", "f", "g", "ɠ", "ŋ", "k", "l", "r", "z", "ȥ", "x", "v", "ʋ", "b", "ɓ", "n", "m", " ", "\n"]]
         static let latinExtraList =
-            [true: [1: "Q", 2: "Q̇", 4: "Ê", 8: "Y", 10: "Ô", 15: "Ḍ", 18: "Ġ", 19: "Ñ", 24: "Ẓ", 27: "Ṿ", 29: "Ḅ"],
-             false: [1: "q", 2: "q̇", 4: "ê", 10: "ô", 15: "ḍ", 18: "ġ", 19: "ñ", 24: "ẓ", 27: "ṿ", 29: "ḅ"]]
+            [true: [1: "Q", 2: "Q̇", 4: "Ê", 8: "Y", 10: "Ô", 15: "Ḍ", 18: "Ġ", 19: "Ñ", 24: "Ż", 27: "V̇", 29: "Ḅ"],
+             false: [1: "q", 2: "q̇", 4: "ê", 10: "ô", 15: "ḍ", 18: "ġ", 19: "ñ", 24: "ż", 27: "v̇", 29: "ḅ"]]
         static let cyrillicList =
             [true: ["У", "К", "Е", "Н", "Г", "З", "Х", "Ъ", "Ң", "Ғ", "Ф", "В", "А", "П", "О", "Л", "Д", "Э", "Ԓ", "С", "М", "И", "Т", "Б", "Ә", "◌̆", " ", "\n"],
              false: ["у", "к", "е", "н", "г", "з", "х", "ъ", "ң", "ғ", "ф", "в", "а", "п", "о", "л", "д", "э", "ԓ", "с", "м", "и", "т", "б", "ә", "◌̆", " ", "\n"]]
@@ -615,7 +615,7 @@ class KeyboardViewController: UIInputViewController {
     
     @objc func popupNzExtra(recog: UILongPressGestureRecognizer) {
         if recog.state == .began {
-            showPopup(recog: recog, "Ẓ", "ẓ")
+            showPopup(recog: recog, "Ż", "ż")
         } else if recog.state == .ended {
             let button = recog.view as! UIButton
             button.subviews[1].removeFromSuperview()
@@ -624,7 +624,7 @@ class KeyboardViewController: UIInputViewController {
     
     @objc func popupMvExtra(recog: UILongPressGestureRecognizer) {
         if recog.state == .began {
-            showPopup(recog: recog, "Ṿ", "ṿ")
+            showPopup(recog: recog, "V̇", "v̇")
         } else if recog.state == .ended {
             let button = recog.view as! UIButton
             button.subviews[1].removeFromSuperview()
