@@ -115,7 +115,7 @@ class KeyboardViewController: UIInputViewController {
         for stack in self.latinKeyboard.subviews {
             for keytobe in stack.subviews {
                 let key = keytobe as! UIButton
-                key.roundedCornerise()
+                key.setShadow()
                 
                 // function
                 if key.tag == 35 {
@@ -157,7 +157,7 @@ class KeyboardViewController: UIInputViewController {
         for stack in self.cyrillicKeyboard.subviews {
             for keytobe in stack.subviews {
                 if let key = keytobe as? UIButton {
-                    key.roundedCornerise()
+                    key.setShadow()
                     
                     // function
                     if key.tag == 30 {
@@ -191,7 +191,7 @@ class KeyboardViewController: UIInputViewController {
                 } else {
                     for keys in keytobe.subviews {
                         let key = keys as! UIButton
-                        key.roundedCornerise()
+                        key.setShadow()
                         
                         key.addTarget(self, action: #selector(cyrillicKeyPressed), for: .touchUpInside)
                         
@@ -209,7 +209,7 @@ class KeyboardViewController: UIInputViewController {
         for stack in self.numMarkKeyboard.subviews {
             for keytobe in stack.subviews {
                 if let key = keytobe as? UIButton {
-                    key.roundedCornerise()
+                    key.setShadow()
                     
                     // function
                     if key.tag == 30 {
@@ -243,7 +243,7 @@ class KeyboardViewController: UIInputViewController {
                 } else {
                     for keys in keytobe.subviews {
                         let key = keys as! UIButton
-                        key.roundedCornerise()
+                        key.setShadow()
                         
                         key.addTarget(self, action: #selector(numMarkKeyPressed), for: .touchUpInside)
                         
@@ -333,6 +333,52 @@ class KeyboardViewController: UIInputViewController {
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) { // sizeはself.viewのsize
         setKeyboardConstraints(currentKeyboardType)
+    }
+    
+    override func textDidChange(_ textInput: UITextInput?) {
+        // The app has just changed the document's contents, the document context has been updated.
+        
+        print("changed")
+        
+        var chrTextColor: UIColor
+        var chrBgColor: UIColor
+        var otrTextColor: UIColor
+        var otrBgColor: UIColor
+        var shadowColor: CGColor
+        var bgColor: UIColor
+        
+        if self.textDocumentProxy.keyboardAppearance == .dark {
+            chrTextColor = .white
+            chrBgColor = UIColor(red: 100/255, green: 100/255, blue: 100/255, alpha: 1)
+            otrTextColor = .white
+            otrBgColor = UIColor(red: 63/255, green: 63/255, blue: 64/255, alpha: 1)
+            shadowColor = UIColor(red: 20/255, green: 20/255, blue: 21/255, alpha: 1).cgColor
+            bgColor = UIColor(red: 34/255, green: 34/255, blue: 35/255, alpha: 1)
+        } else {
+            chrTextColor = .black
+            chrBgColor = .white
+            otrTextColor = .black
+            otrBgColor = UIColor(red: 168/255, green: 176/255, blue: 187/255, alpha: 1)
+            shadowColor = UIColor.gray.cgColor
+            bgColor = UIColor(red: 207/255, green: 211/255, blue: 217/255, alpha: 1)
+        }
+        
+        for i in 1...37 {
+            if i < 33 {
+                getKey(from: .latin, tag: i)!.setTitleColor(chrTextColor, for: [])
+                getKey(from: .latin, tag: i)!.backgroundColor = chrBgColor
+            } else {
+                getKey(from: .latin, tag: i)!.setTitleColor(otrTextColor, for: [])
+                getKey(from: .latin, tag: i)!.backgroundColor = otrBgColor
+            }
+            
+            getKey(from: .latin, tag: i)!.layer.shadowOffset = CGSize(width: 0.0, height: 1.2)
+            getKey(from: .latin, tag: i)!.layer.shadowColor = shadowColor
+            getKey(from: .latin, tag: i)!.layer.shadowOpacity = 0.8
+            getKey(from: .latin, tag: i)!.layer.shadowRadius = 0
+        }
+        
+        latinKeyboard.backgroundColor = bgColor
     }
     
     // MARK:- Selectors

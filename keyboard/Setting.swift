@@ -9,7 +9,7 @@
 import UIKit
 
 extension UIView {
-    func roundedCornerise() {
+    func setShadow() {
         self.layer.shadowOffset = CGSize(width: 0.0, height: 1.2)
         self.layer.shadowColor = UIColor.gray.cgColor
         self.layer.shadowOpacity = 0.8
