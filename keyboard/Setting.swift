@@ -15,6 +15,27 @@ extension UIView {
         self.layer.shadowOpacity = 0.8
         self.layer.shadowRadius = 0
     }
+    
+    var subButtons: [UIButton] {
+        get {
+            var buttonArray = [UIButton]()
+            
+            for stack in self.subviews {
+                for buttontobe in stack.subviews {
+                    if let button = buttontobe as? UIButton {
+                        buttonArray.append(button)
+                    } else {
+                        for buttontobe2 in buttontobe.subviews {
+                            let button = buttontobe2 as! UIButton
+                            buttonArray.append(button)
+                        }
+                    }
+                }
+            }
+            
+            return buttonArray
+        }
+    }
 }
 
 public func constraint(_ view1: AnyObject,

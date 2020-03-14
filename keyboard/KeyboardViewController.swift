@@ -19,6 +19,16 @@ class KeyboardViewController: UIInputViewController {
         case numMark
     }
     
+    enum KeyFuction {
+        case chr
+        case space
+        case newline
+        case shift
+        case delete
+        case changeType
+        case nextKeyboard
+    }
+    
     struct Const {
         static let latinList =
             [true: ["Ƣ", "E", "Ɛ", "T", "Ł", "U", "İ", "O", "Ɔ", "P", "A", "S", "D", "F", "G", "Ŋ", "K", "L", "R", "Z", "X", "V", "B", "N", "M", "◌̇", " ", "\n"],
@@ -26,15 +36,20 @@ class KeyboardViewController: UIInputViewController {
         static let latinExtraList =
             [true: [1: "Q", 3: "Ê", 7: "Y", 9: "Ô", 16: "Ñ"],
              false: [1: "q", 3: "ê", 9: "ô", 16: "ñ"]]
+        static let latinFunctionList: [KeyFuction] = [.chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .space, .newline, .shift, .delete, .changeType, .nextKeyboard]
+        
         static let cyrillicList =
             [true: ["У", "К", "Е", "Н", "Г", "З", "Х", "Ъ", "Ң", "Ғ", "Ф", "В", "А", "П", "О", "Л", "Д", "Э", "Ԓ", "С", "М", "И", "Т", "Б", "Ә", "◌̆", " ", "\n"],
              false: ["у", "к", "е", "н", "г", "з", "х", "ъ", "ң", "ғ", "ф", "в", "а", "п", "о", "л", "д", "э", "ԓ", "с", "м", "и", "т", "б", "ә", "◌̆", " ", "\n"]]
+        static let cyrillicFunctionList: [KeyFuction] = [.chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .space, .newline, .shift, .delete, .changeType, .nextKeyboard]
+        
         static let numMarkList =
             [true: ["[", "]", "#", "†", "^", "+", "−", "×", "÷", "=", "_", "<", ">", "ᵐ", "ⁿ", "ᵑ", "ɡ", "ɣ", "ɬ", "ɮ", ".", ",", "?", "!", "«", "»", " ", "\n"],
              false: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "-", "~", "–", "/", ":", ";", "(", ")", "*", "\"", ".", ",", "?", "!", "«", "»", " ", "\n"]]
         static let numMarkExtraList =
             [true: [4: "‰", 11: "‾", 21: "…", 23: "⸮", 24: "‽", 25: "‹", 26: "›"],
              false: [11: "•", 13: "—", 20: "'", 21: "…", 23: "⸮", 24: "‽", 25: "‹", 26: "›"]]
+        static let numMarkFunctionList: [KeyFuction] = [.chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .space, .newline, .shift, .delete, .changeType, .nextKeyboard]
         
         static let keyboardHeights: [CGFloat:CGFloat] =
             [568.0: 216.0, 667.0: 216.0, 736.0: 226.0, 812.0: 216.0, 896.0: 226.0,
@@ -106,160 +121,154 @@ class KeyboardViewController: UIInputViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Latin
-        latinKeyboard = UINib(nibName: "Latin", bundle: Bundle.main).instantiate(withOwner: self, options: nil).first as? UIView
-        latinKeyboard.frame = view.frame
-        latinKeyboard.translatesAutoresizingMaskIntoConstraints = false
         
-        for stack in self.latinKeyboard.subviews {
-            for keytobe in stack.subviews {
-                if let key = keytobe as? UIButton {
-                    key.setShadow()
-                    
-                    // function
-                    if key.tag == 30 {
-                        key.addTarget(self, action: #selector(deleteDown), for: .touchDown)
-                        key.addTarget(self, action: #selector(deleteUp), for: [.touchUpInside, .touchUpOutside])
-                    } else if key.tag <= 31 {
-                        key.addTarget(self, action: #selector(latinKeyPressed), for: .touchUpInside)
-                    }
-                    
-                    // colour
-                    if key.tag == 27 { // space
-                        key.addTarget(self, action: #selector(greyenKey), for: .touchDown)
-                        key.addTarget(self, action: #selector(whitenKey), for: [.touchUpInside, .touchUpOutside])
-                    }
-                    
-                    if key.tag == 28 || key.tag == 30 || key.tag == 32 { // return, delete, nextKeyboard
-                        key.addTarget(self, action: #selector(whitenKey), for: .touchDown)
-                        key.addTarget(self, action: #selector(greyenKey), for: [.touchUpInside, .touchUpOutside])
-                    }
-                    
-                    // sound
-                    if key.tag == 30 {
-                        key.addTarget(self, action: #selector(setDeleteKeySound), for: .touchDown)
-                    } else {
-                        if key.tag >= 27 {
-                            key.addTarget(self, action: #selector(setOtherKeySound), for: .touchDown)
-                        } else {
-                            key.addTarget(self, action: #selector(setKeysound), for: .touchDown)
-                        }
-                    }
-                } else {
-                    for keys in keytobe.subviews {
-                        let key = keys as! UIButton
-                        key.setShadow()
-                        
-                        key.addTarget(self, action: #selector(latinKeyPressed), for: .touchUpInside)
-                        
-                        key.addTarget(self, action: #selector(setKeysound), for: .touchDown)
-                    }
-                }
+        setKeyboardXibs()
+        
+        // Latin
+        for key in self.latinKeyboard.subButtons {
+            key.setShadow()
+            
+            switch Const.latinFunctionList[key.tag-1] {
+            case .chr:
+                key.addTarget(self, action: #selector(latinChrKeyPressed), for: .touchUpInside)
+                
+                key.addTarget(self, action: #selector(setKeysound), for: .touchDown)
+            case .space:
+                key.addTarget(self, action: #selector(latinChrKeyPressed), for: .touchUpInside)
+                
+                key.addTarget(self, action: #selector(greyenKey), for: .touchDown)
+                key.addTarget(self, action: #selector(whitenKey), for: [.touchUpInside, .touchUpOutside])
+                
+                key.addTarget(self, action: #selector(setOtherKeySound), for: .touchDown)
+            case .newline:
+                key.addTarget(self, action: #selector(latinChrKeyPressed), for: .touchUpInside)
+                
+                key.addTarget(self, action: #selector(whitenKey), for: .touchDown)
+                key.addTarget(self, action: #selector(greyenKey), for: [.touchUpInside, .touchUpOutside])
+                
+                key.addTarget(self, action: #selector(setOtherKeySound), for: .touchDown)
+            case .shift:
+                key.addTarget(self, action: #selector(latinShiftKeyPressed), for: .touchUpInside)
+                
+                key.addTarget(self, action: #selector(setOtherKeySound), for: .touchDown)
+            case .delete:
+                key.addTarget(self, action: #selector(deleteDown), for: .touchDown)
+                key.addTarget(self, action: #selector(deleteUp), for: [.touchUpInside, .touchUpOutside])
+                
+                key.addTarget(self, action: #selector(whitenKey), for: .touchDown)
+                key.addTarget(self, action: #selector(greyenKey), for: [.touchUpInside, .touchUpOutside])
+                
+                key.addTarget(self, action: #selector(setDeleteKeySound), for: .touchDown)
+            case .changeType:
+                key.addTarget(self, action: #selector(latinChangeTypeKeyPressed), for: .touchUpInside)
+                
+                key.addTarget(self, action: #selector(setOtherKeySound), for: .touchDown)
+            case .nextKeyboard:
+                key.addTarget(self, action: #selector(handleInputModeList(from:with:)), for: .allTouchEvents)
+                
+                key.addTarget(self, action: #selector(whitenKey), for: .touchDown)
+                key.addTarget(self, action: #selector(greyenKey), for: [.touchUpInside, .touchUpOutside])
+                
+                key.addTarget(self, action: #selector(setOtherKeySound), for: .touchDown)
             }
         }
         
         // Cyrillic
-        cyrillicKeyboard = UINib(nibName: "Cyrillic", bundle: Bundle.main).instantiate(withOwner: self, options: nil).first as? UIView
-        cyrillicKeyboard.frame = view.frame
-        cyrillicKeyboard.translatesAutoresizingMaskIntoConstraints = false
-        
-        for stack in self.cyrillicKeyboard.subviews {
-            for keytobe in stack.subviews {
-                if let key = keytobe as? UIButton {
-                    key.setShadow()
-                    
-                    // function
-                    if key.tag == 30 {
-                        key.addTarget(self, action: #selector(deleteDown), for: .touchDown)
-                        key.addTarget(self, action: #selector(deleteUp), for: [.touchUpInside, .touchUpOutside])
-                    } else {
-                        key.addTarget(self, action: #selector(cyrillicKeyPressed), for: .touchUpInside)
-                    }
-                    
-                    // colour
-                    if key.tag == 27 {
-                        key.addTarget(self, action: #selector(greyenKey), for: .touchDown)
-                        key.addTarget(self, action: #selector(whitenKey), for: [.touchUpInside, .touchUpOutside])
-                    }
-                    
-                    if key.tag == 28 || key.tag == 30 || key.tag == 32 {
-                        key.addTarget(self, action: #selector(whitenKey), for: .touchDown)
-                        key.addTarget(self, action: #selector(greyenKey), for: [.touchUpInside, .touchUpOutside])
-                    }
-                    
-                    // sound
-                    if key.tag == 30 {
-                        key.addTarget(self, action: #selector(setDeleteKeySound), for: .touchDown)
-                    } else {
-                        if key.tag >= 27 {
-                            key.addTarget(self, action: #selector(setOtherKeySound), for: .touchDown)
-                        } else {
-                            key.addTarget(self, action: #selector(setKeysound), for: .touchDown)
-                        }
-                    }
-                } else {
-                    for keys in keytobe.subviews {
-                        let key = keys as! UIButton
-                        key.setShadow()
-                        
-                        key.addTarget(self, action: #selector(cyrillicKeyPressed), for: .touchUpInside)
-                        
-                        key.addTarget(self, action: #selector(setKeysound), for: .touchDown)
-                    }
-                }
+        for key in self.cyrillicKeyboard.subButtons {
+            key.setShadow()
+            
+            // function
+            switch Const.cyrillicFunctionList[key.tag-1] {
+            case .chr:
+                key.addTarget(self, action: #selector(cyrillicChrKeyPressed), for: .touchUpInside)
+                
+                key.addTarget(self, action: #selector(setKeysound), for: .touchDown)
+            case .space:
+                key.addTarget(self, action: #selector(cyrillicChrKeyPressed), for: .touchUpInside)
+                
+                key.addTarget(self, action: #selector(greyenKey), for: .touchDown)
+                key.addTarget(self, action: #selector(whitenKey), for: [.touchUpInside, .touchUpOutside])
+                
+                key.addTarget(self, action: #selector(setOtherKeySound), for: .touchDown)
+            case .newline:
+                key.addTarget(self, action: #selector(cyrillicChrKeyPressed), for: .touchUpInside)
+                
+                key.addTarget(self, action: #selector(whitenKey), for: .touchDown)
+                key.addTarget(self, action: #selector(greyenKey), for: [.touchUpInside, .touchUpOutside])
+                
+                key.addTarget(self, action: #selector(setOtherKeySound), for: .touchDown)
+            case .shift:
+                key.addTarget(self, action: #selector(cyrillicShiftKeyPressed), for: .touchUpInside)
+                
+                key.addTarget(self, action: #selector(setOtherKeySound), for: .touchDown)
+            case .delete:
+                key.addTarget(self, action: #selector(deleteDown), for: .touchDown)
+                key.addTarget(self, action: #selector(deleteUp), for: [.touchUpInside, .touchUpOutside])
+                
+                key.addTarget(self, action: #selector(whitenKey), for: .touchDown)
+                key.addTarget(self, action: #selector(greyenKey), for: [.touchUpInside, .touchUpOutside])
+                
+                key.addTarget(self, action: #selector(setDeleteKeySound), for: .touchDown)
+            case .changeType:
+                key.addTarget(self, action: #selector(cyrillicChangeTypeKeyPressed), for: .touchUpInside)
+                
+                key.addTarget(self, action: #selector(setOtherKeySound), for: .touchDown)
+            case .nextKeyboard:
+                key.addTarget(self, action: #selector(handleInputModeList(from:with:)), for: .allTouchEvents)
+                
+                key.addTarget(self, action: #selector(whitenKey), for: .touchDown)
+                key.addTarget(self, action: #selector(greyenKey), for: [.touchUpInside, .touchUpOutside])
+                
+                key.addTarget(self, action: #selector(setOtherKeySound), for: .touchDown)
             }
         }
         
         // Num + Mark
-        numMarkKeyboard = UINib(nibName: "NumMark", bundle: Bundle.main).instantiate(withOwner: self, options: nil).first as? UIView
-        numMarkKeyboard.frame = view.frame
-        numMarkKeyboard.translatesAutoresizingMaskIntoConstraints = false
-        
-        for stack in self.numMarkKeyboard.subviews {
-            for keytobe in stack.subviews {
-                if let key = keytobe as? UIButton {
-                    key.setShadow()
-                    
-                    // function
-                    if key.tag == 30 {
-                        key.addTarget(self, action: #selector(deleteDown), for: .touchDown)
-                        key.addTarget(self, action: #selector(deleteUp), for: [.touchUpInside, .touchUpOutside])
-                    } else {
-                        key.addTarget(self, action: #selector(numMarkKeyPressed), for: .touchUpInside)
-                    }
-                    
-                    // colour
-                    if key.tag == 27 {
-                        key.addTarget(self, action: #selector(greyenKey), for: .touchDown)
-                        key.addTarget(self, action: #selector(whitenKey), for: [.touchUpInside, .touchUpOutside])
-                    }
-                    
-                    if key.tag == 28 || key.tag == 30 || key.tag == 32 {
-                        key.addTarget(self, action: #selector(whitenKey), for: .touchDown)
-                        key.addTarget(self, action: #selector(greyenKey), for: [.touchUpInside, .touchUpOutside])
-                    }
-                    
-                    // sound
-                    if key.tag == 30 {
-                        key.addTarget(self, action: #selector(setDeleteKeySound), for: .touchDown)
-                    } else {
-                        if key.tag >= 27 {
-                            key.addTarget(self, action: #selector(setOtherKeySound), for: .touchDown)
-                        } else {
-                            key.addTarget(self, action: #selector(setKeysound), for: .touchDown)
-                        }
-                    }
-                } else {
-                    for keys in keytobe.subviews {
-                        let key = keys as! UIButton
-                        key.setShadow()
-                        
-                        key.addTarget(self, action: #selector(numMarkKeyPressed), for: .touchUpInside)
-                        
-                        key.addTarget(self, action: #selector(setKeysound), for: .touchDown)
-                    }
-                }
+        for key in self.numMarkKeyboard.subButtons {
+            key.setShadow()
+            
+            switch Const.numMarkFunctionList[key.tag-1] {
+            case .chr:
+                key.addTarget(self, action: #selector(numMarkChrKeyPressed), for: .touchUpInside)
+                
+                key.addTarget(self, action: #selector(setKeysound), for: .touchDown)
+            case .space:
+                key.addTarget(self, action: #selector(numMarkChrKeyPressed), for: .touchUpInside)
+                
+                key.addTarget(self, action: #selector(greyenKey), for: .touchDown)
+                key.addTarget(self, action: #selector(whitenKey), for: [.touchUpInside, .touchUpOutside])
+                
+                key.addTarget(self, action: #selector(setOtherKeySound), for: .touchDown)
+            case .newline:
+                key.addTarget(self, action: #selector(numMarkChrKeyPressed), for: .touchUpInside)
+                
+                key.addTarget(self, action: #selector(whitenKey), for: .touchDown)
+                key.addTarget(self, action: #selector(greyenKey), for: [.touchUpInside, .touchUpOutside])
+                
+                key.addTarget(self, action: #selector(setOtherKeySound), for: .touchDown)
+            case .shift:
+                key.addTarget(self, action: #selector(numMarkShiftKeyPressed), for: .touchUpInside)
+                
+                key.addTarget(self, action: #selector(setOtherKeySound), for: .touchDown)
+            case .delete:
+                key.addTarget(self, action: #selector(deleteDown), for: .touchDown)
+                key.addTarget(self, action: #selector(deleteUp), for: [.touchUpInside, .touchUpOutside])
+                
+                key.addTarget(self, action: #selector(whitenKey), for: .touchDown)
+                key.addTarget(self, action: #selector(greyenKey), for: [.touchUpInside, .touchUpOutside])
+                
+                key.addTarget(self, action: #selector(setDeleteKeySound), for: .touchDown)
+            case .changeType:
+                key.addTarget(self, action: #selector(numMarkChangeTypeKeyPressed), for: .touchUpInside)
+                
+                key.addTarget(self, action: #selector(setOtherKeySound), for: .touchDown)
+            case .nextKeyboard:
+                key.addTarget(self, action: #selector(handleInputModeList(from:with:)), for: .allTouchEvents)
+                
+                key.addTarget(self, action: #selector(whitenKey), for: .touchDown)
+                key.addTarget(self, action: #selector(greyenKey), for: [.touchUpInside, .touchUpOutside])
+                
+                key.addTarget(self, action: #selector(setOtherKeySound), for: .touchDown)
             }
         }
         
@@ -302,11 +311,6 @@ class KeyboardViewController: UIInputViewController {
         
         setKeyboardConstraints(.latin)
         
-        // Perform custom UI setup here
-        getKey(from: .latin, tag: 32)!.addTarget(self, action: #selector(handleInputModeList(from:with:)), for: .allTouchEvents)
-        getKey(from: .cyrillic, tag: 32)!.addTarget(self, action: #selector(handleInputModeList(from:with:)), for: .allTouchEvents)
-        getKey(from: .numMark, tag: 32)!.addTarget(self, action: #selector(handleInputModeList(from:with:)), for: .allTouchEvents)
-        
         // Substitution Setting
         addLongPressGesture(#selector(popupQExtra), to: getKey(from: .latin, tag: 1)!)
         addLongPressGesture(#selector(popupErExtra), to: getKey(from: .latin, tag: 3)!)
@@ -337,7 +341,7 @@ class KeyboardViewController: UIInputViewController {
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) { // sizeはself.viewのsize
         setKeyboardConstraints(currentKeyboardType)
     }
-    var i = 0
+    
     override func textDidChange(_ textInput: UITextInput?) {
         // The app has just changed the document's contents, the document context has been updated.
         
@@ -382,185 +386,170 @@ class KeyboardViewController: UIInputViewController {
         latinKeyboard.backgroundColor = bgColor
     }
     
-    // MARK:- Selectors
+    // MARK:- Funcs For Keys
     
-    // MARK:- KeySound
-    
-    @objc func setKeysound(sender: AnyObject) {
-        isExtra = false
-        
-        AudioServicesPlaySystemSound(1104)
-    }
-    
-    @objc func setDeleteKeySound(sender: AnyObject) {
-        AudioServicesPlaySystemSound(1155)
-    }
-    
-    @objc func setOtherKeySound(sender: AnyObject) {
-        AudioServicesPlaySystemSound(1156)
-    }
-    
-    // MARK: For Each Keyboard
-    @objc func latinKeyPressed(sender: AnyObject) {
+    // MARK: keyPressed
+    @objc func latinChrKeyPressed(sender: AnyObject) {
         let key = sender as! UIButton
-        if key.tag<=28 { // insertText
-            var str = ""
-            
-            if key.tag == 26 {
-                switch self.textDocumentProxy.documentContextBeforeInput?.last {
-                case "B", "b", "D", "d": str = String(UnicodeScalar(803)!)
-                default: str = String(UnicodeScalar(775)!)
-                }
-            } else {
-                if isExtra {
-                    str = Const.latinExtraList[isShift]![key.tag]!
-                } else {
-                    str = Const.latinList[isShift]![key.tag-1]
-                }
-            }
-            
-            if isShift && !isShiftSucceeding && key.tag <= 26 {
-                isShift = false
-                setKeys(.latin, false)
-            }
-            
-            self.textDocumentProxy.insertText(str)
-        }
         
-        if key.tag == 29 {
-            if isShift {
-                if Date().timeIntervalSince(lastShiftDate) <= 0.35 {
-                    isShiftSucceeding = true
-                    
-                    UIView.performWithoutAnimation {
-                        getKey(from: .latin, tag: 34)!.setTitle("⇪", for: .normal)
-                        key.layoutIfNeeded()
-                    }
-                } else {
-                    isShift = false
-                    setKeys(.latin, false)
-                }
-            } else {
-                lastShiftDate = Date()
-                
-                isShift = true
-                isShiftSucceeding = false
-                setKeys(.latin, true)
-            }
-        }
+        var str = ""
         
-        if key.tag == 31 {
-            if isShift {
-                isShift = false
-                isShiftSucceeding = false
-                setKeys(.latin, false)
+        if key.tag == 26 {
+            switch self.textDocumentProxy.documentContextBeforeInput?.last {
+            case "B", "b", "D", "d": str = String(UnicodeScalar(803)!)
+            default: str = String(UnicodeScalar(775)!)
             }
-            
-            latinKeyboard.removeFromSuperview()
-            
-            view.addSubview(cyrillicKeyboard)
-            
-            currentKeyboardType = .cyrillic
-            setKeyboardConstraints(.cyrillic)
-        }
-    }
-    
-    @objc func cyrillicKeyPressed(sender: AnyObject) {
-        let key = sender as! UIButton
-        if key.tag<=28 { // insertText
-            var str = ""
-            
-            if key.tag == 26 {
-                if self.textDocumentProxy.documentContextBeforeInput?.last == "б" {
-                    str = String(UnicodeScalar(815)!)
-                } else {
-                    str = String(UnicodeScalar(774)!)
-                }
-            } else {
-                str = Const.cyrillicList[isShift]![key.tag-1]
-            }
-            
-            if isShift && !isShiftSucceeding && key.tag <= 26 {
-                isShift = false
-                setKeys(.cyrillic, false)
-            }
-            
-            self.textDocumentProxy.insertText(str)
-        }
-        
-        if key.tag == 29 {
-            if isShift {
-                if Date().timeIntervalSince(lastShiftDate) <= 0.35 {
-                    isShiftSucceeding = true
-                    
-                    UIView.performWithoutAnimation {
-                        getKey(from: .cyrillic, tag: 29)!.setTitle("⇪", for: .normal)
-                        key.layoutIfNeeded()
-                    }
-                } else {
-                    isShift = false
-                    setKeys(.cyrillic, false)
-                }
-            } else {
-                lastShiftDate = Date()
-                
-                isShift = true
-                isShiftSucceeding = false
-                setKeys(.cyrillic, true)
-            }
-        }
-        
-        if key.tag == 31 {
-            if isShift {
-                isShift = false
-                isShiftSucceeding = false
-                setKeys(.cyrillic, false)
-            }
-            
-            cyrillicKeyboard.removeFromSuperview()
-            
-            view.addSubview(numMarkKeyboard)
-            
-            currentKeyboardType = .numMark
-            setKeyboardConstraints(.numMark)
-        }
-    }
-    
-    @objc func numMarkKeyPressed(sender: AnyObject) {
-        let key = sender as! UIButton
-        if key.tag<=28 { // insertText
-            var str = ""
-            
+        } else {
             if isExtra {
-                str = Const.numMarkExtraList[isShift]![key.tag]!
+                str = Const.latinExtraList[isShift]![key.tag]!
             } else {
-                str = Const.numMarkList[isShift]![key.tag-1]
+                str = Const.latinList[isShift]![key.tag-1]
             }
-            
-            self.textDocumentProxy.insertText(str)
         }
         
-        if key.tag == 29 {
-            isShift = !isShift
-            setKeys(.numMark, isShift)
+        if isShift && !isShiftSucceeding && key.tag <= 26 {
+            isShift = false
+            setKeys(.latin, false)
         }
         
-        if key.tag == 31 {
-            if isShift {
+        self.textDocumentProxy.insertText(str)
+    }
+    
+    @objc func latinShiftKeyPressed(sender: AnyObject) {
+        let key = sender as! UIButton
+        
+        if isShift {
+            if Date().timeIntervalSince(lastShiftDate) <= 0.35 {
+                isShiftSucceeding = true
+                
+                UIView.performWithoutAnimation {
+                    getKey(from: .latin, tag: 29)!.setTitle("⇪", for: .normal)
+                    key.layoutIfNeeded()
+                }
+            } else {
                 isShift = false
-                setKeys(.numMark, false)
+                setKeys(.latin, false)
             }
+        } else {
+            lastShiftDate = Date()
             
-            numMarkKeyboard.removeFromSuperview()
-            
-            view.addSubview(latinKeyboard)
-            
-            currentKeyboardType = .latin
-            setKeyboardConstraints(.latin)
+            isShift = true
+            isShiftSucceeding = false
+            setKeys(.latin, true)
         }
     }
     
-    // MARK: For Some Keys
+    @objc func latinChangeTypeKeyPressed(sender: AnyObject) {
+        if isShift {
+            isShift = false
+            isShiftSucceeding = false
+            setKeys(.latin, false)
+        }
+        
+        latinKeyboard.removeFromSuperview()
+        
+        view.addSubview(cyrillicKeyboard)
+        
+        currentKeyboardType = .cyrillic
+        setKeyboardConstraints(.cyrillic)
+    }
+    
+    @objc func cyrillicChrKeyPressed(sender: AnyObject) {
+        let key = sender as! UIButton
+        
+        var str = ""
+        
+        if key.tag == 26 {
+            if self.textDocumentProxy.documentContextBeforeInput?.last == "б" {
+                str = String(UnicodeScalar(815)!)
+            } else {
+                str = String(UnicodeScalar(774)!)
+            }
+        } else {
+            str = Const.cyrillicList[isShift]![key.tag-1]
+        }
+        
+        if isShift && !isShiftSucceeding && key.tag <= 26 {
+            isShift = false
+            setKeys(.cyrillic, false)
+        }
+        
+        self.textDocumentProxy.insertText(str)
+    }
+    
+    @objc func cyrillicShiftKeyPressed(sender: AnyObject) {
+        let key = sender as! UIButton
+        
+        if isShift {
+            if Date().timeIntervalSince(lastShiftDate) <= 0.35 {
+                isShiftSucceeding = true
+                
+                UIView.performWithoutAnimation {
+                    getKey(from: .cyrillic, tag: 29)!.setTitle("⇪", for: .normal)
+                    key.layoutIfNeeded()
+                }
+            } else {
+                isShift = false
+                setKeys(.cyrillic, false)
+            }
+        } else {
+            lastShiftDate = Date()
+            
+            isShift = true
+            isShiftSucceeding = false
+            setKeys(.cyrillic, true)
+        }
+    }
+    
+    @objc func cyrillicChangeTypeKeyPressed(sender: AnyObject) {
+        if isShift {
+            isShift = false
+            isShiftSucceeding = false
+            setKeys(.cyrillic, false)
+        }
+        
+        cyrillicKeyboard.removeFromSuperview()
+        
+        view.addSubview(numMarkKeyboard)
+        
+        currentKeyboardType = .numMark
+        setKeyboardConstraints(.numMark)
+    }
+    
+    @objc func numMarkChrKeyPressed(sender: AnyObject) {
+        let key = sender as! UIButton
+        
+        var str = ""
+        
+        if isExtra {
+            str = Const.numMarkExtraList[isShift]![key.tag]!
+        } else {
+            str = Const.numMarkList[isShift]![key.tag-1]
+        }
+        
+        self.textDocumentProxy.insertText(str)
+    }
+    
+    @objc func numMarkShiftKeyPressed(sender: AnyObject) {
+        isShift = !isShift
+        setKeys(.numMark, isShift)
+    }
+    
+    @objc func numMarkChangeTypeKeyPressed(sender: AnyObject) {
+        if isShift {
+            isShift = false
+            setKeys(.numMark, false)
+        }
+        
+        numMarkKeyboard.removeFromSuperview()
+        
+        view.addSubview(latinKeyboard)
+        
+        currentKeyboardType = .latin
+        setKeyboardConstraints(.latin)
+    }
+    
+    // MARK: colorChange
     @objc func greyenKey(sender: AnyObject) {
         let key = sender as! UIButton
         key.backgroundColor = UIColor(red: 168/255, green: 176/255, blue: 187/255, alpha: 1)
@@ -589,6 +578,22 @@ class KeyboardViewController: UIInputViewController {
     
     @objc func deleteUp(sender: AnyObject) {
         deleteTimer.invalidate()
+    }
+    
+    // MARK:- KeySound
+    
+    @objc func setKeysound(sender: AnyObject) {
+        isExtra = false
+        
+        AudioServicesPlaySystemSound(1104)
+    }
+    
+    @objc func setDeleteKeySound(sender: AnyObject) {
+        AudioServicesPlaySystemSound(1155)
+    }
+    
+    @objc func setOtherKeySound(sender: AnyObject) {
+        AudioServicesPlaySystemSound(1156)
     }
     
     // MARK:- LongKeyPress
@@ -720,77 +725,56 @@ class KeyboardViewController: UIInputViewController {
     
     // MARK:- Methods
     
+    func setKeyboardXibs() {
+        latinKeyboard = UINib(nibName: "Latin", bundle: Bundle.main).instantiate(withOwner: self, options: nil).first as? UIView
+        latinKeyboard.frame = view.frame
+        latinKeyboard.translatesAutoresizingMaskIntoConstraints = false
+        
+        cyrillicKeyboard = UINib(nibName: "Cyrillic", bundle: Bundle.main).instantiate(withOwner: self, options: nil).first as? UIView
+        cyrillicKeyboard.frame = view.frame
+        cyrillicKeyboard.translatesAutoresizingMaskIntoConstraints = false
+        
+        numMarkKeyboard = UINib(nibName: "NumMark", bundle: Bundle.main).instantiate(withOwner: self, options: nil).first as? UIView
+        numMarkKeyboard.frame = view.frame
+        numMarkKeyboard.translatesAutoresizingMaskIntoConstraints = false
+    }
+    
     func setKeys(_ type: ScriptType, _ isShift: Bool) {
         if type == .latin {
-            for stack in self.latinKeyboard.subviews {
-                for keytobe in stack.subviews  {
-                    let key = keytobe as! UIButton
-                    UIView.performWithoutAnimation {
-                        switch key.tag {
-                        case 1...31: key.setTitle(Const.latinList[isShift]![key.tag-1], for: .normal)
-                        case 34:
-                            key.setTitle("⇧", for: .normal)
-                            key.backgroundColor = isShift ? .white : UIColor(red: 168/255, green: 176/255, blue: 187/255, alpha: 1)
-                        default: break
-                        }
-                        key.layoutIfNeeded()
+            for key in self.latinKeyboard.subButtons {
+                UIView.performWithoutAnimation {
+                    switch key.tag {
+                    case 1...26: key.setTitle(Const.latinList[isShift]![key.tag-1], for: .normal)
+                    case 29:
+                        key.setTitle("⇧", for: .normal)
+                        key.backgroundColor = isShift ? .white : UIColor(red: 168/255, green: 176/255, blue: 187/255, alpha: 1)
+                    default: break
                     }
+                    key.layoutIfNeeded()
                 }
             }
-        } else if type == .cyrillic {
-            for stack in self.cyrillicKeyboard.subviews {
-                for keytobe in stack.subviews  {
-                    if let key = keytobe as? UIButton {
-                        UIView.performWithoutAnimation {
-                            switch key.tag {
-                            case 1...19: key.setTitle(Const.cyrillicList[isShift]![key.tag-1], for: .normal)
-                            case 29:
-                                key.setTitle("⇧", for: .normal)
-                                key.backgroundColor = isShift ? .white : UIColor(red: 168/255, green: 176/255, blue: 187/255, alpha: 1)
-                            default: break
-                            }
-                            key.layoutIfNeeded()
-                        }
-                    } else {
-                        for keys in keytobe.subviews {
-                            let key = keys as! UIButton
-                            
-                            UIView.performWithoutAnimation {
-                                switch key.tag {
-                                case 20...26: key.setTitle(Const.cyrillicList[isShift]![key.tag-1], for: .normal)
-                                default: break
-                                }
-                                key.layoutIfNeeded()
-                            }
-                        }
+      } else if type == .cyrillic {
+            for key in self.cyrillicKeyboard.subButtons {
+                UIView.performWithoutAnimation {
+                    switch key.tag {
+                    case 1...26: key.setTitle(Const.cyrillicList[isShift]![key.tag-1], for: .normal)
+                    case 29:
+                        key.setTitle("⇧", for: .normal)
+                        key.backgroundColor = isShift ? .white : UIColor(red: 168/255, green: 176/255, blue: 187/255, alpha: 1)
+                    default: break
                     }
+                    key.layoutIfNeeded()
                 }
             }
-        } else {
-            for stack in self.numMarkKeyboard.subviews {
-                for keytobe in stack.subviews  {
-                    if let key = keytobe as? UIButton {
-                        UIView.performWithoutAnimation {
-                            switch key.tag {
-                            case 1...20: key.setTitle(Const.numMarkList[isShift]![key.tag-1], for: .normal)
-                            case 29: key.setTitle(isShift ? "123": "#+=", for: .normal)
-                            default: break
-                            }
-                            key.layoutIfNeeded()
-                        }
-                    } else {
-                        for keys in keytobe.subviews {
-                            let key = keys as! UIButton
-                            
-                            UIView.performWithoutAnimation {
-                                switch key.tag {
-                                case 21...26: key.setTitle(Const.numMarkList[isShift]![key.tag-1], for: .normal)
-                                default: break
-                                }
-                                key.layoutIfNeeded()
-                            }
-                        }
+       } else {
+            for key in self.numMarkKeyboard.subButtons {
+                UIView.performWithoutAnimation {
+                    switch key.tag {
+                    case 1...26: key.setTitle(Const.numMarkList[isShift]![key.tag-1], for: .normal)
+                    case 29: key.setTitle(isShift ? "123": "#+=", for: .normal)
+                    default: break
                     }
+                    key.layoutIfNeeded()
                 }
             }
         }
@@ -800,11 +784,22 @@ class KeyboardViewController: UIInputViewController {
         if type == .latin {
             for stack in self.latinKeyboard.subviews {
                 for keytobe in stack.subviews {
-                    if keytobe.tag == tag {
-                        let key = keytobe as! UIButton
-                        return key
+                    if keytobe is UIButton {
+                        if keytobe.tag == tag {
+                            let key = keytobe as! UIButton
+                            return key
+                        } else {
+                            continue
+                        }
                     } else {
-                        continue
+                        for keytobe2 in keytobe.subviews {
+                            if keytobe2.tag == tag {
+                                let key = keytobe2 as! UIButton
+                                return key
+                            } else {
+                                continue
+                            }
+                        }
                     }
                 }
             }
