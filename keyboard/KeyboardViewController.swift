@@ -6,70 +6,15 @@
 //  Copyright © 2 Reiwa 黒岩修. All rights reserved.
 //
 
+// TODO: キーの反応範囲
+// TODO: 横向きにした時の幅
+
 import UIKit
 import AudioToolbox
 
 class KeyboardViewController: UIInputViewController {
     
     // MARK:- Lets, Vars, etc
-    
-    enum ScriptType {
-        case latin
-        case cyrillic
-        case numMark
-    }
-    
-    enum KeyFuction {
-        case chr
-        case space
-        case newline
-        case shift
-        case delete
-        case changeType
-        case nextKeyboard
-    }
-    
-    struct Const {
-        static let latinList =
-            [true: ["Ƣ", "E", "Ɛ", "T", "Ł", "U", "İ", "O", "Ɔ", "P", "A", "S", "D", "F", "G", "Ŋ", "K", "L", "R", "Z", "X", "V", "B", "N", "M", "◌̇", " ", "\n"],
-             false: ["ƣ", "e", "ɛ", "t", "ł", "u", "i", "o", "ɔ", "p", "a", "s", "d", "f", "g", "ŋ", "k", "l", "r", "z", "x", "v", "b", "n", "m", "◌̇", " ", "\n"]]
-        static let latinExtraList =
-            [true: [1: "Q", 3: "Ê", 7: "Y", 9: "Ô", 16: "Ñ"],
-             false: [1: "q", 3: "ê", 9: "ô", 16: "ñ"]]
-        static let latinFunctionList: [KeyFuction] = [.chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .space, .newline, .shift, .delete, .changeType, .nextKeyboard]
-        
-        static let cyrillicList =
-            [true: ["У", "К", "Е", "Н", "Г", "З", "Х", "Ъ", "Ң", "Ғ", "Ф", "В", "А", "П", "О", "Л", "Д", "Э", "Ԓ", "С", "М", "И", "Т", "Б", "Ә", "◌̆", " ", "\n"],
-             false: ["у", "к", "е", "н", "г", "з", "х", "ъ", "ң", "ғ", "ф", "в", "а", "п", "о", "л", "д", "э", "ԓ", "с", "м", "и", "т", "б", "ә", "◌̆", " ", "\n"]]
-        static let cyrillicFunctionList: [KeyFuction] = [.chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .space, .newline, .shift, .delete, .changeType, .nextKeyboard]
-        
-        static let numMarkList =
-            [true: ["[", "]", "#", "†", "^", "+", "−", "×", "÷", "=", "_", "<", ">", "ᵐ", "ⁿ", "ᵑ", "ɡ", "ɣ", "ɬ", "ɮ", ".", ",", "?", "!", "«", "»", " ", "\n"],
-             false: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "-", "~", "–", "/", ":", ";", "(", ")", "*", "\"", ".", ",", "?", "!", "«", "»", " ", "\n"]]
-        static let numMarkExtraList =
-            [true: [4: "‰", 11: "‾", 21: "…", 23: "⸮", 24: "‽", 25: "‹", 26: "›"],
-             false: [11: "•", 13: "—", 20: "'", 21: "…", 23: "⸮", 24: "‽", 25: "‹", 26: "›"]]
-        static let numMarkFunctionList: [KeyFuction] = [.chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .space, .newline, .shift, .delete, .changeType, .nextKeyboard]
-        
-        static let keyboardHeights: [CGFloat:CGFloat] =
-            [568.0: 216.0, 667.0: 216.0, 736.0: 226.0, 812.0: 216.0, 896.0: 226.0,
-             320.0: 160.0, 375.0: 187.5, 414.0: 207.0]
-        
-        static let portraitHeights: [CGFloat] = [568.0, 667.0, 736.0, 812.0, 896.0]
-        static let landscapeHeights: [CGFloat] = [320.0, 375.0, 414.0]
-        /*
-         portrait:
-            568.0: 5s, SE
-            667.0: 6, 6s, 7, 8
-            736.0: 6 plus, 6s plus, 7 plus, 8 plus
-            812.0: X, XS
-            896.0: XR, XS MAX
-         lanscape:
-            320.0: 5s, SE
-            375.0: 6, 6s, 7, 8, X, XS
-            414.0: 6 plus, 6s plus, 7 plus, 8 plus, XR, XS MAX
-         */
-    }
     
     var latinKeyboard: UIView!
     var cyrillicKeyboard: UIView!
@@ -111,6 +56,12 @@ class KeyboardViewController: UIInputViewController {
     var lastShiftDate = Date()
     var currentKeyboardType = ScriptType.latin
     
+    var chrKeysSpaceNormalColour = UIColor.white
+    var spaceTappedColour = UIColor.white
+    var otherKeysNormalColour = UIColor.white
+    var otherKeysButShiftTappedColour = UIColor.white
+    var shiftTappedColour = UIColor.white
+    
     // MARK:- Bases
     
     override func updateViewConstraints() {
@@ -136,15 +87,15 @@ class KeyboardViewController: UIInputViewController {
             case .space:
                 key.addTarget(self, action: #selector(latinChrKeyPressed), for: .touchUpInside)
                 
-                key.addTarget(self, action: #selector(greyenKey), for: .touchDown)
-                key.addTarget(self, action: #selector(whitenKey), for: [.touchUpInside, .touchUpOutside])
+                key.addTarget(self, action: #selector(changeSpaceColour), for: .touchDown)
+                key.addTarget(self, action: #selector(restoreSpaceColour), for: [.touchUpInside, .touchUpOutside])
                 
                 key.addTarget(self, action: #selector(setOtherKeySound), for: .touchDown)
             case .newline:
                 key.addTarget(self, action: #selector(latinChrKeyPressed), for: .touchUpInside)
                 
-                key.addTarget(self, action: #selector(whitenKey), for: .touchDown)
-                key.addTarget(self, action: #selector(greyenKey), for: [.touchUpInside, .touchUpOutside])
+                key.addTarget(self, action: #selector(changeOtherKeysButShiftColour), for: .touchDown)
+                key.addTarget(self, action: #selector(restoreOtherKeysButShiftColour), for: [.touchUpInside, .touchUpOutside])
                 
                 key.addTarget(self, action: #selector(setOtherKeySound), for: .touchDown)
             case .shift:
@@ -155,8 +106,8 @@ class KeyboardViewController: UIInputViewController {
                 key.addTarget(self, action: #selector(deleteDown), for: .touchDown)
                 key.addTarget(self, action: #selector(deleteUp), for: [.touchUpInside, .touchUpOutside])
                 
-                key.addTarget(self, action: #selector(whitenKey), for: .touchDown)
-                key.addTarget(self, action: #selector(greyenKey), for: [.touchUpInside, .touchUpOutside])
+                key.addTarget(self, action: #selector(changeOtherKeysButShiftColour), for: .touchDown)
+                key.addTarget(self, action: #selector(restoreOtherKeysButShiftColour), for: [.touchUpInside, .touchUpOutside])
                 
                 key.addTarget(self, action: #selector(setDeleteKeySound), for: .touchDown)
             case .changeType:
@@ -166,8 +117,8 @@ class KeyboardViewController: UIInputViewController {
             case .nextKeyboard:
                 key.addTarget(self, action: #selector(handleInputModeList(from:with:)), for: .allTouchEvents)
                 
-                key.addTarget(self, action: #selector(whitenKey), for: .touchDown)
-                key.addTarget(self, action: #selector(greyenKey), for: [.touchUpInside, .touchUpOutside])
+                key.addTarget(self, action: #selector(changeOtherKeysButShiftColour), for: .touchDown)
+                key.addTarget(self, action: #selector(restoreOtherKeysButShiftColour), for: [.touchUpInside, .touchUpOutside])
                 
                 key.addTarget(self, action: #selector(setOtherKeySound), for: .touchDown)
             }
@@ -186,15 +137,15 @@ class KeyboardViewController: UIInputViewController {
             case .space:
                 key.addTarget(self, action: #selector(cyrillicChrKeyPressed), for: .touchUpInside)
                 
-                key.addTarget(self, action: #selector(greyenKey), for: .touchDown)
-                key.addTarget(self, action: #selector(whitenKey), for: [.touchUpInside, .touchUpOutside])
+                key.addTarget(self, action: #selector(changeSpaceColour), for: .touchDown)
+                key.addTarget(self, action: #selector(restoreSpaceColour), for: [.touchUpInside, .touchUpOutside])
                 
                 key.addTarget(self, action: #selector(setOtherKeySound), for: .touchDown)
             case .newline:
                 key.addTarget(self, action: #selector(cyrillicChrKeyPressed), for: .touchUpInside)
                 
-                key.addTarget(self, action: #selector(whitenKey), for: .touchDown)
-                key.addTarget(self, action: #selector(greyenKey), for: [.touchUpInside, .touchUpOutside])
+                key.addTarget(self, action: #selector(changeOtherKeysButShiftColour), for: .touchDown)
+                key.addTarget(self, action: #selector(restoreOtherKeysButShiftColour), for: [.touchUpInside, .touchUpOutside])
                 
                 key.addTarget(self, action: #selector(setOtherKeySound), for: .touchDown)
             case .shift:
@@ -202,11 +153,11 @@ class KeyboardViewController: UIInputViewController {
                 
                 key.addTarget(self, action: #selector(setOtherKeySound), for: .touchDown)
             case .delete:
-                key.addTarget(self, action: #selector(deleteDown), for: .touchDown)
-                key.addTarget(self, action: #selector(deleteUp), for: [.touchUpInside, .touchUpOutside])
+//                key.addTarget(self, action: #selector(deleteDown), for: .touchDown)
+//                key.addTarget(self, action: #selector(deleteUp), for: [.touchUpInside, .touchUpOutside])
                 
-                key.addTarget(self, action: #selector(whitenKey), for: .touchDown)
-                key.addTarget(self, action: #selector(greyenKey), for: [.touchUpInside, .touchUpOutside])
+                key.addTarget(self, action: #selector(changeOtherKeysButShiftColour), for: .touchDown)
+                key.addTarget(self, action: #selector(restoreOtherKeysButShiftColour), for: [.touchUpInside, .touchUpOutside])
                 
                 key.addTarget(self, action: #selector(setDeleteKeySound), for: .touchDown)
             case .changeType:
@@ -216,8 +167,8 @@ class KeyboardViewController: UIInputViewController {
             case .nextKeyboard:
                 key.addTarget(self, action: #selector(handleInputModeList(from:with:)), for: .allTouchEvents)
                 
-                key.addTarget(self, action: #selector(whitenKey), for: .touchDown)
-                key.addTarget(self, action: #selector(greyenKey), for: [.touchUpInside, .touchUpOutside])
+                key.addTarget(self, action: #selector(changeOtherKeysButShiftColour), for: .touchDown)
+                key.addTarget(self, action: #selector(restoreOtherKeysButShiftColour), for: [.touchUpInside, .touchUpOutside])
                 
                 key.addTarget(self, action: #selector(setOtherKeySound), for: .touchDown)
             }
@@ -235,15 +186,15 @@ class KeyboardViewController: UIInputViewController {
             case .space:
                 key.addTarget(self, action: #selector(numMarkChrKeyPressed), for: .touchUpInside)
                 
-                key.addTarget(self, action: #selector(greyenKey), for: .touchDown)
-                key.addTarget(self, action: #selector(whitenKey), for: [.touchUpInside, .touchUpOutside])
+                key.addTarget(self, action: #selector(changeSpaceColour), for: .touchDown)
+                key.addTarget(self, action: #selector(restoreSpaceColour), for: [.touchUpInside, .touchUpOutside])
                 
                 key.addTarget(self, action: #selector(setOtherKeySound), for: .touchDown)
             case .newline:
                 key.addTarget(self, action: #selector(numMarkChrKeyPressed), for: .touchUpInside)
                 
-                key.addTarget(self, action: #selector(whitenKey), for: .touchDown)
-                key.addTarget(self, action: #selector(greyenKey), for: [.touchUpInside, .touchUpOutside])
+                key.addTarget(self, action: #selector(changeOtherKeysButShiftColour), for: .touchDown)
+                key.addTarget(self, action: #selector(restoreOtherKeysButShiftColour), for: [.touchUpInside, .touchUpOutside])
                 
                 key.addTarget(self, action: #selector(setOtherKeySound), for: .touchDown)
             case .shift:
@@ -254,8 +205,8 @@ class KeyboardViewController: UIInputViewController {
                 key.addTarget(self, action: #selector(deleteDown), for: .touchDown)
                 key.addTarget(self, action: #selector(deleteUp), for: [.touchUpInside, .touchUpOutside])
                 
-                key.addTarget(self, action: #selector(whitenKey), for: .touchDown)
-                key.addTarget(self, action: #selector(greyenKey), for: [.touchUpInside, .touchUpOutside])
+                key.addTarget(self, action: #selector(changeOtherKeysButShiftColour), for: .touchDown)
+                key.addTarget(self, action: #selector(restoreOtherKeysButShiftColour), for: [.touchUpInside, .touchUpOutside])
                 
                 key.addTarget(self, action: #selector(setDeleteKeySound), for: .touchDown)
             case .changeType:
@@ -265,8 +216,8 @@ class KeyboardViewController: UIInputViewController {
             case .nextKeyboard:
                 key.addTarget(self, action: #selector(handleInputModeList(from:with:)), for: .allTouchEvents)
                 
-                key.addTarget(self, action: #selector(whitenKey), for: .touchDown)
-                key.addTarget(self, action: #selector(greyenKey), for: [.touchUpInside, .touchUpOutside])
+                key.addTarget(self, action: #selector(changeOtherKeysButShiftColour), for: .touchDown)
+                key.addTarget(self, action: #selector(restoreOtherKeysButShiftColour), for: [.touchUpInside, .touchUpOutside])
                 
                 key.addTarget(self, action: #selector(setOtherKeySound), for: .touchDown)
             }
@@ -332,7 +283,7 @@ class KeyboardViewController: UIInputViewController {
         super.viewWillLayoutSubviews()
         
         if !self.needsInputModeSwitchKey {
-            getKey(from: .latin, tag: 37)?.removeFromSuperview()
+            getKey(from: .latin, tag: 32)?.removeFromSuperview()
             getKey(from: .cyrillic, tag: 32)?.removeFromSuperview()
             getKey(from: .numMark, tag: 32)?.removeFromSuperview()
         }
@@ -343,47 +294,57 @@ class KeyboardViewController: UIInputViewController {
     }
     
     override func textDidChange(_ textInput: UITextInput?) {
-        // The app has just changed the document's contents, the document context has been updated.
-        
-        var chrTextColor: UIColor
-        var chrBgColor: UIColor
-        var otrTextColor: UIColor
-        var otrBgColor: UIColor
-        var shadowColor: CGColor
-        var bgColor: UIColor
-        
-        if self.textDocumentProxy.keyboardAppearance == .dark {
-            chrTextColor = .white
-            chrBgColor = UIColor(red: 100/255, green: 100/255, blue: 100/255, alpha: 1)
-            otrTextColor = .white
-            otrBgColor = UIColor(red: 63/255, green: 63/255, blue: 64/255, alpha: 1)
-            shadowColor = UIColor(red: 20/255, green: 20/255, blue: 21/255, alpha: 1).cgColor
-            bgColor = UIColor(red: 34/255, green: 34/255, blue: 35/255, alpha: 1)
+        if self.textDocumentProxy.keyboardAppearance == .light {
+            chrKeysSpaceNormalColour = Const.lightChrKeysColour
+            spaceTappedColour = Const.lightOtherKeysColour
+            otherKeysNormalColour = Const.lightOtherKeysColour
+            otherKeysButShiftTappedColour = Const.lightChrKeysColour
+            shiftTappedColour = Const.lightChrKeysColour
         } else {
-            chrTextColor = .black
-            chrBgColor = .white
-            otrTextColor = .black
-            otrBgColor = UIColor(red: 168/255, green: 176/255, blue: 187/255, alpha: 1)
-            shadowColor = UIColor.gray.cgColor
-            bgColor = UIColor(red: 207/255, green: 211/255, blue: 217/255, alpha: 1)
+            chrKeysSpaceNormalColour = Const.darkOtherKeysColour
+            spaceTappedColour = Const.darkChrKeysColour
+            otherKeysNormalColour = Const.darkChrKeysColour
+            otherKeysButShiftTappedColour = Const.darkOtherKeysColour
+            shiftTappedColour = Const.darkTappedShiftColour
         }
         
-        for i in 1...32 {
-            if i <= 27 {
-                getKey(from: .latin, tag: i)!.setTitleColor(chrTextColor, for: [])
-                getKey(from: .latin, tag: i)!.backgroundColor = chrBgColor
-            } else {
-                getKey(from: .latin, tag: i)!.setTitleColor(otrTextColor, for: [])
-                getKey(from: .latin, tag: i)!.backgroundColor = otrBgColor
+        var chrTextColour: UIColor
+        var otrTextColour: UIColor
+        var shadowColour: CGColor
+        var bgColour: UIColor
+        
+        if self.textDocumentProxy.keyboardAppearance == .light {
+            chrTextColour = .black
+            otrTextColour = .black
+            shadowColour = UIColor.gray.cgColor
+            bgColour = UIColor(red: 208/255, green: 211/255, blue: 217/255, alpha: 1)
+        } else {
+            chrTextColour = .white
+            otrTextColour = .white
+            shadowColour = UIColor(red: 16/255, green: 16/255, blue: 16/255, alpha: 1).cgColor
+            bgColour = UIColor(red: 28/255, green: 28/255, blue: 28/255, alpha: 1)
+        }
+        
+        for type in [ScriptType.latin, ScriptType.cyrillic, ScriptType.numMark] {
+            for i in 1...32 {
+                if i <= 27 {
+                    getKey(from: type, tag: i)!.setTitleColor(chrTextColour, for: [])
+                    getKey(from: type, tag: i)!.backgroundColor = chrKeysSpaceNormalColour
+                } else {
+                    getKey(from: type, tag: i)!.setTitleColor(otrTextColour, for: [])
+                    getKey(from: type, tag: i)!.backgroundColor = otherKeysNormalColour
+                }
+                
+                getKey(from: type, tag: i)!.layer.shadowOffset = CGSize(width: 0.0, height: 1.2)
+                getKey(from: type, tag: i)!.layer.shadowColor = shadowColour
+                getKey(from: type, tag: i)!.layer.shadowOpacity = 0.8
+                getKey(from: type, tag: i)!.layer.shadowRadius = 0
             }
-            
-            getKey(from: .latin, tag: i)!.layer.shadowOffset = CGSize(width: 0.0, height: 1.2)
-            getKey(from: .latin, tag: i)!.layer.shadowColor = shadowColor
-            getKey(from: .latin, tag: i)!.layer.shadowOpacity = 0.8
-            getKey(from: .latin, tag: i)!.layer.shadowRadius = 0
         }
         
-        latinKeyboard.backgroundColor = bgColor
+        latinKeyboard.backgroundColor = bgColour
+        cyrillicKeyboard.backgroundColor = bgColour
+        numMarkKeyboard.backgroundColor = bgColour
     }
     
     // MARK:- Funcs For Keys
@@ -419,7 +380,7 @@ class KeyboardViewController: UIInputViewController {
         let key = sender as! UIButton
         
         if isShift {
-            if Date().timeIntervalSince(lastShiftDate) <= 0.35 {
+            if Date().timeIntervalSince(lastShiftDate) <= Const.shiftInterval {
                 isShiftSucceeding = true
                 
                 UIView.performWithoutAnimation {
@@ -428,13 +389,13 @@ class KeyboardViewController: UIInputViewController {
                 }
             } else {
                 isShift = false
+                isShiftSucceeding = false
                 setKeys(.latin, false)
             }
         } else {
             lastShiftDate = Date()
             
             isShift = true
-            isShiftSucceeding = false
             setKeys(.latin, true)
         }
     }
@@ -481,7 +442,7 @@ class KeyboardViewController: UIInputViewController {
         let key = sender as! UIButton
         
         if isShift {
-            if Date().timeIntervalSince(lastShiftDate) <= 0.35 {
+            if Date().timeIntervalSince(lastShiftDate) <= Const.shiftInterval {
                 isShiftSucceeding = true
                 
                 UIView.performWithoutAnimation {
@@ -550,18 +511,31 @@ class KeyboardViewController: UIInputViewController {
     }
     
     // MARK: colorChange
-    @objc func greyenKey(sender: AnyObject) {
+    
+    @objc func changeSpaceColour(sender: AnyObject) {
         let key = sender as! UIButton
-        key.backgroundColor = UIColor(red: 168/255, green: 176/255, blue: 187/255, alpha: 1)
+        key.backgroundColor = spaceTappedColour
     }
     
-    @objc func whitenKey(sender: AnyObject) {
+    @objc func restoreSpaceColour(sender: AnyObject) {
         let key = sender as! UIButton
-        key.backgroundColor = .white
+        key.backgroundColor = chrKeysSpaceNormalColour
+    }
+    
+    @objc func changeOtherKeysButShiftColour(sender: AnyObject) {
+        let key = sender as! UIButton
+        key.backgroundColor = otherKeysButShiftTappedColour
+    }
+    
+    @objc func restoreOtherKeysButShiftColour(sender: AnyObject) {
+        let key = sender as! UIButton
+        key.backgroundColor = otherKeysNormalColour
     }
     
     @objc func deleteDown(sender: AnyObject) {
-        self.textDocumentProxy.deleteBackward()
+        if self.textDocumentProxy.hasText {
+            self.textDocumentProxy.deleteBackward()
+        }
         
         let deleteStartTime = Date()
         deleteTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true, block: { (timer) in
@@ -577,7 +551,9 @@ class KeyboardViewController: UIInputViewController {
     }
     
     @objc func deleteUp(sender: AnyObject) {
-        deleteTimer.invalidate()
+        if deleteTimer.isValid {
+            deleteTimer.invalidate()
+        }
     }
     
     // MARK:- KeySound
@@ -747,7 +723,12 @@ class KeyboardViewController: UIInputViewController {
                     case 1...26: key.setTitle(Const.latinList[isShift]![key.tag-1], for: .normal)
                     case 29:
                         key.setTitle("⇧", for: .normal)
-                        key.backgroundColor = isShift ? .white : UIColor(red: 168/255, green: 176/255, blue: 187/255, alpha: 1)
+                        key.backgroundColor = isShift ? shiftTappedColour : otherKeysNormalColour
+                        if key.backgroundColor == Const.darkTappedShiftColour {
+                            key.setTitleColor(.black, for: .normal)
+                        } else {
+                            key.setTitleColor(.white, for: .normal)
+                        }
                     default: break
                     }
                     key.layoutIfNeeded()
@@ -760,7 +741,12 @@ class KeyboardViewController: UIInputViewController {
                     case 1...26: key.setTitle(Const.cyrillicList[isShift]![key.tag-1], for: .normal)
                     case 29:
                         key.setTitle("⇧", for: .normal)
-                        key.backgroundColor = isShift ? .white : UIColor(red: 168/255, green: 176/255, blue: 187/255, alpha: 1)
+                        key.backgroundColor = isShift ? shiftTappedColour : otherKeysNormalColour
+                        if key.backgroundColor == Const.darkTappedShiftColour {
+                            key.setTitleColor(.black, for: .normal)
+                        } else {
+                            key.setTitleColor(.white, for: .normal)
+                        }
                     default: break
                     }
                     key.layoutIfNeeded()
