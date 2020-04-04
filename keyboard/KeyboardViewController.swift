@@ -242,14 +242,14 @@ class KeyboardViewController: UIInputViewController {
         constraintWidthN = constraint(numMarkKeyboard, .width, constant: 526)
         
         constraintsForCommon = [.latin: [constraintTopL, constraintBottomL],
-                          .cyrillic: [constraintTopC, constraintBottomC],
-                          .numMark: [constraintTopN, constraintBottomN]]
+                                .cyrillic: [constraintTopC, constraintBottomC],
+                                .numMark: [constraintTopN, constraintBottomN]]
         constraintsForPortrait = [.latin: [constraintLeadingL, constraintTrailingL],
-                          .cyrillic: [constraintLeadingC, constraintTrailingC],
-                          .numMark: [constraintLeadingN, constraintTrailingN]]
+                                  .cyrillic: [constraintLeadingC, constraintTrailingC],
+                                  .numMark: [constraintLeadingN, constraintTrailingN]]
         constraintsForLandscape = [.latin: [constraintcentreXL, constraintWidthL],
-                          .cyrillic: [constraintcentreXC, constraintWidthC],
-                          .numMark: [constraintcentreXN, constraintWidthN]]
+                                   .cyrillic: [constraintcentreXC, constraintWidthC],
+                                   .numMark: [constraintcentreXN, constraintWidthN]]
         
         view.addSubview(latinKeyboard)
         
@@ -488,7 +488,7 @@ class KeyboardViewController: UIInputViewController {
             showPopup(recog: recog, "ğ")
         } else if recog.state == .ended {
             let button = recog.view as! UIButton
-            button.subviews.first!.removeFromSuperview()
+            button.subviews[1].removeFromSuperview()
         }
     }
     
@@ -497,7 +497,7 @@ class KeyboardViewController: UIInputViewController {
             showPopup(recog: recog, "ñ")
         } else if recog.state == .ended {
             let button = recog.view as! UIButton
-            button.subviews.first!.removeFromSuperview()
+            button.subviews[1].removeFromSuperview()
         }
     }
     
@@ -506,7 +506,7 @@ class KeyboardViewController: UIInputViewController {
             showPopup(recog: recog, "ê")
         } else if recog.state == .ended {
             let button = recog.view as! UIButton
-            button.subviews[01].removeFromSuperview()
+            button.subviews[1].removeFromSuperview()
         }
     }
     
@@ -515,7 +515,7 @@ class KeyboardViewController: UIInputViewController {
             showPopup(recog: recog, "ô")
         } else if recog.state == .ended {
             let button = recog.view as! UIButton
-            button.subviews.first!.removeFromSuperview()
+            button.subviews[1].removeFromSuperview()
         }
     }
     
@@ -527,7 +527,7 @@ class KeyboardViewController: UIInputViewController {
                 showPopup(recog: recog, "—") //FIXME: なぜか三点リーダで表示される
             } else if recog.state == .ended {
                 let button = recog.view as! UIButton
-                button.subviews.first!.removeFromSuperview()
+                button.subviews[1].removeFromSuperview() //[0]は元ボタンの文字部分
             }
         }
     }
@@ -538,7 +538,7 @@ class KeyboardViewController: UIInputViewController {
                 showPopup(recog: recog, "'")
             } else if recog.state == .ended {
                 let button = recog.view as! UIButton
-                button.subviews.first!.removeFromSuperview()
+                button.subviews[1].removeFromSuperview()
             }
         }
     }
@@ -548,7 +548,7 @@ class KeyboardViewController: UIInputViewController {
             showPopup(recog: recog, "…", "…")
         } else if recog.state == .ended {
             let button = recog.view as! UIButton
-            button.subviews.first!.removeFromSuperview()
+            button.subviews[1].removeFromSuperview()
         }
     }
     
@@ -557,7 +557,7 @@ class KeyboardViewController: UIInputViewController {
             showPopup(recog: recog, "⸮", "⸮")
         } else if recog.state == .ended {
             let button = recog.view as! UIButton
-            button.subviews.first!.removeFromSuperview()
+            button.subviews[1].removeFromSuperview()
         }
     }
     
@@ -566,7 +566,7 @@ class KeyboardViewController: UIInputViewController {
             showPopup(recog: recog, "‽", "‽")
         } else if recog.state == .ended {
             let button = recog.view as! UIButton
-            button.subviews.first!.removeFromSuperview()
+            button.subviews[1].removeFromSuperview()
         }
     }
     
@@ -575,7 +575,7 @@ class KeyboardViewController: UIInputViewController {
             showPopup(recog: recog, "‹", "‹")
         } else if recog.state == .ended {
             let button = recog.view as! UIButton
-            button.subviews.first!.removeFromSuperview()
+            button.subviews[1].removeFromSuperview()
         }
     }
     
@@ -584,7 +584,7 @@ class KeyboardViewController: UIInputViewController {
             showPopup(recog: recog, "›", "›")
         } else if recog.state == .ended {
             let button = recog.view as! UIButton
-            button.subviews.first!.removeFromSuperview()
+            button.subviews[1].removeFromSuperview()
         }
     }
     
@@ -592,17 +592,14 @@ class KeyboardViewController: UIInputViewController {
     
     func setKeyboardXibs() {
         latinKeyboard = UINib(nibName: "Latin", bundle: nil).instantiate(withOwner: self, options: nil).first as? UIView
-//        latinKeyboard = Bundle.main.loadNibNamed("Latin", owner: self, options: nil)?.first as? UIView
         latinKeyboard.frame = view.frame
         latinKeyboard.translatesAutoresizingMaskIntoConstraints = false
         
         cyrillicKeyboard = UINib(nibName: "Cyrillic", bundle: nil).instantiate(withOwner: self, options: nil).first as? UIView
-//        cyrillicKeyboard = Bundle.main.loadNibNamed("Cyrillic", owner: self, options: nil)?.first as? UIView
         cyrillicKeyboard.frame = view.frame
         cyrillicKeyboard.translatesAutoresizingMaskIntoConstraints = false
         
         numMarkKeyboard = UINib(nibName: "NumMark", bundle: nil).instantiate(withOwner: self, options: nil).first as? UIView
-//        numMarkKeyboard = Bundle.main.loadNibNamed("NumMark", owner: self, options: nil)?.first as? UIView
         numMarkKeyboard.frame = view.frame
         numMarkKeyboard.translatesAutoresizingMaskIntoConstraints = false
     }
@@ -618,7 +615,7 @@ class KeyboardViewController: UIInputViewController {
                     key.layoutIfNeeded()
                 }
             }
-      } else if type == .cyrillic {
+        } else if type == .cyrillic {
             for key in self.cyrillicKeyboard.subButtons {
                 UIView.performWithoutAnimation {
                     switch key.tag {
@@ -628,7 +625,7 @@ class KeyboardViewController: UIInputViewController {
                     key.layoutIfNeeded()
                 }
             }
-       } else {
+        } else {
             for key in self.numMarkKeyboard.subButtons {
                 UIView.performWithoutAnimation {
                     switch key.tag {

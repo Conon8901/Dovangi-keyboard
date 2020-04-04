@@ -24,8 +24,14 @@ extension UIView {
                 for buttontobe in stack.subviews {
                     if let button = buttontobe as? UIButton {
                         buttonArray.append(button)
+                    } else if let stack = buttontobe as? UIStackView {
+                        for buttontobe2 in stack.subviews {
+                            let button = buttontobe2 as! UIButton
+                            buttonArray.append(button)
+                        }
                     } else {
-                        for buttontobe2 in buttontobe.subviews {
+                        let stack2 = buttontobe.subviews.first as! UIStackView
+                        for buttontobe2 in stack2.subviews {
                             let button = buttontobe2 as! UIButton
                             buttonArray.append(button)
                         }
