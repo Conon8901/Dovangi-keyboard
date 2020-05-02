@@ -82,19 +82,21 @@ enum KeyFuction {
 }
 
 struct Const {
-    static let latinList = ["ɣ", "e", "t", "u", "i", "o", "p", "ŋ", "ɛ", "ɔ", "a", "s", "d", "f", "g", "k", "ś", "ź", "š", "z", "x", "v", "b", "n", "m", "ž", " ", "\n"]
-    static let latinExtraList = [1: "ğ", 8: "ñ", 9: "ê", 10: "ô"]
-    static let latinFunctionList: [KeyFuction] = [.chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .space, .newline, .delete, .changeType, .nextKeyboard]
+    static let KeyCounts: [ScriptType:Int] = [.latin: 30, .cyrillic: 31, .numMark: 32]
     
-    static let cyrillicList = ["у", "к", "е", "н", "г", "ш", "з", "х", "ң", "ӏ", "ф", "в", "а", "п", "о", "д", "ж", "э", "ғ", "ә", "с", "м", "и", "т", "б", "с́", "з́", " ", "\n"]
-    static let cyrillicFunctionList: [KeyFuction] = [.chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .space, .newline, .delete, .changeType, .nextKeyboard]
+    static let latinList = ["e", "t", "u", "i", "o", "p", "ɣ", "ŋ", "ă", "a", "s", "d", "f", "g", "k", "ś", "ź", "š", "z", "x", "v", "b", "n", "m", "ž", " ", "\n"]
+    static let latinExtraList = [7: "ğ", 8: "ń", 9: "ą"]
+    static let latinFunctionList: [KeyFuction] = [.chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .space, .newline, .delete, .changeType, .nextKeyboard]
+    
+    static let cyrillicList = ["у", "к", "е", "н", "г", "ш", "з", "х", "ӏ", "ф", "в", "а", "п", "о", "д", "ж", "ғ", "ӑ", "с", "м", "и", "т", "б", "с́", "з́", "ң", " ", "\n"]
+    static let cyrillicFunctionList: [KeyFuction] = [.chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .space, .newline, .delete, .changeType, .nextKeyboard]
     
     static let numMarkList =
-        [true: ["[", "]", "{", "}", "^", "+", "−", "×", "÷", "=", "_", "\\", "|", "<", ">", "#", "†", "@", "\"", "•", ".", ",", "?", "!", "«", "»", " ", "\n"],
-         false: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "-", "~", "–", "/", ":", ";", "(", ")", "*", "ⁱ", ".", ",", "?", "!", "«", "»", " ", "\n"]]
+        [true: ["{", "}", "<", ">", "#", "+", "−", "×", "÷", "=", "’", "ᵐ", "ⁿ", "ᵑ", "ɡ", "ʃ", "ʒ", "ɬ", "ɮ", "ɑ", ".", ",", "?", "!", "«", "»", " ", "\n"],
+         false: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "-", "~", "–", "/", ":", "(", ")", "[", "]", "•", ".", ",", "?", "!", "«", "»", " ", "\n"]]
     static let numMarkExtraList =
-        [true: [19: "'", 21: "…", 23: "⸮", 24: "‽", 25: "‹", 26: "›"],
-         false: [13: "—", 21: "…", 23: "⸮", 24: "‽", 25: "‹", 26: "›"]]
+        [true: [21: "…", 23: "⸮", 24: "‽", 25: "‹", 26: "›"],
+         false: [13: "—", 14: "\\", 15: ";", 20: "◦", 21: "…", 23: "⸮", 24: "‽", 25: "‹", 26: "›"]] //¹²³⁴⁵⁶⁷⁸⁹⁰⁺⁻
     static let numMarkFunctionList: [KeyFuction] = [.chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .space, .newline, .shift, .delete, .changeType, .nextKeyboard]
     
     static let keyboardHeights: [CGFloat:CGFloat] =
@@ -118,9 +120,14 @@ struct Const {
     
     static let shiftInterval = 0.35
     
-    static let lightChrKeysColour = UIColor.white
-    static let lightOtherKeysColour = UIColor(red: 168/255, green: 173/255, blue: 184/255, alpha: 1)
-    static let darkChrKeysColour = UIColor(red: 95/255, green: 95/255, blue: 95/255, alpha: 1)
-    static let darkOtherKeysColour = UIColor(red: 57/255, green: 57/255, blue: 57/255, alpha: 1)
-    static let darkTappedShiftColour = UIColor(red: 209/255, green: 209/255, blue: 209/255, alpha: 1)
+    static let chrKeysColourLight = UIColor.white
+    static let chrKeysColourDark = UIColor(red: 95/255, green: 95/255, blue: 95/255, alpha: 1)
+    static let otherKeysColourLight = UIColor(red: 168/255, green: 173/255, blue: 184/255, alpha: 1)
+    static let otherKeysColourDark = UIColor(red: 57/255, green: 57/255, blue: 57/255, alpha: 1)
+    static let tappedShiftColourDark = UIColor(red: 209/255, green: 209/255, blue: 209/255, alpha: 1)
+    
+    static let keyboardBgColourLight = UIColor(red: 208/255, green: 211/255, blue: 217/255, alpha: 1)
+    static let keyboardBgColourDark = UIColor(red: 28/255, green: 28/255, blue: 28/255, alpha: 1)
+    static let shadowColourLight = UIColor.gray
+    static let shadowColourDark = UIColor(red: 16/255, green: 16/255, blue: 16/255, alpha: 1)
 }

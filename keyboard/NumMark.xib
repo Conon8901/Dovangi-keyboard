@@ -16,11 +16,11 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="240"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="ilm-eT-9Yo">
+                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="ilm-eT-9Yo">
                     <rect key="frame" x="4" y="8" width="367" height="48"/>
                     <subviews>
                         <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SmL-ok-bFi">
-                            <rect key="frame" x="0.0" y="0.0" width="31.5" height="48"/>
+                            <rect key="frame" x="0.0" y="0.0" width="32" height="48"/>
                             <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="22"/>
                             <state key="normal" title="1">
@@ -34,7 +34,7 @@
                             </userDefinedRuntimeAttributes>
                         </button>
                         <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hJ3-b5-JOb">
-                            <rect key="frame" x="37.5" y="0.0" width="31" height="48"/>
+                            <rect key="frame" x="37" y="0.0" width="32.5" height="48"/>
                             <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="22"/>
                             <state key="normal" title="2">
@@ -48,7 +48,7 @@
                             </userDefinedRuntimeAttributes>
                         </button>
                         <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d6c-Ni-vn2">
-                            <rect key="frame" x="74.5" y="0.0" width="31.5" height="48"/>
+                            <rect key="frame" x="74.5" y="0.0" width="32" height="48"/>
                             <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="22"/>
                             <state key="normal" title="3">
@@ -62,7 +62,7 @@
                             </userDefinedRuntimeAttributes>
                         </button>
                         <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pA1-nE-SB7">
-                            <rect key="frame" x="112" y="0.0" width="31" height="48"/>
+                            <rect key="frame" x="111.5" y="0.0" width="32.5" height="48"/>
                             <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="22"/>
                             <state key="normal" title="4">
@@ -76,7 +76,7 @@
                             </userDefinedRuntimeAttributes>
                         </button>
                         <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KaI-gA-KsK">
-                            <rect key="frame" x="149" y="0.0" width="31.5" height="48"/>
+                            <rect key="frame" x="149" y="0.0" width="32" height="48"/>
                             <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="22"/>
                             <state key="normal" title="5">
@@ -90,7 +90,7 @@
                             </userDefinedRuntimeAttributes>
                         </button>
                         <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wed-uo-gSh">
-                            <rect key="frame" x="186.5" y="0.0" width="31.5" height="48"/>
+                            <rect key="frame" x="186" y="0.0" width="32" height="48"/>
                             <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="22"/>
                             <state key="normal" title="6">
@@ -104,7 +104,7 @@
                             </userDefinedRuntimeAttributes>
                         </button>
                         <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VcV-cP-b84">
-                            <rect key="frame" x="224" y="0.0" width="31" height="48"/>
+                            <rect key="frame" x="223" y="0.0" width="32.5" height="48"/>
                             <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="22"/>
                             <state key="normal" title="7">
@@ -118,7 +118,7 @@
                             </userDefinedRuntimeAttributes>
                         </button>
                         <button opaque="NO" tag="8" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xjf-lu-W7g">
-                            <rect key="frame" x="261" y="0.0" width="31.5" height="48"/>
+                            <rect key="frame" x="260.5" y="0.0" width="32" height="48"/>
                             <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="22"/>
                             <state key="normal" title="8">
@@ -132,7 +132,7 @@
                             </userDefinedRuntimeAttributes>
                         </button>
                         <button opaque="NO" tag="9" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zIh-6l-zH4">
-                            <rect key="frame" x="298.5" y="0.0" width="31" height="48"/>
+                            <rect key="frame" x="297.5" y="0.0" width="32.5" height="48"/>
                             <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="22"/>
                             <state key="normal" title="9">
@@ -146,7 +146,7 @@
                             </userDefinedRuntimeAttributes>
                         </button>
                         <button opaque="NO" tag="10" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H1P-79-aCT">
-                            <rect key="frame" x="335.5" y="0.0" width="31.5" height="48"/>
+                            <rect key="frame" x="335" y="0.0" width="32" height="48"/>
                             <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="22"/>
                             <state key="normal" title="0">
@@ -161,11 +161,11 @@
                         </button>
                     </subviews>
                 </stackView>
-                <stackView opaque="NO" contentMode="scaleToFill" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="dx7-1w-h9z">
+                <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="dx7-1w-h9z">
                     <rect key="frame" x="4" y="187.5" width="367" height="47.5"/>
                     <subviews>
                         <button opaque="NO" tag="31" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1XO-cl-tD1">
-                            <rect key="frame" x="0.0" y="0.0" width="45" height="47.5"/>
+                            <rect key="frame" x="0.0" y="0.0" width="45.5" height="47.5"/>
                             <color key="backgroundColor" red="0.6588235294" green="0.69019607839999997" blue="0.73333333329999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <state key="normal" title="abd">
@@ -179,7 +179,7 @@
                             </userDefinedRuntimeAttributes>
                         </button>
                         <button opaque="NO" tag="32" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VTm-sc-rP1">
-                            <rect key="frame" x="51" y="0.0" width="44.5" height="47.5"/>
+                            <rect key="frame" x="50.5" y="0.0" width="45" height="47.5"/>
                             <color key="backgroundColor" red="0.6588235294" green="0.69019607839999997" blue="0.73333333329999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <fontDescription key="fontDescription" type="system" pointSize="22"/>
                             <state key="normal" title="🌐">
@@ -193,7 +193,7 @@
                             </userDefinedRuntimeAttributes>
                         </button>
                         <button opaque="NO" tag="27" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JbG-Kh-vnn">
-                            <rect key="frame" x="101.5" y="0.0" width="164" height="47.5"/>
+                            <rect key="frame" x="100.5" y="0.0" width="166" height="47.5"/>
                             <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <state key="normal" title="fila">
@@ -212,8 +212,8 @@
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="auD-dl-ppQ" secondAttribute="height" multiplier="2:1" id="VVi-J4-Tfp"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="23"/>
-                            <state key="normal" title="↩︎">
+                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                            <state key="normal" title="⏎">
                                 <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <color key="titleShadowColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
@@ -249,11 +249,11 @@
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
                         </button>
-                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="GJl-5k-eqA">
+                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="GJl-5k-eqA">
                             <rect key="frame" x="60" y="0.0" width="247.5" height="48"/>
                             <subviews>
                                 <button opaque="NO" tag="21" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wRX-Ab-ziy">
-                                    <rect key="frame" x="0.0" y="0.0" width="36" height="48"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="37" height="48"/>
                                     <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="22"/>
                                     <state key="normal" title=".">
@@ -267,7 +267,7 @@
                                     </userDefinedRuntimeAttributes>
                                 </button>
                                 <button opaque="NO" tag="22" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pLe-0u-3Hq">
-                                    <rect key="frame" x="42" y="0.0" width="36.5" height="48"/>
+                                    <rect key="frame" x="42" y="0.0" width="37" height="48"/>
                                     <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="22"/>
                                     <state key="normal" title=",">
@@ -281,7 +281,7 @@
                                     </userDefinedRuntimeAttributes>
                                 </button>
                                 <button opaque="NO" tag="23" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f1F-JZ-dJJ">
-                                    <rect key="frame" x="84.5" y="0.0" width="36" height="48"/>
+                                    <rect key="frame" x="84" y="0.0" width="37" height="48"/>
                                     <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="22"/>
                                     <state key="normal" title="?">
@@ -295,7 +295,7 @@
                                     </userDefinedRuntimeAttributes>
                                 </button>
                                 <button opaque="NO" tag="24" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vbC-85-RY8">
-                                    <rect key="frame" x="126.5" y="0.0" width="36.5" height="48"/>
+                                    <rect key="frame" x="126" y="0.0" width="37" height="48"/>
                                     <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="22"/>
                                     <state key="normal" title="!">
@@ -309,7 +309,7 @@
                                     </userDefinedRuntimeAttributes>
                                 </button>
                                 <button opaque="NO" tag="25" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L2P-rn-oJu">
-                                    <rect key="frame" x="169" y="0.0" width="36" height="48"/>
+                                    <rect key="frame" x="168" y="0.0" width="37" height="48"/>
                                     <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="22"/>
                                     <state key="normal" title="«">
@@ -323,7 +323,7 @@
                                     </userDefinedRuntimeAttributes>
                                 </button>
                                 <button opaque="NO" tag="26" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cXZ-TJ-PCX">
-                                    <rect key="frame" x="211" y="0.0" width="36.5" height="48"/>
+                                    <rect key="frame" x="210" y="0.0" width="37.5" height="48"/>
                                     <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="22"/>
                                     <state key="normal" title="»">
@@ -360,11 +360,11 @@
                         </button>
                     </subviews>
                 </stackView>
-                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="31h-7b-puu">
+                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="31h-7b-puu">
                     <rect key="frame" x="4" y="68" width="367" height="47.5"/>
                     <subviews>
                         <button opaque="NO" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1a6-cB-dUZ">
-                            <rect key="frame" x="0.0" y="0.0" width="31.5" height="47.5"/>
+                            <rect key="frame" x="0.0" y="0.0" width="32" height="47.5"/>
                             <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="22"/>
                             <state key="normal" title="-">
@@ -378,7 +378,7 @@
                             </userDefinedRuntimeAttributes>
                         </button>
                         <button opaque="NO" tag="12" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vwK-Q2-44o">
-                            <rect key="frame" x="37.5" y="0.0" width="31" height="47.5"/>
+                            <rect key="frame" x="37" y="0.0" width="32.5" height="47.5"/>
                             <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="22"/>
                             <state key="normal" title="~">
@@ -392,7 +392,7 @@
                             </userDefinedRuntimeAttributes>
                         </button>
                         <button opaque="NO" tag="13" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1uG-cG-Jaq">
-                            <rect key="frame" x="74.5" y="0.0" width="31.5" height="47.5"/>
+                            <rect key="frame" x="74.5" y="0.0" width="32" height="47.5"/>
                             <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="22"/>
                             <state key="normal" title="–">
@@ -406,7 +406,7 @@
                             </userDefinedRuntimeAttributes>
                         </button>
                         <button opaque="NO" tag="14" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5gt-9a-tZy">
-                            <rect key="frame" x="112" y="0.0" width="31" height="47.5"/>
+                            <rect key="frame" x="111.5" y="0.0" width="32.5" height="47.5"/>
                             <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="22"/>
                             <state key="normal" title="/">
@@ -420,7 +420,7 @@
                             </userDefinedRuntimeAttributes>
                         </button>
                         <button opaque="NO" tag="15" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4rH-2w-mMm">
-                            <rect key="frame" x="149" y="0.0" width="31.5" height="47.5"/>
+                            <rect key="frame" x="149" y="0.0" width="32" height="47.5"/>
                             <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="22"/>
                             <state key="normal" title=":">
@@ -434,21 +434,7 @@
                             </userDefinedRuntimeAttributes>
                         </button>
                         <button opaque="NO" tag="16" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rLE-5J-VBU">
-                            <rect key="frame" x="186.5" y="0.0" width="31.5" height="47.5"/>
-                            <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
-                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="22"/>
-                            <state key="normal" title=";">
-                                <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <color key="titleShadowColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </state>
-                            <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                    <integer key="value" value="5"/>
-                                </userDefinedRuntimeAttribute>
-                            </userDefinedRuntimeAttributes>
-                        </button>
-                        <button opaque="NO" tag="17" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jqY-a2-AlE">
-                            <rect key="frame" x="224" y="0.0" width="31" height="47.5"/>
+                            <rect key="frame" x="186" y="0.0" width="32" height="47.5"/>
                             <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="22"/>
                             <state key="normal" title="(">
@@ -461,8 +447,8 @@
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
                         </button>
-                        <button opaque="NO" tag="18" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VIJ-vZ-W2T">
-                            <rect key="frame" x="261" y="0.0" width="31.5" height="47.5"/>
+                        <button opaque="NO" tag="17" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jqY-a2-AlE">
+                            <rect key="frame" x="223" y="0.0" width="32.5" height="47.5"/>
                             <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="22"/>
                             <state key="normal" title=")">
@@ -475,11 +461,25 @@
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
                         </button>
-                        <button opaque="NO" tag="19" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EhK-Zw-zye">
-                            <rect key="frame" x="298.5" y="0.0" width="31" height="47.5"/>
+                        <button opaque="NO" tag="18" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VIJ-vZ-W2T">
+                            <rect key="frame" x="260.5" y="0.0" width="32" height="47.5"/>
                             <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="22"/>
-                            <state key="normal" title="*">
+                            <state key="normal" title="[">
+                                <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="titleShadowColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                    <integer key="value" value="5"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </button>
+                        <button opaque="NO" tag="19" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EhK-Zw-zye">
+                            <rect key="frame" x="297.5" y="0.0" width="32.5" height="47.5"/>
+                            <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="22"/>
+                            <state key="normal" title="]">
                                 <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <color key="titleShadowColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
@@ -490,10 +490,10 @@
                             </userDefinedRuntimeAttributes>
                         </button>
                         <button opaque="NO" tag="20" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ebz-P2-fC3">
-                            <rect key="frame" x="335.5" y="0.0" width="31.5" height="47.5"/>
+                            <rect key="frame" x="335" y="0.0" width="32" height="47.5"/>
                             <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="22"/>
-                            <state key="normal" title="ⁱ">
+                            <state key="normal" title="•">
                                 <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <color key="titleShadowColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>

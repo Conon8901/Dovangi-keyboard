@@ -14,7 +14,7 @@ import AudioToolbox
 
 class KeyboardViewController: UIInputViewController {
     
-    // MARK:- Lets, Vars, etc
+    // MARK:- 定数変数宣言
     
     var latinKeyboard: UIView!
     var cyrillicKeyboard: UIView!
@@ -24,7 +24,6 @@ class KeyboardViewController: UIInputViewController {
     
     var constraintH = NSLayoutConstraint()
     
-    // only for landscape
     var constraintTopL = NSLayoutConstraint()
     var constraintBottomL = NSLayoutConstraint()
     var constraintLeadingL = NSLayoutConstraint()
@@ -61,7 +60,7 @@ class KeyboardViewController: UIInputViewController {
     var otherKeysButShiftTappedColour = UIColor.white
     var shiftTappedColour = UIColor.white
     
-    // MARK:- Bases
+    // MARK:- 基本設定
     
     override func updateViewConstraints() {
         super.updateViewConstraints()
@@ -74,7 +73,7 @@ class KeyboardViewController: UIInputViewController {
         
         setKeyboardXibs()
         
-        // Latin
+        // For Latin Keyboard
         for key in self.latinKeyboard.subButtons {
             key.setShadow()
             
@@ -120,11 +119,10 @@ class KeyboardViewController: UIInputViewController {
             }
         }
         
-        // Cyrillic
+        // For Cyrillic Keyboard
         for key in self.cyrillicKeyboard.subButtons {
             key.setShadow()
             
-            // function
             switch Const.cyrillicFunctionList[key.tag-1] {
             case .chr:
                 key.addTarget(self, action: #selector(cyrillicChrKeyPressed), for: .touchUpInside)
@@ -167,7 +165,7 @@ class KeyboardViewController: UIInputViewController {
             }
         }
         
-        // Num + Mark
+        // For NumMark Keyboard
         for key in self.numMarkKeyboard.subButtons {
             key.setShadow()
             
@@ -216,7 +214,7 @@ class KeyboardViewController: UIInputViewController {
             }
         }
         
-        // Set Keyboard
+        // 制約設定
         constraintH = constraint(self.view, .height, constant: Const.keyboardHeights[UIScreen.main.bounds.size.height]!)
         constraintH.isActive = true
         
@@ -255,14 +253,15 @@ class KeyboardViewController: UIInputViewController {
         
         setKeyboardConstraints(.latin)
         
-        // Substitution Setting
-        addLongPressGesture(#selector(popupQExtra), to: getKey(from: .latin, tag: 1)!)
+        // MARK:NRT: Extras
+        addLongPressGesture(#selector(popupQExtra), to: getKey(from: .latin, tag: 7)!)
         addLongPressGesture(#selector(popupNgExtra), to: getKey(from: .latin, tag: 8)!)
-        addLongPressGesture(#selector(popupErExtra), to: getKey(from: .latin, tag: 9)!)
-        addLongPressGesture(#selector(popupOrExtra), to: getKey(from: .latin, tag: 10)!)
+        addLongPressGesture(#selector(popupAExtra), to: getKey(from: .latin, tag: 9)!)
         
         addLongPressGesture(#selector(popupDashExtra), to: getKey(from: .numMark, tag: 13)!)
-        addLongPressGesture(#selector(popupLinearExtra), to: getKey(from: .numMark, tag: 19)!)
+        addLongPressGesture(#selector(popupSlashExtra), to: getKey(from: .numMark, tag: 14)!)
+        addLongPressGesture(#selector(popupColonExtra), to: getKey(from: .numMark, tag: 15)!)
+        addLongPressGesture(#selector(popupBulletExtra), to: getKey(from: .numMark, tag: 20)!)
         addLongPressGesture(#selector(popupPeriodExtra), to: getKey(from: .numMark, tag: 21)!)
         addLongPressGesture(#selector(popupQuestionExtra), to: getKey(from: .numMark, tag: 23)!)
         addLongPressGesture(#selector(popupExclamationExtra), to: getKey(from: .numMark, tag: 24)!)
@@ -270,13 +269,15 @@ class KeyboardViewController: UIInputViewController {
         addLongPressGesture(#selector(popupRightAngleExtra), to: getKey(from: .numMark, tag: 26)!)
     }
     
+    //iPhone XなどでinputModeSwitchKeyを削除
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         
         if !self.needsInputModeSwitchKey {
-            getKey(from: .latin, tag: 31)?.removeFromSuperview()
-            getKey(from: .cyrillic, tag: 32)?.removeFromSuperview()
-            getKey(from: .numMark, tag: 32)?.removeFromSuperview()
+            for type in [ScriptType.latin, ScriptType.cyrillic, ScriptType.numMark] {
+                getKey(from: type, tag: Const.KeyCounts[type]!)?.removeFromSuperview()
+                // inputModeSwitchKeyはtag順最後のボタンなので、ボタンの個数と一致する
+            }
         }
     }
     
@@ -284,19 +285,20 @@ class KeyboardViewController: UIInputViewController {
         setKeyboardConstraints(currentKeyboardType)
     }
     
+    //ライト／ダークモード切り替え
     override func textDidChange(_ textInput: UITextInput?) {
         if self.textDocumentProxy.keyboardAppearance == .light {
-            chrKeysSpaceNormalColour = Const.lightChrKeysColour
-            spaceTappedColour = Const.lightOtherKeysColour
-            otherKeysNormalColour = Const.lightOtherKeysColour
-            otherKeysButShiftTappedColour = Const.lightChrKeysColour
-            shiftTappedColour = Const.lightChrKeysColour
+            chrKeysSpaceNormalColour = Const.chrKeysColourLight
+            spaceTappedColour = Const.otherKeysColourLight
+            otherKeysNormalColour = Const.otherKeysColourLight
+            otherKeysButShiftTappedColour = Const.chrKeysColourLight
+            shiftTappedColour = Const.chrKeysColourLight
         } else {
-            chrKeysSpaceNormalColour = Const.darkOtherKeysColour
-            spaceTappedColour = Const.darkChrKeysColour
-            otherKeysNormalColour = Const.darkChrKeysColour
-            otherKeysButShiftTappedColour = Const.darkOtherKeysColour
-            shiftTappedColour = Const.darkTappedShiftColour
+            chrKeysSpaceNormalColour = Const.otherKeysColourDark
+            spaceTappedColour = Const.chrKeysColourDark
+            otherKeysNormalColour = Const.chrKeysColourDark
+            otherKeysButShiftTappedColour = Const.otherKeysColourDark
+            shiftTappedColour = Const.tappedShiftColourDark
         }
         
         var chrTextColour: UIColor
@@ -307,18 +309,18 @@ class KeyboardViewController: UIInputViewController {
         if self.textDocumentProxy.keyboardAppearance == .light {
             chrTextColour = .black
             otrTextColour = .black
-            shadowColour = UIColor.gray.cgColor
-            bgColour = UIColor(red: 208/255, green: 211/255, blue: 217/255, alpha: 1)
+            shadowColour = Const.shadowColourLight.cgColor
+            bgColour = Const.keyboardBgColourLight
         } else {
             chrTextColour = .white
             otrTextColour = .white
-            shadowColour = UIColor(red: 16/255, green: 16/255, blue: 16/255, alpha: 1).cgColor
-            bgColour = UIColor(red: 28/255, green: 28/255, blue: 28/255, alpha: 1)
+            shadowColour = Const.shadowColourDark.cgColor
+            bgColour = Const.keyboardBgColourDark
         }
         
         for type in [ScriptType.latin, ScriptType.cyrillic, ScriptType.numMark] {
-            let keyCount = (type == .latin) ? 31 : 32
-            let spaceKey = (type == .cyrillic) ? 28 : 27
+            let keyCount = Const.KeyCounts[type]!
+            let spaceKey = (type == .numMark) ? (keyCount - 5) : (keyCount - 4)
             
             for i in 1...keyCount {
                 if i <= spaceKey {
@@ -341,9 +343,7 @@ class KeyboardViewController: UIInputViewController {
         numMarkKeyboard.backgroundColor = bgColour
     }
     
-    // MARK:- Funcs For Keys
-    
-    // MARK: keyPressed
+    // MARK:- ボタン押下時の処理
     @objc func latinChrKeyPressed(sender: AnyObject) {
         let key = sender as! UIButton
         
@@ -419,7 +419,7 @@ class KeyboardViewController: UIInputViewController {
         setKeyboardConstraints(.latin)
     }
     
-    // MARK: colorChange
+    // MARK: ボタン押下時の背景色操作
     
     @objc func changeSpaceColour(sender: AnyObject) {
         let key = sender as! UIButton
@@ -440,6 +440,8 @@ class KeyboardViewController: UIInputViewController {
         let key = sender as! UIButton
         key.backgroundColor = otherKeysNormalColour
     }
+    
+    //MARK: 削除キー設定
     
     @objc func deleteDown(sender: AnyObject) {
         if self.textDocumentProxy.hasText {
@@ -465,7 +467,7 @@ class KeyboardViewController: UIInputViewController {
         }
     }
     
-    // MARK:- KeySound
+    // MARK:- 押下音設定
     
     @objc func setKeysound(sender: AnyObject) {
         isExtra = false
@@ -481,11 +483,12 @@ class KeyboardViewController: UIInputViewController {
         AudioServicesPlaySystemSound(1156)
     }
     
-    // MARK:- LongKeyPress
+    // MARK:- NRT: Extraそれぞれの設定
+    // MARK: latin
     
     @objc func popupQExtra(recog: UILongPressGestureRecognizer) {
         if recog.state == .began {
-            showPopup(recog: recog, "ğ")
+            showPopup(recog: recog, f: "ğ")
         } else if recog.state == .ended {
             let button = recog.view as! UIButton
             button.subviews[1].removeFromSuperview()
@@ -494,37 +497,28 @@ class KeyboardViewController: UIInputViewController {
     
     @objc func popupNgExtra(recog: UILongPressGestureRecognizer) {
         if recog.state == .began {
-            showPopup(recog: recog, "ñ")
+            showPopup(recog: recog, f: "ń")
         } else if recog.state == .ended {
             let button = recog.view as! UIButton
             button.subviews[1].removeFromSuperview()
         }
     }
     
-    @objc func popupErExtra(recog: UILongPressGestureRecognizer) {
+    @objc func popupAExtra(recog: UILongPressGestureRecognizer) {
         if recog.state == .began {
-            showPopup(recog: recog, "ê")
+            showPopup(recog: recog, f: "ą")
         } else if recog.state == .ended {
             let button = recog.view as! UIButton
             button.subviews[1].removeFromSuperview()
         }
     }
     
-    @objc func popupOrExtra(recog: UILongPressGestureRecognizer) {
-        if recog.state == .began {
-            showPopup(recog: recog, "ô")
-        } else if recog.state == .ended {
-            let button = recog.view as! UIButton
-            button.subviews[1].removeFromSuperview()
-        }
-    }
-    
-    // MARK: Num + Mark
+    // MARK: numMark
     
     @objc func popupDashExtra(recog: UILongPressGestureRecognizer) {
         if !isShift {
             if recog.state == .began {
-                showPopup(recog: recog, "—") //FIXME: なぜか三点リーダで表示される
+                showPopup(recog: recog, f: "—")
             } else if recog.state == .ended {
                 let button = recog.view as! UIButton
                 button.subviews[1].removeFromSuperview() //[0]は元ボタンの文字部分
@@ -532,10 +526,32 @@ class KeyboardViewController: UIInputViewController {
         }
     }
     
-    @objc func popupLinearExtra(recog: UILongPressGestureRecognizer) {
+    @objc func popupSlashExtra(recog: UILongPressGestureRecognizer) {
         if !isShift {
             if recog.state == .began {
-                showPopup(recog: recog, "'")
+                showPopup(recog: recog, f: "\\")
+            } else if recog.state == .ended {
+                let button = recog.view as! UIButton
+                button.subviews[1].removeFromSuperview()
+            }
+        }
+    }
+    
+    @objc func popupColonExtra(recog: UILongPressGestureRecognizer) {
+        if !isShift {
+            if recog.state == .began {
+                showPopup(recog: recog, f: ";")
+            } else if recog.state == .ended {
+                let button = recog.view as! UIButton
+                button.subviews[1].removeFromSuperview()
+            }
+        }
+    }
+    
+    @objc func popupBulletExtra(recog: UILongPressGestureRecognizer) {
+        if !isShift {
+            if recog.state == .began {
+                showPopup(recog: recog, f: "◦")
             } else if recog.state == .ended {
                 let button = recog.view as! UIButton
                 button.subviews[1].removeFromSuperview()
@@ -545,7 +561,7 @@ class KeyboardViewController: UIInputViewController {
     
     @objc func popupPeriodExtra(recog: UILongPressGestureRecognizer) {
         if recog.state == .began {
-            showPopup(recog: recog, "…", "…")
+            showPopup(recog: recog, t: "…", f: "…")
         } else if recog.state == .ended {
             let button = recog.view as! UIButton
             button.subviews[1].removeFromSuperview()
@@ -554,7 +570,7 @@ class KeyboardViewController: UIInputViewController {
     
     @objc func popupQuestionExtra(recog: UILongPressGestureRecognizer) {
         if recog.state == .began {
-            showPopup(recog: recog, "⸮", "⸮")
+            showPopup(recog: recog, t: "⸮", f: "⸮")
         } else if recog.state == .ended {
             let button = recog.view as! UIButton
             button.subviews[1].removeFromSuperview()
@@ -563,7 +579,7 @@ class KeyboardViewController: UIInputViewController {
     
     @objc func popupExclamationExtra(recog: UILongPressGestureRecognizer) {
         if recog.state == .began {
-            showPopup(recog: recog, "‽", "‽")
+            showPopup(recog: recog, t: "‽", f: "‽")
         } else if recog.state == .ended {
             let button = recog.view as! UIButton
             button.subviews[1].removeFromSuperview()
@@ -572,7 +588,7 @@ class KeyboardViewController: UIInputViewController {
     
     @objc func popupLeftAngleExtra(recog: UILongPressGestureRecognizer) {
         if recog.state == .began {
-            showPopup(recog: recog, "‹", "‹")
+            showPopup(recog: recog, t: "‹", f: "‹")
         } else if recog.state == .ended {
             let button = recog.view as! UIButton
             button.subviews[1].removeFromSuperview()
@@ -581,14 +597,14 @@ class KeyboardViewController: UIInputViewController {
     
     @objc func popupRightAngleExtra(recog: UILongPressGestureRecognizer) {
         if recog.state == .began {
-            showPopup(recog: recog, "›", "›")
+            showPopup(recog: recog, t: "›", f: "›")
         } else if recog.state == .ended {
             let button = recog.view as! UIButton
             button.subviews[1].removeFromSuperview()
         }
     }
     
-    // MARK:- Methods
+    // MARK:- 諸々のメソッド
     
     func setKeyboardXibs() {
         latinKeyboard = UINib(nibName: "Latin", bundle: nil).instantiate(withOwner: self, options: nil).first as? UIView
@@ -609,7 +625,7 @@ class KeyboardViewController: UIInputViewController {
             for key in self.latinKeyboard.subButtons {
                 UIView.performWithoutAnimation {
                     switch key.tag {
-                    case 1...26: key.setTitle(Const.latinList[key.tag-1], for: .normal)
+                    case 1...(Const.KeyCounts[.latin]! - 5): key.setTitle(Const.latinList[key.tag-1], for: .normal)
                     default: break
                     }
                     key.layoutIfNeeded()
@@ -619,7 +635,7 @@ class KeyboardViewController: UIInputViewController {
             for key in self.cyrillicKeyboard.subButtons {
                 UIView.performWithoutAnimation {
                     switch key.tag {
-                    case 1...27: key.setTitle(Const.cyrillicList[key.tag-1], for: .normal)
+                    case 1...(Const.KeyCounts[.cyrillic]! - 5): key.setTitle(Const.cyrillicList[key.tag-1], for: .normal)
                     default: break
                     }
                     key.layoutIfNeeded()
@@ -629,8 +645,8 @@ class KeyboardViewController: UIInputViewController {
             for key in self.numMarkKeyboard.subButtons {
                 UIView.performWithoutAnimation {
                     switch key.tag {
-                    case 1...26: key.setTitle(Const.numMarkList[isShift]![key.tag-1], for: .normal)
-                    case 29: key.setTitle(isShift ? "123": "#+=", for: .normal)
+                    case 1...(Const.KeyCounts[.numMark]! - 6): key.setTitle(Const.numMarkList[isShift]![key.tag-1], for: .normal)
+                    case (Const.KeyCounts[.numMark]! - 3): key.setTitle(isShift ? "123": "#+=", for: .normal)
                     default: break
                     }
                     key.layoutIfNeeded()
@@ -640,70 +656,24 @@ class KeyboardViewController: UIInputViewController {
     }
     
     func getKey(from type: ScriptType, tag: Int) -> UIButton? {
-        if type == .latin {
-            for stack in self.latinKeyboard.subviews {
-                for keytobe in stack.subviews {
-                    if keytobe is UIButton {
-                        if keytobe.tag == tag {
-                            let key = keytobe as! UIButton
-                            return key
-                        } else {
-                            continue
-                        }
+        let keyboards: [ScriptType:UIView] = [.latin: self.latinKeyboard, .cyrillic: self.cyrillicKeyboard, .numMark: self.numMarkKeyboard]
+        
+        for stack in keyboards[type]!.subviews {
+            for keytobe in stack.subviews {
+                if keytobe is UIButton {
+                    if keytobe.tag == tag {
+                        let key = keytobe as! UIButton
+                        return key
                     } else {
-                        let stack2 = keytobe.subviews.first as! UIStackView
-                        for keytobe2 in stack2.subviews {
-                            if keytobe2.tag == tag {
-                                let key = keytobe2 as! UIButton
-                                return key
-                            } else {
-                                continue
-                            }
-                        }
+                        continue
                     }
-                }
-            }
-        } else if type == .cyrillic {
-            for stack in self.cyrillicKeyboard.subviews {
-                for keytobe in stack.subviews {
-                    if keytobe is UIButton {
-                        if keytobe.tag == tag {
-                            let key = keytobe as! UIButton
+                } else {
+                    for keytobe2 in keytobe.subviews {
+                        if keytobe2.tag == tag {
+                            let key = keytobe2 as! UIButton
                             return key
                         } else {
                             continue
-                        }
-                    } else {
-                        let stack2 = keytobe.subviews.first as! UIStackView
-                        for keytobe2 in stack2.subviews {
-                            if keytobe2.tag == tag {
-                                let key = keytobe2 as! UIButton
-                                return key
-                            } else {
-                                continue
-                            }
-                        }
-                    }
-                }
-            }
-        } else {
-            for stack in self.numMarkKeyboard.subviews {
-                for keytobe in stack.subviews {
-                    if keytobe is UIButton {
-                        if keytobe.tag == tag {
-                            let key = keytobe as! UIButton
-                            return key
-                        } else {
-                            continue
-                        }
-                    } else {
-                        for keytobe2 in keytobe.subviews {
-                            if keytobe2.tag == tag {
-                                let key = keytobe2 as! UIButton
-                                return key
-                            } else {
-                                continue
-                            }
                         }
                     }
                 }
@@ -713,7 +683,7 @@ class KeyboardViewController: UIInputViewController {
         return nil
     }
     
-    func showPopup(recog: UIGestureRecognizer, _ f: String?, _ t: String? = nil) {
+    func showPopup(recog: UIGestureRecognizer, t: String? = nil, f: String? = nil) {
         isExtra = true
         
         let button = recog.view as! UIButton
