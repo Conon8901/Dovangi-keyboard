@@ -218,7 +218,7 @@
                 <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="7Wm-vm-217">
                     <rect key="frame" x="4" y="127.5" width="367" height="48"/>
                     <subviews>
-                        <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="eQ8-ir-E9k">
+                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="ihq-P0-yZc">
                             <rect key="frame" x="0.0" y="0.0" width="284.5" height="48"/>
                             <subviews>
                                 <button opaque="NO" tag="19" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sJd-Oh-oLa">
@@ -291,7 +291,7 @@
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                 </button>
-                                <button opaque="NO" tag="24" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OJv-D2-FVf">
+                                <button opaque="NO" tag="24" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Do-W8-D1o">
                                     <rect key="frame" x="206.5" y="0.0" width="36.5" height="48"/>
                                     <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="25"/>
@@ -305,7 +305,7 @@
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                 </button>
-                                <button opaque="NO" tag="25" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="abK-cJ-rek">
+                                <button opaque="NO" tag="25" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OJv-D2-FVf">
                                     <rect key="frame" x="248" y="0.0" width="36.5" height="48"/>
                                     <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="25"/>
@@ -325,7 +325,7 @@
                             <rect key="frame" x="319.5" y="0.0" width="47.5" height="48"/>
                             <color key="backgroundColor" red="0.6588235294" green="0.69019607839999997" blue="0.73333333329999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
-                                <constraint firstAttribute="width" secondItem="Hve-UH-Aqz" secondAttribute="height" multiplier="1:1" id="b37-wg-3SN"/>
+                                <constraint firstAttribute="width" secondItem="Hve-UH-Aqz" secondAttribute="height" multiplier="1:1" id="Ngd-Bl-SM4"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="23"/>
                             <state key="normal" title="⌫">
@@ -399,7 +399,7 @@
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
                         </button>
-                        <button opaque="NO" tag="14" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1JM-mp-FI5">
+                        <button opaque="NO" tag="14" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TbW-fp-HYz">
                             <rect key="frame" x="165.5" y="0.0" width="36" height="47.5"/>
                             <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="25"/>
@@ -427,7 +427,7 @@
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
                         </button>
-                        <button opaque="NO" tag="16" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OfG-Wp-gBL">
+                        <button opaque="NO" tag="16" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="abK-cJ-rek">
                             <rect key="frame" x="248" y="0.0" width="36.5" height="47.5"/>
                             <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="25"/>
@@ -474,38 +474,24 @@
             </subviews>
             <color key="backgroundColor" red="0.81176470590000005" green="0.82745098039999998" blue="0.85098039219999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="h87-Xj-Ki8" firstAttribute="width" secondItem="drW-Rv-sOt" secondAttribute="width" id="2op-yp-Xqy"/>
-                <constraint firstItem="h87-Xj-Ki8" firstAttribute="width" secondItem="LNj-3p-Qcz" secondAttribute="width" id="5tX-Qe-0kL"/>
                 <constraint firstItem="hEl-Co-hFv" firstAttribute="trailing" secondItem="dcS-1q-spa" secondAttribute="trailing" constant="4" id="6Gx-PV-97c"/>
-                <constraint firstItem="h87-Xj-Ki8" firstAttribute="width" secondItem="OfG-Wp-gBL" secondAttribute="width" id="CSB-Lb-d6Z"/>
                 <constraint firstItem="hEl-Co-hFv" firstAttribute="trailing" secondItem="7Wm-vm-217" secondAttribute="trailing" constant="4" id="EK4-hR-iox"/>
                 <constraint firstAttribute="bottom" secondItem="0mI-H8-q1T" secondAttribute="bottom" constant="5" id="Fih-P6-r1m"/>
                 <constraint firstItem="7Wm-vm-217" firstAttribute="leading" secondItem="hEl-Co-hFv" secondAttribute="leading" constant="4" id="Ggn-xA-pE6"/>
-                <constraint firstItem="h87-Xj-Ki8" firstAttribute="width" secondItem="YZb-LV-R0s" secondAttribute="width" id="Hry-QW-7mV"/>
                 <constraint firstItem="dcS-1q-spa" firstAttribute="top" secondItem="TJJ-Vx-fgi" secondAttribute="bottom" constant="12" id="I8p-L7-mjh"/>
-                <constraint firstItem="h87-Xj-Ki8" firstAttribute="width" secondItem="kIP-iB-fyi" secondAttribute="width" id="LGe-pp-aF3"/>
                 <constraint firstItem="hEl-Co-hFv" firstAttribute="trailing" secondItem="TJJ-Vx-fgi" secondAttribute="trailing" constant="4" id="NfD-X0-6a7"/>
                 <constraint firstItem="TJJ-Vx-fgi" firstAttribute="height" secondItem="7Wm-vm-217" secondAttribute="height" id="QP7-cw-1i5"/>
                 <constraint firstItem="0mI-H8-q1T" firstAttribute="top" secondItem="7Wm-vm-217" secondAttribute="bottom" constant="12" id="Qnk-Sc-OMa"/>
-                <constraint firstItem="h87-Xj-Ki8" firstAttribute="width" secondItem="abK-cJ-rek" secondAttribute="width" id="RY6-m4-Qp2"/>
-                <constraint firstItem="h87-Xj-Ki8" firstAttribute="width" secondItem="sNy-6b-SmG" secondAttribute="width" id="YaA-JX-v0R"/>
+                <constraint firstItem="h87-Xj-Ki8" firstAttribute="width" secondItem="sJd-Oh-oLa" secondAttribute="width" id="UOe-BB-DO4"/>
                 <constraint firstItem="7Wm-vm-217" firstAttribute="top" secondItem="dcS-1q-spa" secondAttribute="bottom" constant="12" id="b4t-El-wVp"/>
-                <constraint firstItem="h87-Xj-Ki8" firstAttribute="width" secondItem="OJv-D2-FVf" secondAttribute="width" id="cwp-Vl-b4q"/>
-                <constraint firstItem="h87-Xj-Ki8" firstAttribute="width" secondItem="eTs-1u-wk4" secondAttribute="width" id="eWo-T5-Flf"/>
-                <constraint firstItem="h87-Xj-Ki8" firstAttribute="width" secondItem="DjB-0V-V5c" secondAttribute="width" id="fH5-W8-Eci"/>
-                <constraint firstItem="h87-Xj-Ki8" firstAttribute="width" secondItem="pOt-ae-AQu" secondAttribute="width" id="gg1-rL-YDz"/>
                 <constraint firstItem="0mI-H8-q1T" firstAttribute="leading" secondItem="hEl-Co-hFv" secondAttribute="leading" constant="4" id="hIE-n3-SKd"/>
                 <constraint firstItem="TJJ-Vx-fgi" firstAttribute="top" secondItem="8Yd-Fc-9Jz" secondAttribute="top" constant="8" id="iWM-0H-0jT"/>
                 <constraint firstItem="TJJ-Vx-fgi" firstAttribute="leading" secondItem="hEl-Co-hFv" secondAttribute="leading" constant="4" id="jcs-uU-f1a"/>
-                <constraint firstItem="h87-Xj-Ki8" firstAttribute="width" secondItem="Ttw-8p-MeD" secondAttribute="width" id="jgZ-BW-VBo"/>
-                <constraint firstItem="h87-Xj-Ki8" firstAttribute="width" secondItem="9cv-Jp-g8e" secondAttribute="width" id="lLl-NT-GQC"/>
                 <constraint firstItem="TJJ-Vx-fgi" firstAttribute="height" secondItem="dcS-1q-spa" secondAttribute="height" id="lWO-ky-Kns"/>
-                <constraint firstItem="h87-Xj-Ki8" firstAttribute="width" secondItem="sJd-Oh-oLa" secondAttribute="width" id="mBT-N5-9DS"/>
                 <constraint firstItem="TJJ-Vx-fgi" firstAttribute="height" secondItem="0mI-H8-q1T" secondAttribute="height" id="qTg-yr-4sl"/>
                 <constraint firstItem="dcS-1q-spa" firstAttribute="leading" secondItem="hEl-Co-hFv" secondAttribute="leading" constant="4" id="sMY-fU-207"/>
+                <constraint firstItem="h87-Xj-Ki8" firstAttribute="width" secondItem="Ttw-8p-MeD" secondAttribute="width" id="vPg-4K-5fK"/>
                 <constraint firstItem="hEl-Co-hFv" firstAttribute="trailing" secondItem="0mI-H8-q1T" secondAttribute="trailing" constant="4" id="vbs-6A-086"/>
-                <constraint firstItem="h87-Xj-Ki8" firstAttribute="width" secondItem="kEG-tf-e83" secondAttribute="width" id="xds-Ok-MPL"/>
-                <constraint firstItem="h87-Xj-Ki8" firstAttribute="width" secondItem="1JM-mp-FI5" secondAttribute="width" id="yWC-ks-uiB"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>

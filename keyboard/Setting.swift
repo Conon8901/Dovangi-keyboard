@@ -82,14 +82,14 @@ enum KeyFuction {
 }
 
 struct Const {
-    static let KeyCounts: [ScriptType:Int] = [.latin: 30, .cyrillic: 31, .numMark: 32]
+    static let KeyCounts: [ScriptType:Int] = [.latin: 29, .cyrillic: 30, .numMark: 32]
     
     static let latinList = ["e", "r", "t", "u", "i", "o", "p", "ŋ", "ă", "a", "s", "d", "f", "g", "j", "k", "ś", "z", "x", "c", "v", "b", "n", "m", " ", "\n"]
     static let latinExtraList = [8: "ń", 9: "ą"]
-    static let latinFunctionList: [KeyFuction] = [.chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .space, .newline, .delete, .changeType, .nextKeyboard]
+    static let latinFunctionList: [KeyFuction] = [.chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .space, .newline, .delete, .changeType, .nextKeyboard]
     
     static let cyrillicList = ["у", "к", "е", "н", "г", "ш", "з", "х", "ӏ", "ф", "в", "а", "п", "р", "о", "л", "д", "ж", "с", "м", "и", "т", "б", "ң", "ӑ", " ", "\n"]
-    static let cyrillicFunctionList: [KeyFuction] = [.chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .space, .newline, .delete, .changeType, .nextKeyboard]
+    static let cyrillicFunctionList: [KeyFuction] = [.chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .space, .newline, .delete, .changeType, .nextKeyboard]
     
     static let numMarkList =
         [true: ["{", "}", "<", ">", "#", "+", "−", "×", "÷", "=", "’", "ʃ", "ʒ", "ɬ", "ɑ", "h", "l", "q", "w", "y", ".", ",", "?", "!", "«", "»", " ", "\n"],
