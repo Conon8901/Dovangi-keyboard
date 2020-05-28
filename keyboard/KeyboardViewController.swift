@@ -51,7 +51,6 @@ class KeyboardViewController: UIInputViewController {
     
     var isShift = false
     var isExtra = false
-    var lastShiftDate = Date()
     var currentKeyboardType = ScriptType.latin
     
     var chrKeysSpaceNormalColour = UIColor.white
@@ -254,17 +253,14 @@ class KeyboardViewController: UIInputViewController {
         setKeyboardConstraints(.latin)
         
         // MARK:NRT: Extras
-        addLongPressGesture(#selector(popupQExtra), to: getKey(from: .latin, tag: 7)!)
         addLongPressGesture(#selector(popupNgExtra), to: getKey(from: .latin, tag: 8)!)
-        addLongPressGesture(#selector(popupAExtra), to: getKey(from: .latin, tag: 9)!)
+        addLongPressGesture(#selector(popupAwExtra), to: getKey(from: .latin, tag: 9)!)
         
         addLongPressGesture(#selector(popupDashExtra), to: getKey(from: .numMark, tag: 13)!)
         addLongPressGesture(#selector(popupSlashExtra), to: getKey(from: .numMark, tag: 14)!)
         addLongPressGesture(#selector(popupColonExtra), to: getKey(from: .numMark, tag: 15)!)
         addLongPressGesture(#selector(popupBulletExtra), to: getKey(from: .numMark, tag: 20)!)
         addLongPressGesture(#selector(popupPeriodExtra), to: getKey(from: .numMark, tag: 21)!)
-        addLongPressGesture(#selector(popupQuestionExtra), to: getKey(from: .numMark, tag: 23)!)
-        addLongPressGesture(#selector(popupExclamationExtra), to: getKey(from: .numMark, tag: 24)!)
         addLongPressGesture(#selector(popupLeftAngleExtra), to: getKey(from: .numMark, tag: 25)!)
         addLongPressGesture(#selector(popupRightAngleExtra), to: getKey(from: .numMark, tag: 26)!)
     }
@@ -486,15 +482,6 @@ class KeyboardViewController: UIInputViewController {
     // MARK:- NRT: Extraそれぞれの設定
     // MARK: latin
     
-    @objc func popupQExtra(recog: UILongPressGestureRecognizer) {
-        if recog.state == .began {
-            showPopup(recog: recog, f: "ğ")
-        } else if recog.state == .ended {
-            let button = recog.view as! UIButton
-            button.subviews[1].removeFromSuperview()
-        }
-    }
-    
     @objc func popupNgExtra(recog: UILongPressGestureRecognizer) {
         if recog.state == .began {
             showPopup(recog: recog, f: "ń")
@@ -504,7 +491,7 @@ class KeyboardViewController: UIInputViewController {
         }
     }
     
-    @objc func popupAExtra(recog: UILongPressGestureRecognizer) {
+    @objc func popupAwExtra(recog: UILongPressGestureRecognizer) {
         if recog.state == .began {
             showPopup(recog: recog, f: "ą")
         } else if recog.state == .ended {
@@ -562,24 +549,6 @@ class KeyboardViewController: UIInputViewController {
     @objc func popupPeriodExtra(recog: UILongPressGestureRecognizer) {
         if recog.state == .began {
             showPopup(recog: recog, t: "…", f: "…")
-        } else if recog.state == .ended {
-            let button = recog.view as! UIButton
-            button.subviews[1].removeFromSuperview()
-        }
-    }
-    
-    @objc func popupQuestionExtra(recog: UILongPressGestureRecognizer) {
-        if recog.state == .began {
-            showPopup(recog: recog, t: "⸮", f: "⸮")
-        } else if recog.state == .ended {
-            let button = recog.view as! UIButton
-            button.subviews[1].removeFromSuperview()
-        }
-    }
-    
-    @objc func popupExclamationExtra(recog: UILongPressGestureRecognizer) {
-        if recog.state == .began {
-            showPopup(recog: recog, t: "‽", f: "‽")
         } else if recog.state == .ended {
             let button = recog.view as! UIButton
             button.subviews[1].removeFromSuperview()
