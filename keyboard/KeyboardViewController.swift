@@ -254,7 +254,7 @@ class KeyboardViewController: UIInputViewController {
         
         // MARK:NRT: Extras
         addLongPressGesture(#selector(popupNgExtra), to: getKey(from: .latin, tag: 8)!)
-        addLongPressGesture(#selector(popupAwExtra), to: getKey(from: .latin, tag: 9)!)
+        addLongPressGesture(#selector(popupAwExtra), to: getKey(from: .latin, tag: 25)!)
         
         addLongPressGesture(#selector(popupDashExtra), to: getKey(from: .numMark, tag: 13)!)
         addLongPressGesture(#selector(popupSlashExtra), to: getKey(from: .numMark, tag: 14)!)
