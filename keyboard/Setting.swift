@@ -82,20 +82,20 @@ enum KeyFuction {
 }
 
 struct Const {
-    static let KeyCounts: [ScriptType:Int] = [.latin: 30, .cyrillic: 31, .numMark: 32]
+    static let KeyCounts: [ScriptType:Int] = [.latin: 31, .cyrillic: 32, .numMark: 32]
     
-    static let latinList = ["e", "r", "t", "y", "u", "i", "o", "p", "ŋ", "a", "s", "d", "f", "g", "j", "k", "ś", "z", "x", "c", "v", "b", "n", "m", "ă", " ", "\n"]
-    static let latinExtraList = [8: "ń", 9: "ą"]
-    static let latinFunctionList: [KeyFuction] = [.chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .space, .newline, .delete, .changeType, .nextKeyboard]
+    static let latinList = ["e", "r", "t", "u", "i", "o", "p", "ŋ", "ü", "a", "s", "d", "f", "g", "j", "k", "ś", "š", "z", "x", "v", "b", "n", "m", "ö", "ž", " ", "\n"]
+    static let latinExtraList = [8: "ń"]
+    static let latinFunctionList: [KeyFuction] = [.chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .space, .newline, .delete, .changeType, .nextKeyboard]
     
-    static let cyrillicList = ["у", "к", "е", "н", "г", "ш", "з", "х", "ӏ", "ф", "в", "а", "п", "р", "о", "л", "д", "ж", "с", "м", "и", "т", "б", "ң", "ӑ", "ј", " ", "\n"]
-    static let cyrillicFunctionList: [KeyFuction] = [.chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .space, .newline, .delete, .changeType, .nextKeyboard]
+    static let cyrillicList = ["у", "к", "е", "н", "г", "ш", "з", "х", "ү", "ӏ", "ф", "в", "а", "п", "р", "о", "л", "д", "ж", "с", "м", "и", "т", "б", "ң", "ө", "ј", " ", "\n"]
+    static let cyrillicFunctionList: [KeyFuction] = [.chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .space, .newline, .delete, .changeType, .nextKeyboard]
     
     static let numMarkList =
-        [true: ["{", "}", "<", ">", "#", "+", "−", "×", "÷", "=", "’", "ʃ", "ʒ", "ɬ", "ɑ", "h", "l", "q", "w", "^", ".", ",", "?", "!", "«", "»", " ", "\n"],
+        [true: ["{", "}", "<", ">", "#", "+", "−", "×", "÷", "=", "’", "ø", "ʃ", "ɬ", "c", "h", "l", "q", "w", "y", ".", ",", "?", "!", "«", "»", " ", "\n"],
          false: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "-", "~", "–", "/", ":", "(", ")", "[", "]", "•", ".", ",", "?", "!", "«", "»", " ", "\n"]]
     static let numMarkExtraList =
-        [true: [21: "…", 25: "‹", 26: "›"],
+        [true: [8: "^", 13: "ʒ", 21: "…", 25: "‹", 26: "›"],
          false: [13: "—", 14: "\\", 15: ";", 20: "◦", 21: "…", 25: "‹", 26: "›"]]
     static let numMarkFunctionList: [KeyFuction] = [.chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .chr, .space, .newline, .shift, .delete, .changeType, .nextKeyboard]
     

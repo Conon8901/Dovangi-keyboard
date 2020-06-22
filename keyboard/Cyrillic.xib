@@ -20,7 +20,7 @@
                     <rect key="frame" x="4" y="8" width="367" height="48"/>
                     <subviews>
                         <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h87-Xj-Ki8">
-                            <rect key="frame" x="0.0" y="0.0" width="36.5" height="48"/>
+                            <rect key="frame" x="0.0" y="0.0" width="32" height="48"/>
                             <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="24"/>
                             <state key="normal" title="у">
@@ -34,7 +34,7 @@
                             </userDefinedRuntimeAttributes>
                         </button>
                         <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LwW-gl-nRl">
-                            <rect key="frame" x="41.5" y="0.0" width="36" height="48"/>
+                            <rect key="frame" x="37" y="0.0" width="32.5" height="48"/>
                             <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="24"/>
                             <state key="normal" title="к">
@@ -48,7 +48,7 @@
                             </userDefinedRuntimeAttributes>
                         </button>
                         <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g8E-sQ-vCI">
-                            <rect key="frame" x="82.5" y="0.0" width="36.5" height="48"/>
+                            <rect key="frame" x="74.5" y="0.0" width="32" height="48"/>
                             <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="24"/>
                             <state key="normal" title="е">
@@ -62,7 +62,7 @@
                             </userDefinedRuntimeAttributes>
                         </button>
                         <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m2e-gB-A2x">
-                            <rect key="frame" x="124" y="0.0" width="36.5" height="48"/>
+                            <rect key="frame" x="111.5" y="0.0" width="32.5" height="48"/>
                             <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="24"/>
                             <state key="normal" title="н">
@@ -76,7 +76,7 @@
                             </userDefinedRuntimeAttributes>
                         </button>
                         <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xh1-n6-gKd">
-                            <rect key="frame" x="165.5" y="0.0" width="36" height="48"/>
+                            <rect key="frame" x="149" y="0.0" width="32" height="48"/>
                             <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="24"/>
                             <state key="normal" title="г">
@@ -90,7 +90,7 @@
                             </userDefinedRuntimeAttributes>
                         </button>
                         <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cwn-X0-fQS">
-                            <rect key="frame" x="206.5" y="0.0" width="36.5" height="48"/>
+                            <rect key="frame" x="186" y="0.0" width="32" height="48"/>
                             <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="24"/>
                             <state key="normal" title="ш">
@@ -104,7 +104,7 @@
                             </userDefinedRuntimeAttributes>
                         </button>
                         <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VQ5-8s-fKa">
-                            <rect key="frame" x="248" y="0.0" width="36.5" height="48"/>
+                            <rect key="frame" x="223" y="0.0" width="32.5" height="48"/>
                             <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="24"/>
                             <state key="normal" title="з">
@@ -118,7 +118,7 @@
                             </userDefinedRuntimeAttributes>
                         </button>
                         <button opaque="NO" tag="8" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R3z-59-da9">
-                            <rect key="frame" x="289.5" y="0.0" width="36" height="48"/>
+                            <rect key="frame" x="260.5" y="0.0" width="32" height="48"/>
                             <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="24"/>
                             <state key="normal" title="х">
@@ -131,8 +131,22 @@
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
                         </button>
-                        <button opaque="NO" tag="9" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ha4-q6-Jo1">
-                            <rect key="frame" x="330.5" y="0.0" width="36.5" height="48"/>
+                        <button opaque="NO" tag="9" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PwZ-Sq-qcd">
+                            <rect key="frame" x="297.5" y="0.0" width="32.5" height="48"/>
+                            <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="24"/>
+                            <state key="normal" title="ү">
+                                <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="titleShadowColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                    <integer key="value" value="5"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </button>
+                        <button opaque="NO" tag="10" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ha4-q6-Jo1">
+                            <rect key="frame" x="335" y="0.0" width="32" height="48"/>
                             <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="24"/>
                             <state key="normal" title="ӏ">
@@ -150,7 +164,7 @@
                 <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="0mI-H8-q1T">
                     <rect key="frame" x="4" y="187.5" width="367" height="47.5"/>
                     <subviews>
-                        <button opaque="NO" tag="30" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RXo-kH-Kps">
+                        <button opaque="NO" tag="31" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RXo-kH-Kps">
                             <rect key="frame" x="0.0" y="0.0" width="45.5" height="47.5"/>
                             <color key="backgroundColor" red="0.6588235294" green="0.69019607839999997" blue="0.73333333329999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -164,7 +178,7 @@
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
                         </button>
-                        <button opaque="NO" tag="31" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EqN-wX-hf2">
+                        <button opaque="NO" tag="32" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EqN-wX-hf2">
                             <rect key="frame" x="50.5" y="0.0" width="45" height="47.5"/>
                             <color key="backgroundColor" red="0.6588235294" green="0.69019607839999997" blue="0.73333333329999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <fontDescription key="fontDescription" type="system" pointSize="22"/>
@@ -178,7 +192,7 @@
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
                         </button>
-                        <button opaque="NO" tag="27" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fto-wF-p2Z">
+                        <button opaque="NO" tag="28" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fto-wF-p2Z">
                             <rect key="frame" x="100.5" y="0.0" width="166" height="47.5"/>
                             <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -192,7 +206,7 @@
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
                         </button>
-                        <button opaque="NO" tag="28" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8RK-aW-tgK">
+                        <button opaque="NO" tag="29" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8RK-aW-tgK">
                             <rect key="frame" x="271.5" y="0.0" width="95.5" height="47.5"/>
                             <color key="backgroundColor" red="0.6588235294" green="0.69019607839999997" blue="0.73333333329999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
@@ -219,10 +233,10 @@
                     <rect key="frame" x="4" y="127.5" width="367" height="48"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="ihq-P0-yZc">
-                            <rect key="frame" x="0.0" y="0.0" width="325.5" height="48"/>
+                            <rect key="frame" x="0.0" y="0.0" width="292.5" height="48"/>
                             <subviews>
-                                <button opaque="NO" tag="19" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sJd-Oh-oLa">
-                                    <rect key="frame" x="0.0" y="0.0" width="36.5" height="48"/>
+                                <button opaque="NO" tag="20" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sJd-Oh-oLa">
+                                    <rect key="frame" x="0.0" y="0.0" width="32" height="48"/>
                                     <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="24"/>
                                     <state key="normal" title="с">
@@ -235,8 +249,8 @@
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                 </button>
-                                <button opaque="NO" tag="20" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YZb-LV-R0s">
-                                    <rect key="frame" x="41.5" y="0.0" width="36" height="48"/>
+                                <button opaque="NO" tag="21" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YZb-LV-R0s">
+                                    <rect key="frame" x="37" y="0.0" width="32.5" height="48"/>
                                     <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="24"/>
                                     <state key="normal" title="м">
@@ -249,8 +263,8 @@
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                 </button>
-                                <button opaque="NO" tag="21" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eTs-1u-wk4">
-                                    <rect key="frame" x="82.5" y="0.0" width="36.5" height="48"/>
+                                <button opaque="NO" tag="22" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eTs-1u-wk4">
+                                    <rect key="frame" x="74.5" y="0.0" width="32" height="48"/>
                                     <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="24"/>
                                     <state key="normal" title="и">
@@ -263,8 +277,8 @@
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                 </button>
-                                <button opaque="NO" tag="22" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9cv-Jp-g8e">
-                                    <rect key="frame" x="124" y="0.0" width="36.5" height="48"/>
+                                <button opaque="NO" tag="23" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9cv-Jp-g8e">
+                                    <rect key="frame" x="111.5" y="0.0" width="32.5" height="48"/>
                                     <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="24"/>
                                     <state key="normal" title="т">
@@ -277,8 +291,8 @@
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                 </button>
-                                <button opaque="NO" tag="23" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kIP-iB-fyi">
-                                    <rect key="frame" x="165.5" y="0.0" width="36" height="48"/>
+                                <button opaque="NO" tag="24" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kIP-iB-fyi">
+                                    <rect key="frame" x="149" y="0.0" width="32" height="48"/>
                                     <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="24"/>
                                     <state key="normal" title="б">
@@ -291,8 +305,8 @@
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                 </button>
-                                <button opaque="NO" tag="24" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Do-W8-D1o">
-                                    <rect key="frame" x="206.5" y="0.0" width="36.5" height="48"/>
+                                <button opaque="NO" tag="25" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Do-W8-D1o">
+                                    <rect key="frame" x="186" y="0.0" width="32" height="48"/>
                                     <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="24"/>
                                     <state key="normal" title="ң">
@@ -305,11 +319,11 @@
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                 </button>
-                                <button opaque="NO" tag="25" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OJv-D2-FVf">
-                                    <rect key="frame" x="248" y="0.0" width="36.5" height="48"/>
+                                <button opaque="NO" tag="26" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OJv-D2-FVf">
+                                    <rect key="frame" x="223" y="0.0" width="32.5" height="48"/>
                                     <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="24"/>
-                                    <state key="normal" title="ӑ">
+                                    <state key="normal" title="ө">
                                         <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <color key="titleShadowColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
@@ -319,8 +333,8 @@
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                 </button>
-                                <button opaque="NO" tag="26" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9PH-e6-fMg">
-                                    <rect key="frame" x="289.5" y="0.0" width="36" height="48"/>
+                                <button opaque="NO" tag="27" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9PH-e6-fMg">
+                                    <rect key="frame" x="260.5" y="0.0" width="32" height="48"/>
                                     <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="24"/>
                                     <state key="normal" title="ј">
@@ -335,9 +349,12 @@
                                 </button>
                             </subviews>
                         </stackView>
-                        <button opaque="NO" tag="29" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hve-UH-Aqz">
-                            <rect key="frame" x="330.5" y="0.0" width="36.5" height="48"/>
+                        <button opaque="NO" tag="30" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hve-UH-Aqz">
+                            <rect key="frame" x="319.5" y="0.0" width="47.5" height="48"/>
                             <color key="backgroundColor" red="0.6588235294" green="0.69019607839999997" blue="0.73333333329999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="Hve-UH-Aqz" secondAttribute="height" multiplier="1:1" id="3Of-3q-EKE"/>
+                            </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="23"/>
                             <state key="normal" title="⌫">
                                 <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -352,10 +369,10 @@
                     </subviews>
                 </stackView>
                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="dcS-1q-spa">
-                    <rect key="frame" x="4" y="68" width="367" height="47.5"/>
+                    <rect key="frame" x="22.5" y="68" width="330" height="47.5"/>
                     <subviews>
-                        <button opaque="NO" tag="10" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ttw-8p-MeD">
-                            <rect key="frame" x="0.0" y="0.0" width="36.5" height="47.5"/>
+                        <button opaque="NO" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ttw-8p-MeD">
+                            <rect key="frame" x="0.0" y="0.0" width="32.5" height="47.5"/>
                             <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="24"/>
                             <state key="normal" title="ф">
@@ -368,8 +385,8 @@
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
                         </button>
-                        <button opaque="NO" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pOt-ae-AQu">
-                            <rect key="frame" x="41.5" y="0.0" width="36" height="47.5"/>
+                        <button opaque="NO" tag="12" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pOt-ae-AQu">
+                            <rect key="frame" x="37.5" y="0.0" width="32" height="47.5"/>
                             <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="24"/>
                             <state key="normal" title="в">
@@ -382,8 +399,8 @@
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
                         </button>
-                        <button opaque="NO" tag="12" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sNy-6b-SmG">
-                            <rect key="frame" x="82.5" y="0.0" width="36.5" height="47.5"/>
+                        <button opaque="NO" tag="13" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sNy-6b-SmG">
+                            <rect key="frame" x="74.5" y="0.0" width="32" height="47.5"/>
                             <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="24"/>
                             <state key="normal" title="а">
@@ -396,8 +413,8 @@
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
                         </button>
-                        <button opaque="NO" tag="13" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DjB-0V-V5c">
-                            <rect key="frame" x="124" y="0.0" width="36.5" height="47.5"/>
+                        <button opaque="NO" tag="14" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DjB-0V-V5c">
+                            <rect key="frame" x="111.5" y="0.0" width="32.5" height="47.5"/>
                             <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="24"/>
                             <state key="normal" title="п">
@@ -410,8 +427,8 @@
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
                         </button>
-                        <button opaque="NO" tag="14" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TbW-fp-HYz">
-                            <rect key="frame" x="165.5" y="0.0" width="36" height="47.5"/>
+                        <button opaque="NO" tag="15" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TbW-fp-HYz">
+                            <rect key="frame" x="149" y="0.0" width="32" height="47.5"/>
                             <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="24"/>
                             <state key="normal" title="р">
@@ -424,8 +441,8 @@
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
                         </button>
-                        <button opaque="NO" tag="15" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LNj-3p-Qcz">
-                            <rect key="frame" x="206.5" y="0.0" width="36.5" height="47.5"/>
+                        <button opaque="NO" tag="16" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LNj-3p-Qcz">
+                            <rect key="frame" x="186" y="0.0" width="32.5" height="47.5"/>
                             <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="24"/>
                             <state key="normal" title="о">
@@ -438,8 +455,8 @@
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
                         </button>
-                        <button opaque="NO" tag="16" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="abK-cJ-rek">
-                            <rect key="frame" x="248" y="0.0" width="36.5" height="47.5"/>
+                        <button opaque="NO" tag="17" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="abK-cJ-rek">
+                            <rect key="frame" x="223.5" y="0.0" width="32" height="47.5"/>
                             <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="24"/>
                             <state key="normal" title="л">
@@ -452,8 +469,8 @@
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
                         </button>
-                        <button opaque="NO" tag="17" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kEG-tf-e83">
-                            <rect key="frame" x="289.5" y="0.0" width="36" height="47.5"/>
+                        <button opaque="NO" tag="18" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kEG-tf-e83">
+                            <rect key="frame" x="260.5" y="0.0" width="32" height="47.5"/>
                             <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="24"/>
                             <state key="normal" title="д">
@@ -466,8 +483,8 @@
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
                         </button>
-                        <button opaque="NO" tag="18" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="drW-Rv-sOt">
-                            <rect key="frame" x="330.5" y="0.0" width="36.5" height="47.5"/>
+                        <button opaque="NO" tag="19" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="drW-Rv-sOt">
+                            <rect key="frame" x="297.5" y="0.0" width="32.5" height="47.5"/>
                             <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="24"/>
                             <state key="normal" title="ж">
@@ -485,7 +502,8 @@
             </subviews>
             <color key="backgroundColor" red="0.81176470590000005" green="0.82745098039999998" blue="0.85098039219999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="hEl-Co-hFv" firstAttribute="trailing" secondItem="dcS-1q-spa" secondAttribute="trailing" constant="4" id="6Gx-PV-97c"/>
+                <constraint firstItem="h87-Xj-Ki8" firstAttribute="width" secondItem="sJd-Oh-oLa" secondAttribute="width" id="4L6-Sf-LR8"/>
+                <constraint firstItem="h87-Xj-Ki8" firstAttribute="width" secondItem="Ttw-8p-MeD" secondAttribute="width" id="BTo-ap-f7e"/>
                 <constraint firstItem="hEl-Co-hFv" firstAttribute="trailing" secondItem="7Wm-vm-217" secondAttribute="trailing" constant="4" id="EK4-hR-iox"/>
                 <constraint firstAttribute="bottom" secondItem="0mI-H8-q1T" secondAttribute="bottom" constant="5" id="Fih-P6-r1m"/>
                 <constraint firstItem="7Wm-vm-217" firstAttribute="leading" secondItem="hEl-Co-hFv" secondAttribute="leading" constant="4" id="Ggn-xA-pE6"/>
@@ -493,16 +511,13 @@
                 <constraint firstItem="hEl-Co-hFv" firstAttribute="trailing" secondItem="TJJ-Vx-fgi" secondAttribute="trailing" constant="4" id="NfD-X0-6a7"/>
                 <constraint firstItem="TJJ-Vx-fgi" firstAttribute="height" secondItem="7Wm-vm-217" secondAttribute="height" id="QP7-cw-1i5"/>
                 <constraint firstItem="0mI-H8-q1T" firstAttribute="top" secondItem="7Wm-vm-217" secondAttribute="bottom" constant="12" id="Qnk-Sc-OMa"/>
-                <constraint firstItem="h87-Xj-Ki8" firstAttribute="width" secondItem="sJd-Oh-oLa" secondAttribute="width" id="UOe-BB-DO4"/>
                 <constraint firstItem="7Wm-vm-217" firstAttribute="top" secondItem="dcS-1q-spa" secondAttribute="bottom" constant="12" id="b4t-El-wVp"/>
                 <constraint firstItem="0mI-H8-q1T" firstAttribute="leading" secondItem="hEl-Co-hFv" secondAttribute="leading" constant="4" id="hIE-n3-SKd"/>
                 <constraint firstItem="TJJ-Vx-fgi" firstAttribute="top" secondItem="8Yd-Fc-9Jz" secondAttribute="top" constant="8" id="iWM-0H-0jT"/>
                 <constraint firstItem="TJJ-Vx-fgi" firstAttribute="leading" secondItem="hEl-Co-hFv" secondAttribute="leading" constant="4" id="jcs-uU-f1a"/>
                 <constraint firstItem="TJJ-Vx-fgi" firstAttribute="height" secondItem="dcS-1q-spa" secondAttribute="height" id="lWO-ky-Kns"/>
-                <constraint firstItem="h87-Xj-Ki8" firstAttribute="width" secondItem="Hve-UH-Aqz" secondAttribute="width" id="pv9-gw-vic"/>
                 <constraint firstItem="TJJ-Vx-fgi" firstAttribute="height" secondItem="0mI-H8-q1T" secondAttribute="height" id="qTg-yr-4sl"/>
-                <constraint firstItem="dcS-1q-spa" firstAttribute="leading" secondItem="hEl-Co-hFv" secondAttribute="leading" constant="4" id="sMY-fU-207"/>
-                <constraint firstItem="h87-Xj-Ki8" firstAttribute="width" secondItem="Ttw-8p-MeD" secondAttribute="width" id="vPg-4K-5fK"/>
+                <constraint firstItem="dcS-1q-spa" firstAttribute="centerX" secondItem="8Yd-Fc-9Jz" secondAttribute="centerX" id="rPa-VV-7FX"/>
                 <constraint firstItem="hEl-Co-hFv" firstAttribute="trailing" secondItem="0mI-H8-q1T" secondAttribute="trailing" constant="4" id="vbs-6A-086"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>

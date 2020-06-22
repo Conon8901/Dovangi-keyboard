@@ -254,9 +254,10 @@ class KeyboardViewController: UIInputViewController {
         
         // MARK:NRT: Extras
         addLongPressGesture(#selector(popupNgExtra), to: getKey(from: .latin, tag: 8)!)
-        addLongPressGesture(#selector(popupAwExtra), to: getKey(from: .latin, tag: 25)!)
         
+        addLongPressGesture(#selector(popupCircumflexExtra), to: getKey(from: .numMark, tag: 8)!)
         addLongPressGesture(#selector(popupDashExtra), to: getKey(from: .numMark, tag: 13)!)
+        addLongPressGesture(#selector(popupEzhExtra), to: getKey(from: .numMark, tag: 13)!)
         addLongPressGesture(#selector(popupSlashExtra), to: getKey(from: .numMark, tag: 14)!)
         addLongPressGesture(#selector(popupColonExtra), to: getKey(from: .numMark, tag: 15)!)
         addLongPressGesture(#selector(popupBulletExtra), to: getKey(from: .numMark, tag: 20)!)
@@ -491,21 +492,34 @@ class KeyboardViewController: UIInputViewController {
         }
     }
     
-    @objc func popupAwExtra(recog: UILongPressGestureRecognizer) {
-        if recog.state == .began {
-            showPopup(recog: recog, f: "ą")
-        } else if recog.state == .ended {
-            let button = recog.view as! UIButton
-            button.subviews[1].removeFromSuperview()
+    // MARK: numMark
+    
+    @objc func popupCircumflexExtra(recog: UILongPressGestureRecognizer) {
+        if isShift {
+            if recog.state == .began {
+                showPopup(recog: recog, t: "^")
+            } else if recog.state == .ended {
+                let button = recog.view as! UIButton
+                button.subviews[1].removeFromSuperview() //[0]は元ボタンの文字部分
+            }
         }
     }
-    
-    // MARK: numMark
     
     @objc func popupDashExtra(recog: UILongPressGestureRecognizer) {
         if !isShift {
             if recog.state == .began {
                 showPopup(recog: recog, f: "—")
+            } else if recog.state == .ended {
+                let button = recog.view as! UIButton
+                button.subviews[1].removeFromSuperview() //[0]は元ボタンの文字部分
+            }
+        }
+    }
+    
+    @objc func popupEzhExtra(recog: UILongPressGestureRecognizer) {
+        if isShift {
+            if recog.state == .began {
+                showPopup(recog: recog, f: "ʒ")
             } else if recog.state == .ended {
                 let button = recog.view as! UIButton
                 button.subviews[1].removeFromSuperview() //[0]は元ボタンの文字部分
