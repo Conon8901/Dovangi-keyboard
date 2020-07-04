@@ -253,7 +253,11 @@ class KeyboardViewController: UIInputViewController {
         setKeyboardConstraints(.latin)
         
         // MARK:NRT: Extras
-        addLongPressGesture(#selector(popupNgExtra), to: getKey(from: .latin, tag: 8)!)
+        addLongPressGesture(#selector(popupLatinUExtra), to: getKey(from: .latin, tag: 4)!)
+        addLongPressGesture(#selector(popupLatinIExtra), to: getKey(from: .latin, tag: 5)!)
+        
+        addLongPressGesture(#selector(popupCyrillicUExtra), to: getKey(from: .cyrillic, tag: 1)!)
+        addLongPressGesture(#selector(popupCyrillicIExtra), to: getKey(from: .cyrillic, tag: 22)!)
         
         addLongPressGesture(#selector(popupCircumflexExtra), to: getKey(from: .numMark, tag: 8)!)
         addLongPressGesture(#selector(popupDashExtra), to: getKey(from: .numMark, tag: 13)!)
@@ -369,7 +373,11 @@ class KeyboardViewController: UIInputViewController {
         
         var str = ""
         
-        str = Const.cyrillicList[key.tag-1]
+        if isExtra {
+            str = Const.cyrillicExtraList[key.tag]!
+        } else {
+            str = Const.cyrillicList[key.tag-1]
+        }
         
         self.textDocumentProxy.insertText(str)
     }
@@ -483,9 +491,38 @@ class KeyboardViewController: UIInputViewController {
     // MARK:- NRT: Extraそれぞれの設定
     // MARK: latin
     
-    @objc func popupNgExtra(recog: UILongPressGestureRecognizer) {
+    @objc func popupLatinUExtra(recog: UILongPressGestureRecognizer) {
         if recog.state == .began {
-            showPopup(recog: recog, f: "ń")
+            showPopup(recog: recog, f: "ŭ")
+        } else if recog.state == .ended {
+            let button = recog.view as! UIButton
+            button.subviews[1].removeFromSuperview()
+        }
+    }
+    
+    @objc func popupLatinIExtra(recog: UILongPressGestureRecognizer) {
+        if recog.state == .began {
+            showPopup(recog: recog, f: "ĭ")
+        } else if recog.state == .ended {
+            let button = recog.view as! UIButton
+            button.subviews[1].removeFromSuperview()
+        }
+    }
+    
+    // MARK: cyrillic
+    
+    @objc func popupCyrillicUExtra(recog: UILongPressGestureRecognizer) {
+        if recog.state == .began {
+            showPopup(recog: recog, f: "ў")
+        } else if recog.state == .ended {
+            let button = recog.view as! UIButton
+            button.subviews[1].removeFromSuperview()
+        }
+    }
+    
+    @objc func popupCyrillicIExtra(recog: UILongPressGestureRecognizer) {
+        if recog.state == .began {
+            showPopup(recog: recog, f: "й")
         } else if recog.state == .ended {
             let button = recog.view as! UIButton
             button.subviews[1].removeFromSuperview()
